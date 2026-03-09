@@ -322,6 +322,48 @@
         },
         "type": "Advanced",
         "howCreated": "User"
+      },
+      {
+        "name": "a2be524f0239429dd879",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "MovementType"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b53e36e954360e367cb4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "shipment_type_id"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "74ee9381b85cda11a402",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Loads"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

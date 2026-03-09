@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "f7ffbd2824ee499d8665",
   "position": {
-    "x": 28.412066021627776,
-    "y": 305.97609561752989,
+    "x": 28.047808764940239,
+    "y": 321.27490039840637,
     "z": 19000,
-    "height": 394.85486624928859,
-    "width": 1229.0039840637451,
+    "height": 379.92031872509961,
+    "width": 1229.0039840637448,
     "tabOrder": 19000
   },
   "visual": {
@@ -77,20 +77,6 @@
             },
             {
               "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Progress"
-                }
-              },
-              "queryRef": "_Measures.Progress",
-              "nativeQueryRef": "Progress1"
-            },
-            {
-              "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
@@ -103,21 +89,6 @@
               "queryRef": "AS_Operations_Dashboard.MovementType",
               "nativeQueryRef": "Move Type",
               "displayName": "Move Type"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "AS_Operations_Dashboard"
-                    }
-                  },
-                  "Property": "MoveID"
-                }
-              },
-              "queryRef": "AS_Operations_Dashboard.MoveID",
-              "nativeQueryRef": "Freight Order ID",
-              "displayName": "Freight Order ID"
             },
             {
               "field": {
@@ -951,120 +922,6 @@
         },
         {
           "properties": {
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Aggregation": {
-                                  "Expression": {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "AS_Operations_Dashboard"
-                                        }
-                                      },
-                                      "Property": "Status_Basic"
-                                    }
-                                  },
-                                  "Function": 3
-                                }
-                              },
-                              "Right": {
-                                "Literal": {
-                                  "Value": "'Completed'"
-                                }
-                              }
-                            },
-                            "Annotations": {
-                              "PowerBI.SQExprEvaluationKind": 1,
-                              "PowerBI.SQExprTextOperatorOption": 2
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#e6e6e6'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "Not": {
-                              "Expression": {
-                                "Comparison": {
-                                  "ComparisonKind": 0,
-                                  "Left": {
-                                    "Aggregation": {
-                                      "Expression": {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Entity": "AS_Operations_Dashboard"
-                                            }
-                                          },
-                                          "Property": "LateFlag"
-                                        }
-                                      },
-                                      "Function": 3
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "'Not Late'"
-                                    }
-                                  }
-                                },
-                                "Annotations": {
-                                  "PowerBI.SQExprEvaluationKind": 1,
-                                  "PowerBI.SQExprTextOperatorOption": 13
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#F20303'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "_Measures.Progress"
-          }
-        },
-        {
-          "properties": {
             "fontColor": {
               "solid": {
                 "color": {
@@ -1175,120 +1032,6 @@
               }
             ],
             "metadata": "AS_Operations_Dashboard.MovementType"
-          }
-        },
-        {
-          "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "Not": {
-                              "Expression": {
-                                "Comparison": {
-                                  "ComparisonKind": 0,
-                                  "Left": {
-                                    "Aggregation": {
-                                      "Expression": {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Entity": "AS_Operations_Dashboard"
-                                            }
-                                          },
-                                          "Property": "LateFlag"
-                                        }
-                                      },
-                                      "Function": 3
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "'Not Late'"
-                                    }
-                                  }
-                                },
-                                "Annotations": {
-                                  "PowerBI.SQExprEvaluationKind": 1,
-                                  "PowerBI.SQExprTextOperatorOption": 13
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#F20303'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 0,
-                              "Left": {
-                                "Aggregation": {
-                                  "Expression": {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "AS_Operations_Dashboard"
-                                        }
-                                      },
-                                      "Property": "Status_Basic"
-                                    }
-                                  },
-                                  "Function": 3
-                                }
-                              },
-                              "Right": {
-                                "Literal": {
-                                  "Value": "'Completed'"
-                                }
-                              }
-                            },
-                            "Annotations": {
-                              "PowerBI.SQExprEvaluationKind": 1,
-                              "PowerBI.SQExprTextOperatorOption": 2
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#e6e6e6'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "AS_Operations_Dashboard.MoveID"
           }
         },
         {
@@ -2772,20 +2515,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "80.25428390043702D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "AS_Operations_Dashboard.MoveID"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "67.58701452672337D"
                 }
               }
@@ -2800,20 +2529,6 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "59.54351839081565D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.Progress"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
                   "Value": "66.34903159372706D"
                 }
               }
@@ -2821,71 +2536,6 @@
           },
           "selector": {
             "metadata": "AS_Operations_Dashboard.AssignedDoor_Unified"
-          }
-        }
-      ],
-      "columnFormatting": [
-        {
-          "properties": {
-            "dataBars": {
-              "positiveColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'#9fe8be'"
-                      }
-                    }
-                  }
-                }
-              },
-              "negativeColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'minColor'"
-                      }
-                    }
-                  }
-                }
-              },
-              "axisColor": {
-                "solid": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'#e6e6e6'"
-                      }
-                    }
-                  }
-                }
-              },
-              "reverseDirection": {
-                "expr": {
-                  "Literal": {
-                    "Value": "false"
-                  }
-                }
-              },
-              "hideText": {
-                "expr": {
-                  "Literal": {
-                    "Value": "false"
-                  }
-                }
-              },
-              "totalMatchingOption": {
-                "expr": {
-                  "Literal": {
-                    "Value": "1L"
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.Progress"
           }
         }
       ]
@@ -3646,6 +3296,244 @@
         },
         "type": "Categorical",
         "howCreated": "User"
+      },
+      {
+        "name": "33f4bd68837518979e0e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "appointment_date_shipment"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8f7ecdee49045cdd45eb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "Status_Basic"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "32687c156e11485a6224",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "MinStart"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "dda46e890d2581e8569a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "Ended_Any"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e033d0d3954625408b34",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "MovementType"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "044e303320d034a02b93",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "OriginCustomer_Unified"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5ab03a313d350577840d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "is live"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5c564915e3026b6239a4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "LateFlag"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8b5e61b244e1a0e00dd8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "TrailerID_Unified"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7c0c2bcc307a70464858",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Hours till late"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "55a3abfc69874a99c9db",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Cases_Expected_Ordered (Distinct Moves)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d0a08960ee2d89ba1d97",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Cases_Received_Loaded (Distinct Moves)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bfed2e5964e46b67ae35",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Cases Left (Distinct Moves)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8254356770204b34e0e7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "note_shipment"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "53f5cdbcde5b5b91ea7b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "ProposedDoor_Unified"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2ca7da972dce8825e69b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "AssignedDoor_Unified"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a72ecd597d30a9c6c00b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "AS_Operations_Dashboard"
+              }
+            },
+            "Property": "CarrierID"
+          }
+        },
+        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "3c6290655ce6448572be",
   "position": {
-    "x": 28.571428571428573,
-    "y": 274.92063492063494,
+    "x": 27.790549169859517,
+    "y": 274.63601532567048,
     "z": 3000,
-    "height": 31.111111111111111,
-    "width": 98.412698412698418,
+    "height": 60.485312899106006,
+    "width": 304.06130268199234,
     "tabOrder": 3000
   },
   "visual": {
@@ -21,9 +21,8 @@
                   {
                     "value": "Load Board",
                     "textStyle": {
-                      "fontWeight": "bold",
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "11pt",
+                      "fontSize": "24pt",
                       "color": "#000000"
                     }
                   }
