@@ -1,0 +1,307 @@
+table AS_Items
+	isHidden
+	lineageTag: 2fdedc76-3e98-484d-832e-852fee8971de
+
+	column site_id
+		dataType: string
+		isHidden
+		lineageTag: b79d51c2-b684-4bb5-b9dd-c02f4b21c144
+		summarizeBy: none
+		sourceColumn: site_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column length_uom
+		dataType: string
+		isHidden
+		lineageTag: 06401963-6ce7-4eab-8526-716fedd4f070
+		summarizeBy: none
+		sourceColumn: length_uom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column report_weight_uom
+		dataType: string
+		isHidden
+		lineageTag: 0396d4ac-f2fe-48dc-80f5-7014d3e60bfa
+		summarizeBy: none
+		sourceColumn: report_weight_uom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_id
+		dataType: string
+		isHidden
+		lineageTag: 0bfc70ab-38e3-4d5a-a2ae-699d6fbcd544
+		summarizeBy: none
+		sourceColumn: item_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_description
+		dataType: string
+		isHidden
+		lineageTag: c608b220-b1fd-474a-b4fc-bfa967c9d0f7
+		summarizeBy: none
+		sourceColumn: item_description
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_group_id
+		dataType: string
+		isHidden
+		lineageTag: db041813-6683-4dc9-a8b4-c00b49cfe6d3
+		summarizeBy: none
+		sourceColumn: item_group_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column each_height
+		dataType: double
+		isHidden
+		lineageTag: 73161e2f-ec58-4cf6-9c54-0ec925315a04
+		summarizeBy: sum
+		sourceColumn: each_height
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column each_width
+		dataType: double
+		isHidden
+		lineageTag: 8374ee43-732a-45a1-a1e6-e0ca3c1cb476
+		summarizeBy: sum
+		sourceColumn: each_width
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column each_length
+		dataType: double
+		isHidden
+		lineageTag: 3a1f8ebb-997b-438e-a3f7-85da42d12e20
+		summarizeBy: sum
+		sourceColumn: each_length
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column each_weight
+		dataType: double
+		isHidden
+		lineageTag: 30fd925c-abc1-461d-bf6d-cb5c0778f4be
+		summarizeBy: sum
+		sourceColumn: each_weight
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column buom_per_each
+		dataType: double
+		isHidden
+		lineageTag: a0055911-9ac0-4a48-b000-b61cad0553d5
+		summarizeBy: sum
+		sourceColumn: buom_per_each
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column case_height
+		dataType: double
+		isHidden
+		lineageTag: 3f6c6e85-4b9a-4e42-a9fa-e9af645baec9
+		summarizeBy: sum
+		sourceColumn: case_height
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column case_width
+		dataType: double
+		isHidden
+		lineageTag: 58a0e679-deee-4abf-9ca3-4484a4d0a9ac
+		summarizeBy: sum
+		sourceColumn: case_width
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column case_length
+		dataType: double
+		isHidden
+		lineageTag: 3fcc5270-174d-4378-bee1-8af8e737fb27
+		summarizeBy: sum
+		sourceColumn: case_length
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column case_weight
+		dataType: double
+		isHidden
+		lineageTag: fe6ec21b-f6bb-44af-add6-ef3448e87d2f
+		summarizeBy: sum
+		sourceColumn: case_weight
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column buom_per_case
+		dataType: double
+		isHidden
+		lineageTag: 4c6fafb0-b982-43c7-9e26-0fa880675bf7
+		summarizeBy: sum
+		sourceColumn: buom_per_case
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cases_per_layer
+		dataType: double
+		isHidden
+		lineageTag: 9f73d858-60c9-4777-b0f3-8e63e1d2f273
+		summarizeBy: sum
+		sourceColumn: cases_per_layer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column layers_per_UL
+		dataType: double
+		isHidden
+		lineageTag: 19c35303-9e0d-4db7-a7ac-cdbdb95aab77
+		summarizeBy: sum
+		sourceColumn: layers_per_UL
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_static_stack_height_UL
+		dataType: double
+		isHidden
+		lineageTag: 5951fa61-8ccb-4bae-8785-7543553ff314
+		summarizeBy: sum
+		sourceColumn: max_static_stack_height_UL
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column default_qa_status_on_arrival
+		dataType: string
+		isHidden
+		lineageTag: 9c0d1fbf-1341-4881-ade2-48137862ec06
+		summarizeBy: none
+		sourceColumn: default_qa_status_on_arrival
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column default_pallet_type_on_arrival
+		dataType: string
+		isHidden
+		lineageTag: 4d231a76-ab3f-485d-a45e-6b914344a656
+		summarizeBy: none
+		sourceColumn: default_pallet_type_on_arrival
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status_Basic
+		type: calculated
+		lineageTag: 90b76204-de0e-41db-a2d0-593577d4d0fc
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AS_Items = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				        "/external-view/item",
+				        type table [
+				            site_id = text,
+				            length_uom = text,
+				            report_weight_uom = text,
+				            item_id = text,
+				            item_description = text,
+				            item_group_id = text,
+				            each_height = number,
+				            each_width = number,
+				            each_length = number,
+				            each_weight = number,
+				            buom_per_each = number,
+				            case_height = number,
+				            case_width = number,
+				            case_length = number,
+				            case_weight = number,
+				            buom_per_case = number,
+				            cases_per_layer = number,
+				            layers_per_UL = number,
+				            max_static_stack_height_UL = number,
+				            default_qa_status_on_arrival = text,
+				            default_pallet_type_on_arrival = text
+				        ]
+				    )
+				in
+				    convert_to_table
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

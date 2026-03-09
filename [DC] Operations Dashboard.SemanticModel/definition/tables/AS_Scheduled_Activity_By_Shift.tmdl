@@ -1,0 +1,156 @@
+table AS_Scheduled_Activity_By_Shift
+	lineageTag: 728af5ce-9e62-4643-a4e6-a3363ca10377
+
+	column site_id
+		dataType: string
+		lineageTag: a077ad62-4d59-40ed-80de-721db5ddeb1c
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shift_id
+		dataType: string
+		lineageTag: e18b1a1c-2c07-4f7d-9b51-2cf1d7c689f6
+		summarizeBy: none
+		sourceColumn: shift_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shift_start_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 94fec896-19be-4cba-b099-acd2852a020c
+		summarizeBy: none
+		sourceColumn: shift_start_utc
+
+		variation Variation
+			isDefault
+			relationship: 74e4f4ab-4eee-4ebd-bc34-310ec01cc6b0
+			defaultHierarchy: LocalDateTable_03106229-ec24-4ca5-93d5-d9528b93ea16.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column shift_start
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a94f70dc-0bc4-42ca-b1bf-35c6bc67e2e6
+		summarizeBy: none
+		sourceColumn: shift_start
+
+		variation Variation
+			isDefault
+			relationship: 9eb6dea6-4335-49f4-ad98-319d574d4fcd
+			defaultHierarchy: LocalDateTable_c003f0c9-e0e1-45af-97ae-bf253433a7ee.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column shift_end_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 158ab0ef-9cc2-4347-9601-5dff03c62409
+		summarizeBy: none
+		sourceColumn: shift_end_utc
+
+		variation Variation
+			isDefault
+			relationship: e42b2d3f-fcd4-4caa-b8d3-4283b82f5bdf
+			defaultHierarchy: LocalDateTable_325b2417-2a84-4066-a3a1-5995f5d00b44.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column shift_end
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 132d39f7-646e-4a27-88bd-7578cdf2a160
+		summarizeBy: none
+		sourceColumn: shift_end
+
+		variation Variation
+			isDefault
+			relationship: 0a3cd0c2-d200-45c2-9c26-d2e28480033b
+			defaultHierarchy: LocalDateTable_64099c8b-a38c-480f-bb6f-7776d421ab3d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column action_id
+		dataType: string
+		lineageTag: 08b0f6e7-d0b9-4267-99c8-14e34258ccb2
+		summarizeBy: none
+		sourceColumn: action_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column equipment_id
+		dataType: string
+		lineageTag: 693b1121-acdb-4cad-901b-6a9bad85d192
+		summarizeBy: none
+		sourceColumn: equipment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column actor_id
+		dataType: string
+		lineageTag: 29f4792f-6be3-40c5-b4f1-035eb94ef23d
+		summarizeBy: none
+		sourceColumn: actor_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_type
+		dataType: int64
+		formatString: 0
+		lineageTag: 60f375f7-b0c4-4a5c-ae19-c677b329d80c
+		summarizeBy: sum
+		sourceColumn: parent_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column scheduled_ULs
+		dataType: double
+		lineageTag: a9276020-2505-4bdd-b925-3908fe7119d4
+		summarizeBy: sum
+		sourceColumn: scheduled_ULs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column scheduled_work_hours
+		dataType: double
+		lineageTag: 6448a88b-04ff-417b-8895-72c48da9deb2
+		summarizeBy: sum
+		sourceColumn: scheduled_work_hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition AS_Scheduled_Activity_By_Shift = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				        "/external-view/scheduled-activity-by-shift",
+				        type table [
+				            site_id = text,
+				            shift_id = text,
+				            shift_start_utc = datetime,
+				            shift_start = datetime,
+				            shift_end_utc = datetime,
+				            shift_end = datetime,
+				            action_id = text,
+				            equipment_id = text,
+				            actor_id = text,
+				            parent_type = Int64.Type,
+				            scheduled_ULs = number,
+				            scheduled_work_hours = number
+				        ]
+				    )
+				in
+				    convert_to_table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

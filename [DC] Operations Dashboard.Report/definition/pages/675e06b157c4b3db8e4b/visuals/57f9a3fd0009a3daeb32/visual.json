@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "57f9a3fd0009a3daeb32",
+  "position": {
+    "x": 10,
+    "y": 290,
+    "z": 1000,
+    "height": 280,
+    "width": 280,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "LateFlag"
+                }
+              },
+              "queryRef": "AS_Result_Schedule_Activity.LateFlag",
+              "nativeQueryRef": "LateFlag"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "MoveID"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "AS_Result_Schedule_Activity.MoveID",
+              "nativeQueryRef": "Count of MoveID"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

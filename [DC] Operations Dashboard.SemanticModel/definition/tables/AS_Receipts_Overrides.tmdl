@@ -1,0 +1,253 @@
+table AS_Receipts_Overrides
+	isHidden
+	lineageTag: c9281c90-713a-42f7-9997-b785d05bec1f
+
+	column appointment_date_UTC
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 0466c0c0-9dde-45e4-8eff-2527e672ff16
+		summarizeBy: none
+		sourceColumn: appointment_date_UTC
+
+		variation Variation
+			isDefault
+			relationship: 03d07f74-4bec-49db-840b-58fa76612faa
+			defaultHierarchy: LocalDateTable_4fb14aa7-6b21-4088-943c-a8b29a67cb77.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 64822ae3-f017-4e9a-9856-6dbb86d9a042
+		summarizeBy: none
+		sourceColumn: appointment_date
+
+		variation Variation
+			isDefault
+			relationship: 0cc4b6a1-dc2b-499f-8242-bfa28e3bd62f
+			defaultHierarchy: LocalDateTable_b51e7f77-006f-478b-9c86-6da4c36311b8.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: a2abe719-ff69-4fd9-9d71-37b7a15ce7a2
+		summarizeBy: none
+		sourceColumn: planned_arrival_utc
+
+		variation Variation
+			isDefault
+			relationship: 2e6c3379-17af-4ba9-bf23-54f229b9892b
+			defaultHierarchy: LocalDateTable_557456a4-8ebd-4ca1-8e7b-53fca34805c3.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 09dc3dd5-acf6-49a8-9cd9-a5c9bfaaf983
+		summarizeBy: none
+		sourceColumn: planned_arrival
+
+		variation Variation
+			isDefault
+			relationship: 8022e6c7-426c-4fab-ba71-5d37a47595e9
+			defaultHierarchy: LocalDateTable_fc39fa5a-1c86-4224-a063-faf3a19a13d7.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived_UTC
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: e5c0cb31-ecb8-420d-b8e0-14890027ebef
+		summarizeBy: none
+		sourceColumn: arrived_UTC
+
+		variation Variation
+			isDefault
+			relationship: db4e3ab1-cb50-42c6-a800-ebe675452b50
+			defaultHierarchy: LocalDateTable_7a8fe09a-09e5-44c9-9a22-87b4cd343608.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: a84a1453-367e-469c-834f-d3170c03b04b
+		summarizeBy: none
+		sourceColumn: arrived
+
+		variation Variation
+			isDefault
+			relationship: ab688b00-f34b-4345-857a-f606aa8d6460
+			defaultHierarchy: LocalDateTable_ece06589-c992-468d-bbb2-1bfe1b59b945.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: e7c5a64c-3385-48e9-b53f-9df5cdeed7a9
+		summarizeBy: none
+		sourceColumn: last_updated_utc
+
+		variation Variation
+			isDefault
+			relationship: 425b75d0-3527-4e96-9600-d9a0212e3713
+			defaultHierarchy: LocalDateTable_72e562c6-f9af-48da-8d1a-0b00a2871816.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 4810626b-16a4-4ab6-82af-c9781d1c7d64
+		summarizeBy: none
+		sourceColumn: last_updated
+
+		variation Variation
+			isDefault
+			relationship: 29ce6038-23ef-46d3-8c1e-e03928994709
+			defaultHierarchy: LocalDateTable_9fc4e78f-5572-4e44-94fc-110339a39bc4.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_by
+		dataType: string
+		isHidden
+		lineageTag: 57a47a2c-6733-4817-a44e-4fdcd0359b8d
+		summarizeBy: none
+		sourceColumn: last_updated_by
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column site_id
+		dataType: string
+		lineageTag: bd008c45-7887-4732-925a-f0b7a7c1eaec
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column receipt_id
+		dataType: string
+		lineageTag: 6a4341c4-47fc-4449-94c6-1cb8da6ce97f
+		summarizeBy: none
+		sourceColumn: receipt_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column note
+		dataType: string
+		lineageTag: f68f8d54-1c99-4652-8316-1c05d3e76e32
+		summarizeBy: none
+		sourceColumn: note
+
+		annotation SummarizationSetBy = Automatic
+
+	column receipt_type_id
+		dataType: string
+		lineageTag: ab0db059-f546-455b-a30c-e311e35322bc
+		summarizeBy: none
+		sourceColumn: receipt_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_live
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 403808fc-a6ea-4bf0-a634-ccf7ab28d572
+		summarizeBy: none
+		sourceColumn: is_live
+
+		annotation SummarizationSetBy = Automatic
+
+	column transportation_type_id
+		dataType: string
+		lineageTag: 24810a82-0c52-4e1a-8b10-49fec869aad8
+		summarizeBy: none
+		sourceColumn: transportation_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column manual_override
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dedfdb17-09c2-4ae2-867e-25ee39e18016
+		summarizeBy: none
+		sourceColumn: manual_override
+
+		annotation SummarizationSetBy = Automatic
+
+	column ignore
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 38b53974-d895-44de-b316-db1024fd61d0
+		summarizeBy: none
+		sourceColumn: ignore
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AS_Receipts_Overrides = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				        "/external-view/receipt-overrides",
+				        type table [
+				            site_id = text,
+				            receipt_id = text,
+				            note = text,
+				            receipt_type_id = text,
+				            is_live = logical,
+				            appointment_date_UTC = datetime,
+				            appointment_date = datetime,
+				            transportation_type_id = text,
+				            planned_arrival_utc = datetime,
+				            planned_arrival = datetime,
+				            arrived_UTC = datetime,
+				            arrived = datetime,
+				            last_updated = datetime,
+				            last_updated_utc = datetime,
+				            last_updated_by = text,
+				            manual_override = logical,
+				            ignore = logical
+				        ]
+				    )
+				in
+				    convert_to_table
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

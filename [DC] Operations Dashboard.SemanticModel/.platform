@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "[DC] Operations Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e78f7078-d4c1-4181-bc26-066707708a3e"
+  }
+}

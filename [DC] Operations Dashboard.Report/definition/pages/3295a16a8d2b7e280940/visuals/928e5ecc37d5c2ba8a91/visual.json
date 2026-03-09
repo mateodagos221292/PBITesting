@@ -1,0 +1,200 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "928e5ecc37d5c2ba8a91",
+  "position": {
+    "x": 10.193401592718999,
+    "y": 0,
+    "z": 0,
+    "height": 705.52901023890786,
+    "width": 994.58475540386792,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Operations_Dashboard"
+                    }
+                  },
+                  "Property": "from_movement_id"
+                }
+              },
+              "queryRef": "AS_Operations_Dashboard.from_movement_id",
+              "nativeQueryRef": "from_movement_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Operations_Dashboard"
+                    }
+                  },
+                  "Property": "to_movement_id"
+                }
+              },
+              "queryRef": "AS_Operations_Dashboard.to_movement_id",
+              "nativeQueryRef": "to_movement_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Operations_Dashboard"
+                    }
+                  },
+                  "Property": "IsCrossdock"
+                }
+              },
+              "queryRef": "AS_Operations_Dashboard.IsCrossdock",
+              "nativeQueryRef": "IsCrossdock"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Operations_Dashboard"
+                    }
+                  },
+                  "Property": "IsShipmentOnly"
+                }
+              },
+              "queryRef": "AS_Operations_Dashboard.IsShipmentOnly",
+              "nativeQueryRef": "IsShipmentOnly"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Operations_Dashboard"
+                    }
+                  },
+                  "Property": "IsReceiptOnly"
+                }
+              },
+              "queryRef": "AS_Operations_Dashboard.IsReceiptOnly",
+              "nativeQueryRef": "IsReceiptOnly"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Operations_Dashboard"
+                    }
+                  },
+                  "Property": "MovementType"
+                }
+              },
+              "queryRef": "AS_Operations_Dashboard.MovementType",
+              "nativeQueryRef": "MovementType"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Operations_Dashboard"
+                    }
+                  },
+                  "Property": "receipt_id"
+                }
+              },
+              "queryRef": "AS_Operations_Dashboard.receipt_id",
+              "nativeQueryRef": "receipt_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Operations_Dashboard"
+                    }
+                  },
+                  "Property": "shipment_id"
+                }
+              },
+              "queryRef": "AS_Operations_Dashboard.shipment_id",
+              "nativeQueryRef": "shipment_id"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Operations_Dashboard"
+                        }
+                      },
+                      "Property": "ActivityCount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(AS_Operations_Dashboard.ActivityCount)",
+              "nativeQueryRef": "Sum of ActivityCount"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Operations_Dashboard"
+                    }
+                  },
+                  "Property": "from_movement_type"
+                }
+              },
+              "queryRef": "AS_Operations_Dashboard.from_movement_type",
+              "nativeQueryRef": "from_movement_type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Operations_Dashboard"
+                    }
+                  },
+                  "Property": "to_movement_type"
+                }
+              },
+              "queryRef": "AS_Operations_Dashboard.to_movement_type",
+              "nativeQueryRef": "to_movement_type"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "AS_Operations_Dashboard"
+                  }
+                },
+                "Property": "IsReceiptOnly"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

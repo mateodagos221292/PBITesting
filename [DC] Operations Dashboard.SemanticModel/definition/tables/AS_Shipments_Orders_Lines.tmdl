@@ -1,0 +1,90 @@
+table AS_Shipments_Orders_Lines
+	lineageTag: e9b8c0fd-477c-4361-a92b-8b5f059b670e
+
+	column site_id
+		dataType: string
+		lineageTag: eb024fb3-1555-4865-8c58-565f2ab900b0
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_id
+		dataType: string
+		lineageTag: 3c9b07f3-2e03-4144-822c-4c23e75d57f1
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_id
+		dataType: string
+		lineageTag: c8db81d1-c387-40b7-9d57-289269cf67ba
+		summarizeBy: none
+		sourceColumn: item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_quantity_buom
+		dataType: double
+		lineageTag: f72aa8a2-033d-41d7-9bd5-32519664340f
+		summarizeBy: sum
+		sourceColumn: ordered_quantity_buom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column allocated_not_picked_quantity_buom
+		dataType: double
+		lineageTag: 1fc4ffb9-d1a4-4383-befb-42b4f55dba6b
+		summarizeBy: sum
+		sourceColumn: allocated_not_picked_quantity_buom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column picked_not_loaded_quantity_buom
+		dataType: double
+		lineageTag: 8bb39a51-1e58-4ab7-b7d1-6c90b8eb18c4
+		summarizeBy: sum
+		sourceColumn: picked_not_loaded_quantity_buom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loaded_quantity_buom
+		dataType: double
+		lineageTag: 75539757-f0ca-4c61-869f-bc6d9d868488
+		summarizeBy: sum
+		sourceColumn: loaded_quantity_buom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition AS_Shipments_Orders_Lines = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				        "/external-view/shipment-order-line",
+				        type table [
+				            site_id = text,
+				            order_id = text,
+				            item_id = text,
+				            ordered_quantity_buom = number,
+				            allocated_not_picked_quantity_buom = number,
+				            picked_not_loaded_quantity_buom = number,
+				            loaded_quantity_buom = number
+				        ]
+				    )
+				in
+				    convert_to_table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

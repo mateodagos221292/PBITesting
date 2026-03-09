@@ -1,0 +1,220 @@
+table AS_Shipments_with_Overrides
+	lineageTag: 29465626-42b2-4203-9e9a-95b526701b7e
+
+	column site_id
+		dataType: string
+		lineageTag: a0092e91-4823-44bb-a5ec-d0d4db20d6a5
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipment_id
+		dataType: string
+		lineageTag: 7b938615-b448-4f34-917e-21f4bf1d0e4e
+		summarizeBy: none
+		sourceColumn: shipment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column note
+		dataType: string
+		lineageTag: c047e694-2a92-4ba2-9358-5b9114352f3f
+		summarizeBy: none
+		sourceColumn: note
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipment_type_id
+		dataType: string
+		lineageTag: 86e9db64-a150-4d28-b8f0-916d57f823d2
+		summarizeBy: none
+		sourceColumn: shipment_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_live
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c6ca0cff-1b43-46af-8ba4-e7048a8fd923
+		summarizeBy: none
+		sourceColumn: is_live
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 401c788f-d701-4d25-b416-11ab149fbb8c
+		summarizeBy: none
+		sourceColumn: appointment_date_UTC
+
+		variation Variation
+			isDefault
+			relationship: c0828cf6-5618-44dd-bc4b-58589a82106b
+			defaultHierarchy: LocalDateTable_be4798d3-6542-4f93-a50d-262852d0c4ae.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ab0c5096-5e4d-4618-a11b-67639e1f25b8
+		summarizeBy: none
+		sourceColumn: appointment_date
+
+		variation Variation
+			isDefault
+			relationship: ced16782-6023-45b1-9b76-71602ab93be0
+			defaultHierarchy: LocalDateTable_00c2660c-9f9b-43b0-84ca-40165099533b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column transportation_type_id
+		dataType: string
+		lineageTag: da58d857-1f9f-47b2-a965-7d80d808dfcd
+		summarizeBy: none
+		sourceColumn: transportation_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column carrier_id
+		dataType: string
+		lineageTag: ed151b90-e644-4d03-956b-e1aeb9b4e434
+		summarizeBy: none
+		sourceColumn: carrier_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column trailer_id
+		dataType: string
+		lineageTag: 851f870a-dc6c-410c-840a-b5dc02cb0a20
+		summarizeBy: none
+		sourceColumn: trailer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e17d8b19-d63c-4b3b-85e1-586a27d57d1a
+		summarizeBy: none
+		sourceColumn: planned_arrival_utc
+
+		variation Variation
+			isDefault
+			relationship: 720f4666-e099-4785-9b55-30f89cd54092
+			defaultHierarchy: LocalDateTable_0f287678-193a-4cf7-8fce-cac81d1d7663.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4f17feb6-4708-446a-86b7-258280e6d970
+		summarizeBy: none
+		sourceColumn: planned_arrival
+
+		variation Variation
+			isDefault
+			relationship: 8cd13a8f-7338-4070-a31e-2f7cdaf98043
+			defaultHierarchy: LocalDateTable_52db0e21-4ef3-417d-a9e1-8c62d37c8c5a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fcf251b4-083c-4c1e-9c7e-9269f4431cd8
+		summarizeBy: none
+		sourceColumn: arrived_UTC
+
+		variation Variation
+			isDefault
+			relationship: 938cdcb8-ed45-4910-a44b-4d97d5ad03d3
+			defaultHierarchy: LocalDateTable_3ba8c743-4da1-45ab-a40a-7a00c324e0ec.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a5ad1d77-f307-4de5-9d2b-0fba7657f57d
+		summarizeBy: none
+		sourceColumn: arrived
+
+		variation Variation
+			isDefault
+			relationship: 83592d9f-6950-4a59-abf8-43f30eeb11dc
+			defaultHierarchy: LocalDateTable_9f8b93cf-535e-4162-bc17-4210866371a4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_completed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f4226faf-72c5-464d-a8f8-2204d713511b
+		summarizeBy: none
+		sourceColumn: is_completed
+
+		annotation SummarizationSetBy = Automatic
+
+	column assigned_door_id
+		dataType: string
+		lineageTag: 086ffdd9-39b2-4c40-bede-fd85e6daaf62
+		summarizeBy: none
+		sourceColumn: assigned_door_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column trailer_type
+		dataType: string
+		lineageTag: 60046bef-7ef9-4559-9ce8-b481205e08e5
+		summarizeBy: none
+		sourceColumn: trailer_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ignore
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 369fe2fa-8be0-465b-aa42-6aa8c8903e94
+		summarizeBy: none
+		sourceColumn: ignore
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AS_Shipments_with_Overrides = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				        "/external-view/shipment-with-override",
+				        type table [
+				            site_id = text,
+				            shipment_id = text,
+				            shipment_type_id = text,
+				            transportation_type_id = text,
+				            carrier_id = text,
+				            trailer_id = text,
+				            trailer_type = text,
+				            assigned_door_id = text,
+				            is_live = logical,
+				            is_completed = logical,
+				            ignore = logical,
+				            note = text,
+				            planned_arrival_utc = datetime,
+				            planned_arrival = datetime,
+				            arrived_UTC = datetime,
+				            arrived = datetime,
+				            appointment_date_UTC = datetime,
+				            appointment_date = datetime
+				        ]
+				    )
+				in
+				    convert_to_table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

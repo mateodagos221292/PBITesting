@@ -1,0 +1,259 @@
+table AS_RES_Door_Assignment_Compliance
+	lineageTag: bb4720a3-e9d1-426f-82f4-a3ec410c28c0
+
+	column closest_door_avg_distance_per_UL
+		dataType: double
+		lineageTag: 5e35f939-371d-4d61-9981-c22dc3016a3c
+		summarizeBy: sum
+		sourceColumn: closest_door_avg_distance_per_UL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column closest_door_id
+		dataType: string
+		lineageTag: 2ff7f517-9940-4458-98e9-05d0aef03192
+		summarizeBy: none
+		sourceColumn: closest_door_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column distance_proposed_to_used
+		dataType: double
+		lineageTag: 5ad94015-15b6-4d81-8421-09ba11180add
+		summarizeBy: sum
+		sourceColumn: distance_proposed_to_used
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column excess_distance
+		dataType: double
+		lineageTag: 20bef01f-07e3-4d7a-afe1-ffd07a1b9e5a
+		summarizeBy: sum
+		sourceColumn: excess_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column movement_id
+		dataType: string
+		lineageTag: 8baf06fd-b9e7-4c16-a096-1b4e7c8f40a4
+		summarizeBy: none
+		sourceColumn: movement_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column movement_type
+		dataType: string
+		lineageTag: b4d5f7cd-dac2-40d9-bdfb-7905b68ea069
+		summarizeBy: none
+		sourceColumn: movement_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column proposed
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 91c3ebb7-c3e2-4cc6-91b6-e7f454870ba4
+		summarizeBy: none
+		sourceColumn: proposed
+
+		variation Variation
+			isDefault
+			relationship: 44992092-b0f4-4ca0-98ad-5654e815412a
+			defaultHierarchy: LocalDateTable_512e84be-c25d-4b1b-9887-3fd90c684ff6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column proposed_avg_distance_per_ul
+		dataType: double
+		lineageTag: 71867d5f-17f3-47b2-a2a5-417cd1acd871
+		summarizeBy: sum
+		sourceColumn: proposed_avg_distance_per_ul
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column proposed_door_id
+		dataType: string
+		lineageTag: 4536e19a-4612-4bdf-8288-c4f8feba0726
+		summarizeBy: none
+		sourceColumn: proposed_door_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column proposed_total_distance
+		dataType: double
+		lineageTag: f05d505b-89a1-4c6d-82e3-becb8fe92de4
+		summarizeBy: sum
+		sourceColumn: proposed_total_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column proposed_ULs
+		dataType: double
+		lineageTag: e91678d9-ece6-4c7a-b2b7-4665d0342408
+		summarizeBy: sum
+		sourceColumn: proposed_ULs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column proposed_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3d90a12f-a068-410e-ba8e-e8be9de05727
+		summarizeBy: none
+		sourceColumn: proposed_utc
+
+		variation Variation
+			isDefault
+			relationship: eb9f8dd0-9f12-4d9f-8f88-95d0bf2be210
+			defaultHierarchy: LocalDateTable_d7f2d050-1ca5-435b-82a3-269d55c81be7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column site_id
+		dataType: string
+		lineageTag: 12f4aaa3-d35c-480e-9ab3-ef1ea8747be2
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column used
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a0b1d602-7aeb-495a-9075-31c281aae6a1
+		summarizeBy: none
+		sourceColumn: used
+
+		variation Variation
+			isDefault
+			relationship: 175914d7-9c88-452d-a596-c090d0822117
+			defaultHierarchy: LocalDateTable_fefbf33f-e08d-4f85-a194-1708ea98ca5c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column used_avg_distance_per_ul
+		dataType: double
+		lineageTag: 32094a51-c873-42bd-9692-18e354e90a9a
+		summarizeBy: sum
+		sourceColumn: used_avg_distance_per_ul
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column used_door_id
+		dataType: string
+		lineageTag: 218ecf0f-28f3-455e-9d46-6e60fedfee8c
+		summarizeBy: none
+		sourceColumn: used_door_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column used_total_distance
+		dataType: double
+		lineageTag: 69cb17bf-15c9-477f-bbf1-77445054dbe5
+		summarizeBy: sum
+		sourceColumn: used_total_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column used_ULs
+		dataType: double
+		lineageTag: 0f565ad5-c7d0-4f8f-a563-1cfe65c6a4b8
+		summarizeBy: sum
+		sourceColumn: used_ULs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column used_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0926e0c8-2f88-40dd-8c29-ab855d1a74a7
+		summarizeBy: none
+		sourceColumn: used_utc
+
+		variation Variation
+			isDefault
+			relationship: 18929550-c246-497f-bbb3-8e0e7f277531
+			defaultHierarchy: LocalDateTable_ba2753b8-c5da-4213-8767-a144d418ca46.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AS_RES_Door_Assignment_Compliance = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				            "/external-view/result-door-assignment-compliance",
+				            type table [
+				                closest_door_avg_distance_per_UL = nullable number,
+				                closest_door_id                  = nullable text,
+				                distance_proposed_to_used        = nullable number,
+				                excess_distance                  = nullable number,
+				                movement_id                      = nullable text,
+				                movement_type                    = nullable text,
+				
+				                // these come in as text from the API
+				                proposed                         = nullable text,
+				                proposed_avg_distance_per_ul     = nullable number,
+				                proposed_door_id                 = nullable text,
+				                proposed_total_distance          = nullable number,
+				                proposed_ULs                     = nullable number,
+				                proposed_utc                     = nullable text,
+				
+				                site_id                          = nullable text,
+				
+				                used                             = nullable text,
+				                used_avg_distance_per_ul         = nullable number,
+				                used_door_id                     = nullable text,
+				                used_total_distance              = nullable number,
+				                used_ULs                         = nullable number,
+				                used_utc                         = nullable text
+				            ]
+				        ),
+				
+				    // 2) Convert the text timestamps to datetime
+				    DateConverted =
+				        Table.TransformColumns(
+				            convert_to_table,
+				            {
+				                { "proposed",
+				                  each if _ = null then null else DateTime.From(DateTimeZone.From(_)),
+				                  type nullable datetime },
+				
+				                { "proposed_utc",
+				                  each if _ = null then null else DateTime.From(DateTimeZone.From(_)),
+				                  type nullable datetime },
+				
+				                { "used",
+				                  each if _ = null then null else DateTime.From(DateTimeZone.From(_)),
+				                  type nullable datetime },
+				
+				                { "used_utc",
+				                  each if _ = null then null else DateTime.From(DateTimeZone.From(_)),
+				                  type nullable datetime }
+				            }
+				        )
+				in
+				    DateConverted
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

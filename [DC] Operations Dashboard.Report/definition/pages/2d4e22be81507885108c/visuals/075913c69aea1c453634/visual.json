@@ -1,0 +1,356 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "075913c69aea1c453634",
+  "position": {
+    "x": 26,
+    "y": 1218,
+    "z": 7000,
+    "height": 811,
+    "width": 456,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "📋 "
+                  },
+                  {
+                    "value": "LOAD BOARD COLUMNS",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "FREIGHT ORDER ID"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Unique identifier for the movement"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "STATUS"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Not Started | In Progress | Completed"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "PROPOSED START TIME"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- When AutoScheduler proposes work to begin"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Excludes trailer positioning activities"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "COMPLETED TIME"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- When movement actually finished"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Blank until work is done"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "MOVE TYPE"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- See \"Movement Types\" section above"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "PROPOSED DOOR"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- AutoScheduler's recommended door assignment"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "ASSIGNED DOOR  "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Actual door used/being used per door compliance"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "LIVE"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- TRUE = Live load (real-time appointment)"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- FALSE = Standard appointment"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "LATE"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Late | Expect Late | Not Late | No Deadline"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "TRAILER ID"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Trailer number for the load"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "ORIGIN/DESTINATION(S)"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Receipts: Origin location"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Shipments: Customer destination(s)"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#ABECF5'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

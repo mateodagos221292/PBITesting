@@ -1,0 +1,727 @@
+table AS_Receipts_Log
+	isHidden
+	lineageTag: f96f95ec-ca7f-4b44-8927-02ed106cf15a
+
+	column site_id
+		dataType: string
+		isHidden
+		lineageTag: f5e86cbf-db49-4668-a7d7-5f0b4ef0689c
+		summarizeBy: none
+		sourceColumn: site_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column receipt_id
+		dataType: string
+		isHidden
+		lineageTag: 314faab8-6df5-4f5a-8f03-9943931b6154
+		summarizeBy: none
+		sourceColumn: receipt_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column receipt_type_id
+		dataType: string
+		isHidden
+		lineageTag: 4d8a8f99-c8a1-48b2-97fd-fb0e9dfda441
+		summarizeBy: none
+		sourceColumn: receipt_type_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin
+		dataType: string
+		isHidden
+		lineageTag: 3e268647-e72c-42c8-b195-bbe077f9a1d0
+		summarizeBy: none
+		sourceColumn: origin
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column note
+		dataType: string
+		isHidden
+		lineageTag: 4cff90f6-cd43-4f5a-884d-3dcc7d724098
+		summarizeBy: none
+		sourceColumn: note
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_live
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 22f06096-c7da-4ad1-a004-c792cbf021f8
+		summarizeBy: none
+		sourceColumn: is_live
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: bc02767f-023b-445c-9ad0-9127fb3cce27
+		summarizeBy: none
+		sourceColumn: planned_arrival_utc
+
+		variation Variation
+			isDefault
+			relationship: 7ac10b1d-6532-4cb2-83bd-1d3c6e1c89cb
+			defaultHierarchy: LocalDateTable_dc761b37-4f0f-4568-82a1-d8c7276db56d.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 87a93f25-9340-47be-bcec-40e8233ab132
+		summarizeBy: none
+		sourceColumn: planned_arrival
+
+		variation Variation
+			isDefault
+			relationship: 697af6a1-78a4-4d35-adf0-aab229dafe43
+			defaultHierarchy: LocalDateTable_9307996b-1182-440f-b9e2-9d7371234c0e.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 51a0d508-421e-430f-980d-cf04c1c26f31
+		summarizeBy: none
+		sourceColumn: arrived_utc
+
+		variation Variation
+			isDefault
+			relationship: e7d39be6-837d-483f-b440-d76e044402fb
+			defaultHierarchy: LocalDateTable_4fd63ad2-e7b1-4e9f-9388-ba3bd147e947.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 70a91776-ead6-4ad3-80cf-710b80c3fe09
+		summarizeBy: none
+		sourceColumn: arrived
+
+		variation Variation
+			isDefault
+			relationship: 8e5230da-afda-42cf-962c-4dca4e0485f7
+			defaultHierarchy: LocalDateTable_db6ada6e-327a-4b3a-8a83-f6296e08cbbe.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column late_after_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: bb90c6fb-3400-449c-9480-d467a08d134d
+		summarizeBy: none
+		sourceColumn: late_after_utc
+
+		variation Variation
+			isDefault
+			relationship: e7649645-039c-421d-829c-f7922dfd3afd
+			defaultHierarchy: LocalDateTable_5454b511-05ff-453a-9a06-69c1d4faa1b1.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column late_after
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 566fbb5f-c777-4ea0-aef2-2aa40137b45f
+		summarizeBy: none
+		sourceColumn: late_after
+
+		variation Variation
+			isDefault
+			relationship: 5c65b629-ae44-4203-a0bc-41c92fa10032
+			defaultHierarchy: LocalDateTable_1a930611-3ae9-4774-8f3e-0c3c3378ae4f.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 3433cf21-68d9-4a45-8e3c-932319e803b0
+		summarizeBy: none
+		sourceColumn: appointment_date_utc
+
+		variation Variation
+			isDefault
+			relationship: c71e9f99-b5ae-4126-928a-97a47d197e84
+			defaultHierarchy: LocalDateTable_744bf249-c5b5-421d-9cf1-6486967f87de.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 7c915184-50a1-40a1-a005-f85939e7921e
+		summarizeBy: none
+		sourceColumn: appointment_date
+
+		variation Variation
+			isDefault
+			relationship: 84e06b71-b6be-4022-8618-7a87f4edc6e8
+			defaultHierarchy: LocalDateTable_66a83085-0768-4242-9a5c-00bf303c9b5a.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column transportation_type_id
+		dataType: string
+		isHidden
+		lineageTag: 196636f0-293d-4293-873e-6db3613fd701
+		summarizeBy: none
+		sourceColumn: transportation_type_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column started_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: cec6d931-ccb8-45b7-b752-b63fb3b4a01f
+		summarizeBy: none
+		sourceColumn: started_utc
+
+		variation Variation
+			isDefault
+			relationship: add19a4a-329b-44d0-8ad7-2e455cd7cc32
+			defaultHierarchy: LocalDateTable_9742e611-ca90-4697-93a4-e3d0169c9f37.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column started
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: d8ade90c-ed2c-421d-875b-4c6ccc46968a
+		summarizeBy: none
+		sourceColumn: started
+
+		variation Variation
+			isDefault
+			relationship: 0a5ee172-1aa9-430c-b9f4-5e9c774c95d4
+			defaultHierarchy: LocalDateTable_3a45f6fe-73a3-4def-a699-b36bcd0fb4ec.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ended_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 64c84b31-b1b0-438f-8d00-eac5acb7b1bd
+		summarizeBy: none
+		sourceColumn: ended_utc
+
+		variation Variation
+			isDefault
+			relationship: 30b58695-0422-447b-bd15-ada474fe44b8
+			defaultHierarchy: LocalDateTable_3212e02d-383b-499e-8a5f-06b6f241cfc7.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ended
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 67f6f5d0-2b3c-484a-a1b5-1baad9038fcf
+		summarizeBy: none
+		sourceColumn: ended
+
+		variation Variation
+			isDefault
+			relationship: f318f1e4-ac10-4dd5-afef-cc256b137d9e
+			defaultHierarchy: LocalDateTable_2ef50694-9d7d-450b-94e4-f4df0049f1a8.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_scheduled_end_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 13146c67-6eb9-4870-82ed-b51e03494933
+		summarizeBy: none
+		sourceColumn: last_scheduled_end_utc
+
+		variation Variation
+			isDefault
+			relationship: b6d6df76-c10c-4a5c-86e4-3e835869ae8f
+			defaultHierarchy: LocalDateTable_aa5c9969-0789-4aba-8056-984cb1ff7a74.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_scheduled_end
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: d8dc195c-ed3b-46c4-b6bb-bd20ee41bf89
+		summarizeBy: none
+		sourceColumn: last_scheduled_end
+
+		variation Variation
+			isDefault
+			relationship: 3ee44e61-530e-4bd4-befc-f4efaeab62e5
+			defaultHierarchy: LocalDateTable_6f1bfa3e-3509-4026-98d0-21b54459b5e5.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column carrier_id
+		dataType: string
+		isHidden
+		lineageTag: 39768df2-4415-414c-9d6d-2b801763ef22
+		summarizeBy: none
+		sourceColumn: carrier_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column trailer_id
+		dataType: string
+		isHidden
+		lineageTag: e5f85687-62bc-458b-b865-5a98bfcd89b4
+		summarizeBy: none
+		sourceColumn: trailer_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column door_id
+		dataType: string
+		isHidden
+		lineageTag: 908f83f6-7ebf-4f58-b4ed-332a0f27aba6
+		summarizeBy: none
+		sourceColumn: door_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column door_assigned_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: b203da1a-bd62-4aa2-8ab3-729a3b7ac439
+		summarizeBy: none
+		sourceColumn: door_assigned_utc
+
+		variation Variation
+			isDefault
+			relationship: 7ecc1717-c673-4e48-8682-26cbf8f62cbf
+			defaultHierarchy: LocalDateTable_23bd2740-23a9-4c7f-ba29-6548bb4a94f1.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column door_assigned
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: f0802726-2e8d-4295-9d8d-98b5143a7c54
+		summarizeBy: none
+		sourceColumn: door_assigned
+
+		variation Variation
+			isDefault
+			relationship: f1673559-1d93-46f7-87a8-ec3441788ddb
+			defaultHierarchy: LocalDateTable_08f66bed-6c19-41d9-a98d-967f1c6a7856.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 764ed682-2c3f-4e3b-99cf-922383572004
+		summarizeBy: none
+		sourceColumn: last_updated_utc
+
+		variation Variation
+			isDefault
+			relationship: 4307ba56-f483-493f-9cdc-bfa2aadbf899
+			defaultHierarchy: LocalDateTable_c6a27bed-7dc0-4e5e-ad97-7d178a6295e8.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: e34e940d-ef9c-4378-8c58-21dcffd9d6d1
+		summarizeBy: none
+		sourceColumn: last_updated
+
+		variation Variation
+			isDefault
+			relationship: 367a505a-5d3b-42b2-a0cd-8ad3d93c6276
+			defaultHierarchy: LocalDateTable_05c6173e-b29e-4135-b652-5077ac267fe1.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_updated_utc
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: b4e99a60-0484-47e2-a385-e3d980625e71
+		summarizeBy: none
+		sourceColumn: first_updated_utc
+
+		variation Variation
+			isDefault
+			relationship: a2851ada-e564-4ba0-8cb2-22d4f8bc7e77
+			defaultHierarchy: LocalDateTable_d721f55f-acc8-4dac-a9df-beb66d5f4eec.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_updated
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 88f0ff75-d003-481a-a197-09698f844858
+		summarizeBy: none
+		sourceColumn: first_updated
+
+		variation Variation
+			isDefault
+			relationship: b658eae8-b7dd-47d1-b2db-87455adc0b79
+			defaultHierarchy: LocalDateTable_b31f0e75-3f7b-4bc4-8625-fff2ff23a6fa.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_items
+		dataType: double
+		isHidden
+		lineageTag: d9ea0d03-47d5-4502-ac01-aa91a05b7f88
+		summarizeBy: sum
+		sourceColumn: expected_items
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_buom
+		dataType: double
+		isHidden
+		lineageTag: 3e3e9722-f5a7-49e5-a86f-2a4ac1e7ec67
+		summarizeBy: sum
+		sourceColumn: expected_buom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_cases
+		dataType: double
+		isHidden
+		lineageTag: de600232-4b8b-4b2c-bbca-a2c1594aca30
+		summarizeBy: sum
+		sourceColumn: expected_cases
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_ULs
+		dataType: double
+		isHidden
+		lineageTag: 75414e32-3ead-4cf9-8ece-1897477be388
+		summarizeBy: sum
+		sourceColumn: expected_ULs
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_kg
+		dataType: double
+		isHidden
+		lineageTag: 8cc3751f-d46f-4f57-898d-3ea6f8a75aff
+		summarizeBy: sum
+		sourceColumn: expected_kg
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_weight
+		dataType: double
+		isHidden
+		lineageTag: 27f4df0a-735c-45e8-8631-4c8d11df0662
+		summarizeBy: sum
+		sourceColumn: expected_weight
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_cm3
+		dataType: double
+		isHidden
+		lineageTag: e7e5af4e-f926-4468-9cdd-6a7ab189b5b0
+		summarizeBy: sum
+		sourceColumn: expected_cm3
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_volume
+		dataType: double
+		isHidden
+		lineageTag: 99f90f05-20c5-49df-b776-2ad19e9a2017
+		summarizeBy: sum
+		sourceColumn: expected_volume
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column received_items
+		dataType: double
+		isHidden
+		lineageTag: a4dfbdcc-49bd-4c5b-8a98-00d7cdaa9442
+		summarizeBy: sum
+		sourceColumn: received_items
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column received_buom
+		dataType: double
+		isHidden
+		lineageTag: 736c1f99-14c7-423a-92b4-5a5046c9b6fd
+		summarizeBy: sum
+		sourceColumn: received_buom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column received_cases
+		dataType: double
+		isHidden
+		lineageTag: b7f7b1c5-8fd1-4918-a09f-bdfa27ecffbd
+		summarizeBy: sum
+		sourceColumn: received_cases
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column received_ULs
+		dataType: double
+		isHidden
+		lineageTag: c35ff882-eb92-4e7d-8e14-a0c8be8e2f95
+		summarizeBy: sum
+		sourceColumn: received_ULs
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column received_kg
+		dataType: double
+		isHidden
+		lineageTag: 3a1fdbf4-4bda-48d4-baba-7ebf3ede4199
+		summarizeBy: sum
+		sourceColumn: received_kg
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column received_weight
+		dataType: double
+		isHidden
+		lineageTag: 9e305f14-16f1-4046-9021-a9805e240303
+		summarizeBy: sum
+		sourceColumn: received_weight
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column received_cm3
+		dataType: double
+		isHidden
+		lineageTag: 91c8af50-3a13-4018-bad9-679065db1b9c
+		summarizeBy: sum
+		sourceColumn: received_cm3
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column received_volume
+		dataType: double
+		isHidden
+		lineageTag: eb1d4eba-51f1-4e32-9c6d-d0c468ee7cef
+		summarizeBy: sum
+		sourceColumn: received_volume
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition AS_Receipts_Log = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				        "/external-view/receipt-log",
+				        type table [
+				            site_id = text,
+				            receipt_id = text,
+				            receipt_type_id = text,
+				            origin = text,
+				            note = text,
+				            is_live = logical,
+				            planned_arrival_utc = datetime,
+				            planned_arrival = datetime,
+				            arrived_utc = datetime,
+				            arrived = datetime,
+				            appointment_date_utc = datetime,
+				            appointment_date = datetime,
+				            transportation_type_id = text,
+				            started_utc = datetime,
+				            started = datetime,
+				            ended_utc = datetime,
+				            ended = datetime,
+				            carrier_id = text,
+				            trailer_id = text,
+				            door_id = text,
+				            door_assigned_utc = datetime,
+				            door_assigned = datetime,
+				            last_updated_utc = datetime,
+				            last_updated = datetime,
+				            first_updated_utc = datetime,
+				            first_updated = datetime,
+				            late_after_utc = datetime,
+				            late_after = datetime,
+				            last_scheduled_end_utc = datetime,
+				            last_scheduled_end = datetime,
+				            expected_items = number,
+				            expected_buom = number,
+				            expected_cases = number,
+				            expected_ULs = number,
+				            expected_kg = number,
+				            expected_weight = number,
+				            expected_cm3 = number,
+				            expected_volume = number,
+				            received_items = number,
+				            received_buom = number,
+				            received_cases = number,
+				            received_ULs = number,
+				            received_kg = number,
+				            received_weight = number,
+				            received_cm3 = number,
+				            received_volume = number
+				        ]
+				    )
+				in
+				    convert_to_table
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

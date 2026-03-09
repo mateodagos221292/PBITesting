@@ -1,0 +1,1225 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "Reset Filters",
+  "name": "c2b3a44e7d2b1e702d28",
+  "options": {
+    "targetVisualNames": []
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "160a5c204aa429b721a0",
+    "sections": {
+      "160a5c204aa429b721a0": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "b2f0fa2132303e6c9d7b",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "a",
+                    "Entity": "AS_Result_Schedule_Activity",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Not": {
+                        "Expression": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "a"
+                                    }
+                                  },
+                                  "Property": "MoveTypeLab"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Consumption from storage'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Crossdock'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Production to storage'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Express from production'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "MoveTypeLab"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "22565c090bc0e5b2b60e",
+              "type": "Advanced",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "WeeksBack"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "df512a9a0949b41dd16e",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "a",
+                    "Entity": "AS_Result_Schedule_Activity",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "a"
+                                }
+                              },
+                              "Property": "action_id"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'case-pick'"
+                              }
+                            }
+                          ],
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'putaway'"
+                              }
+                            }
+                          ],
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'ul-pick'"
+                              }
+                            }
+                          ],
+                          [
+                            {
+                              "Literal": {
+                                "Value": "null"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "action_id"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "56f7b34b2009ed043a83",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "Status_Basic"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "a2721bf0a7e631ae9201",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "a",
+                    "Entity": "AS_Result_Schedule_Activity",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Not": {
+                        "Expression": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "a"
+                                    }
+                                  },
+                                  "Property": "WeekOfLabel"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Week of Mar 15'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Week of Mar 22'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "WeekOfLabel"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "5304ca86e2c1081682b3": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "10b3117b1435ba7579b2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AS_Result_Schedule_Activity"
+                            }
+                          },
+                          "Property": "updated"
+                        }
+                      },
+                      "Function": 4
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AS_Result_Schedule_Activity"
+                            }
+                          },
+                          "Property": "updated"
+                        }
+                      },
+                      "Function": 4
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "b2ae784be4251b99bd71": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "834ceb733aba64060147": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "28f9aaf243c1cab74a5d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "IsWithinNextXHours"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "4ff8c4f308ce8cca1d85",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AS_Result_Schedule_Activity"
+                            }
+                          },
+                          "Property": "MoveID"
+                        }
+                      },
+                      "Function": 2
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ea9b69cf7de069d35d70",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "movemtMoveTypeUnified"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8d2592c0b9d4bc267ec0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "shipment_type_id"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "movemtMoveTypeUnified"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "movemtMoveTypeUnified"
+                    }
+                  }
+                ],
+                "Columns": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "shipment_type_id"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "c4d4f7a9a75366976453": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2eb45c0711123405a04d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "NextStartOrEnd"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "5734eb7e4b3b00c65384",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "IsWithinNextXHours"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "808da3db47107a1e9030",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "NextStartOrEnd_UTC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "f602d1e20c80eb770b03",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "NextDoType"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "c714a25963b0449cab1b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "DayOfWeek"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "numericEnd": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "1D"
+                            }
+                          }
+                        },
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Basic'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "DayOfWeek"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "718229282c80679680ed": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2eb45c0711123405a04d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "NextStartOrEnd"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "5734eb7e4b3b00c65384",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "IsWithinNextXHours"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "808da3db47107a1e9030",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "a",
+                        "Entity": "AS_Result_Schedule_Activity",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "a"
+                                        }
+                                      },
+                                      "Property": "NextStartOrEnd_UTC"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "NextStartOrEnd_UTC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "7faa4d20db1847013269",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "MoveID"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "numericEnd": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "1D"
+                            }
+                          }
+                        },
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "MoveID"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "aea17f57d739081ea5d2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "28f9aaf243c1cab74a5d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "IsWithinNextXHours"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "28f612417d278db9c874",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AS_Result_Schedule_Activity"
+                            }
+                          },
+                          "Property": "MoveID"
+                        }
+                      },
+                      "Function": 2
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6fc4b534803656c1c176",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "movemtMoveTypeUnified"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9bd61e761d1ab88e3d89",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "TrailerType_Shipment"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "activeProjections": {
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "movemtMoveTypeUnified"
+                    }
+                  }
+                ],
+                "Columns": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "TrailerType_Shipment"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Rows"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "AS_Result_Schedule_Activity.MoveTypeUnified"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "AS_Result_Schedule_Activity"
+                              }
+                            },
+                            "Property": "MoveTypeUnified"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": null,
+                    "children": [
+                      {
+                        "identityValues": [
+                          {
+                            "Literal": {
+                              "Value": "'Receipt'"
+                            }
+                          }
+                        ],
+                        "isToggled": true
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "c9f6822de2b0011c3406": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "fc67cb8ea5e0777e0260": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "46e0c40a00bec240dc40",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AS_Result_Door_Assignment"
+                            }
+                          },
+                          "Property": "updated"
+                        }
+                      },
+                      "Function": 4
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AS_Result_Door_Assignment"
+                            }
+                          },
+                          "Property": "updated"
+                        }
+                      },
+                      "Function": 4
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "311ed9d0e2b7c294937e": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "a2372beb682720789204": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "dbcda21170985b0ac0da": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e25bfb433c710b9b779b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "NextDoType"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "43bd5f25e908830899e3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "IsWithinNextXHours"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "6d05996f77131588aee3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "Status_Basic"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "28a8df3aa0956142e203",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "AS_Result_Schedule_Activity"
+                            }
+                          },
+                          "Property": "MoveID"
+                        }
+                      },
+                      "Function": 2
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "00b6d7bf41571a123c44",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "Cases_Expected_Ordered (Distinct Movements)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "Status_Basic"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "333d11d15dd402e58222": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "5be59c652170414285b6": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "f1990715678107042ec5": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "8a9c4e7b0802088736b8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2eb45c0711123405a04d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "NextStartOrEnd"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "5734eb7e4b3b00c65384",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "IsWithinNextXHours"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "808da3db47107a1e9030",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "NextStartOrEnd_UTC"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "927aab3e050271d7b39d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "movemtMoveTypeUnified"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "numericEnd": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "1D"
+                            }
+                          }
+                        },
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Basic'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "movemtMoveTypeUnified"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b2a5af538c8ac6762abe": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "b729e48076ede48e8f19": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

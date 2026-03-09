@@ -1,0 +1,815 @@
+relationship 6bbd13ef-edaa-4a0c-b73b-03de682c3207
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments.appointment_date_UTC
+	toColumn: LocalDateTable_1f2b716d-293e-465b-b179-54c2460b0840.Date
+
+relationship 9f2d21a8-8c31-4b4a-a00d-1c64e78c803b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments.appointment_date
+	toColumn: LocalDateTable_43a62abb-276f-4940-9d73-980cfc08e523.Date
+
+relationship ba5e0990-c821-4c91-927e-47c080763d06
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments.arrived_UTC
+	toColumn: LocalDateTable_a98cff0f-50cb-4713-a624-be57bf264588.Date
+
+relationship 394d9bf2-2cb9-458f-8a9a-6d7331d748e9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments.arrived
+	toColumn: LocalDateTable_233d142d-4161-49d2-9697-8c3ef1e0f043.Date
+
+relationship b501956b-b0eb-45ed-ac44-b7d32d50d39b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments.planned_arrival_utc
+	toColumn: LocalDateTable_f483115f-c444-4f7a-a0ce-6a18c5a39fc9.Date
+
+relationship 901bcd84-2890-4eec-acb4-7aa38ff76515
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments.planned_arrival
+	toColumn: LocalDateTable_0bf927f8-844a-4184-ad11-387e3137f74f.Date
+
+relationship 239dbc0c-c19a-4a0e-8e1b-d8b0cd40b5e4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts.appointment_date_UTC
+	toColumn: LocalDateTable_fa9c020f-fea2-48b3-bba1-7ba95c289c93.Date
+
+relationship 85df1d0e-c5fe-4434-9eb8-2505b9d34162
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts.appointment_date
+	toColumn: LocalDateTable_7a27f016-5c01-409f-aea9-87033e6c97ff.Date
+
+relationship 15af43ed-f6f5-47b0-aa5a-453a010cafe7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts.arrived_UTC
+	toColumn: LocalDateTable_4db7a816-a801-4c1b-9c13-8afc2a354854.Date
+
+relationship b3acbe19-d7ab-433e-bd9d-af7837bd5d63
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts.arrived
+	toColumn: LocalDateTable_d18903d6-0e90-4e50-9476-64ed6044a9ee.Date
+
+relationship f7bd58f1-2466-436b-8f9f-18b0878db602
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts.planned_arrival_utc
+	toColumn: LocalDateTable_3de6bfd0-8511-4046-981c-679661d7458f.Date
+
+relationship fb1a4f31-fb1d-4a81-84e0-4133334ce079
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts.planned_arrival
+	toColumn: LocalDateTable_9b54f02d-aeb4-47aa-a515-d5f6fe90a40a.Date
+
+relationship 7ac10b1d-6532-4cb2-83bd-1d3c6e1c89cb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.planned_arrival_utc
+	toColumn: LocalDateTable_dc761b37-4f0f-4568-82a1-d8c7276db56d.Date
+
+relationship 697af6a1-78a4-4d35-adf0-aab229dafe43
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.planned_arrival
+	toColumn: LocalDateTable_9307996b-1182-440f-b9e2-9d7371234c0e.Date
+
+relationship e7d39be6-837d-483f-b440-d76e044402fb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.arrived_utc
+	toColumn: LocalDateTable_4fd63ad2-e7b1-4e9f-9388-ba3bd147e947.Date
+
+relationship 8e5230da-afda-42cf-962c-4dca4e0485f7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.arrived
+	toColumn: LocalDateTable_db6ada6e-327a-4b3a-8a83-f6296e08cbbe.Date
+
+relationship e7649645-039c-421d-829c-f7922dfd3afd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.late_after_utc
+	toColumn: LocalDateTable_5454b511-05ff-453a-9a06-69c1d4faa1b1.Date
+
+relationship 5c65b629-ae44-4203-a0bc-41c92fa10032
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.late_after
+	toColumn: LocalDateTable_1a930611-3ae9-4774-8f3e-0c3c3378ae4f.Date
+
+relationship c71e9f99-b5ae-4126-928a-97a47d197e84
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.appointment_date_utc
+	toColumn: LocalDateTable_744bf249-c5b5-421d-9cf1-6486967f87de.Date
+
+relationship 84e06b71-b6be-4022-8618-7a87f4edc6e8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.appointment_date
+	toColumn: LocalDateTable_66a83085-0768-4242-9a5c-00bf303c9b5a.Date
+
+relationship add19a4a-329b-44d0-8ad7-2e455cd7cc32
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.started_utc
+	toColumn: LocalDateTable_9742e611-ca90-4697-93a4-e3d0169c9f37.Date
+
+relationship 0a5ee172-1aa9-430c-b9f4-5e9c774c95d4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.started
+	toColumn: LocalDateTable_3a45f6fe-73a3-4def-a699-b36bcd0fb4ec.Date
+
+relationship 30b58695-0422-447b-bd15-ada474fe44b8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.ended_utc
+	toColumn: LocalDateTable_3212e02d-383b-499e-8a5f-06b6f241cfc7.Date
+
+relationship f318f1e4-ac10-4dd5-afef-cc256b137d9e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.ended
+	toColumn: LocalDateTable_2ef50694-9d7d-450b-94e4-f4df0049f1a8.Date
+
+relationship b6d6df76-c10c-4a5c-86e4-3e835869ae8f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.last_scheduled_end_utc
+	toColumn: LocalDateTable_aa5c9969-0789-4aba-8056-984cb1ff7a74.Date
+
+relationship 3ee44e61-530e-4bd4-befc-f4efaeab62e5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.last_scheduled_end
+	toColumn: LocalDateTable_6f1bfa3e-3509-4026-98d0-21b54459b5e5.Date
+
+relationship 7ecc1717-c673-4e48-8682-26cbf8f62cbf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.door_assigned_utc
+	toColumn: LocalDateTable_23bd2740-23a9-4c7f-ba29-6548bb4a94f1.Date
+
+relationship f1673559-1d93-46f7-87a8-ec3441788ddb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.door_assigned
+	toColumn: LocalDateTable_08f66bed-6c19-41d9-a98d-967f1c6a7856.Date
+
+relationship 4307ba56-f483-493f-9cdc-bfa2aadbf899
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.last_updated_utc
+	toColumn: LocalDateTable_c6a27bed-7dc0-4e5e-ad97-7d178a6295e8.Date
+
+relationship 367a505a-5d3b-42b2-a0cd-8ad3d93c6276
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.last_updated
+	toColumn: LocalDateTable_05c6173e-b29e-4135-b652-5077ac267fe1.Date
+
+relationship a2851ada-e564-4ba0-8cb2-22d4f8bc7e77
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.first_updated_utc
+	toColumn: LocalDateTable_d721f55f-acc8-4dac-a9df-beb66d5f4eec.Date
+
+relationship b658eae8-b7dd-47d1-b2db-87455adc0b79
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Log.first_updated
+	toColumn: LocalDateTable_b31f0e75-3f7b-4bc4-8625-fff2ff23a6fa.Date
+
+relationship 03d07f74-4bec-49db-840b-58fa76612faa
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Overrides.appointment_date_UTC
+	toColumn: LocalDateTable_4fb14aa7-6b21-4088-943c-a8b29a67cb77.Date
+
+relationship 0cc4b6a1-dc2b-499f-8242-bfa28e3bd62f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Overrides.appointment_date
+	toColumn: LocalDateTable_b51e7f77-006f-478b-9c86-6da4c36311b8.Date
+
+relationship 2e6c3379-17af-4ba9-bf23-54f229b9892b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Overrides.planned_arrival_utc
+	toColumn: LocalDateTable_557456a4-8ebd-4ca1-8e7b-53fca34805c3.Date
+
+relationship 8022e6c7-426c-4fab-ba71-5d37a47595e9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Overrides.planned_arrival
+	toColumn: LocalDateTable_fc39fa5a-1c86-4224-a063-faf3a19a13d7.Date
+
+relationship db4e3ab1-cb50-42c6-a800-ebe675452b50
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Overrides.arrived_UTC
+	toColumn: LocalDateTable_7a8fe09a-09e5-44c9-9a22-87b4cd343608.Date
+
+relationship ab688b00-f34b-4345-857a-f606aa8d6460
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Overrides.arrived
+	toColumn: LocalDateTable_ece06589-c992-468d-bbb2-1bfe1b59b945.Date
+
+relationship 425b75d0-3527-4e96-9600-d9a0212e3713
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Overrides.last_updated_utc
+	toColumn: LocalDateTable_72e562c6-f9af-48da-8d1a-0b00a2871816.Date
+
+relationship 29ce6038-23ef-46d3-8c1e-e03928994709
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_Overrides.last_updated
+	toColumn: LocalDateTable_9fc4e78f-5572-4e44-94fc-110339a39bc4.Date
+
+relationship 475225cb-ce91-414f-bccb-b90e33639ab8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_with_Overrides.appointment_date_UTC
+	toColumn: LocalDateTable_eb050c65-901a-44ff-84e9-49ced0917ae1.Date
+
+relationship 92317e3e-7c18-4f86-9f8b-99991f03c140
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_with_Overrides.appointment_date
+	toColumn: LocalDateTable_52d446f1-cf5a-4dd7-851a-fc07931e9d64.Date
+
+relationship 6db22f40-e4fd-43f0-8bee-3ed59eeb2e20
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_with_Overrides.planned_arrival_utc
+	toColumn: LocalDateTable_b57e62f5-ed7e-4d9f-999e-7fa305d9516b.Date
+
+relationship 9ae5fe49-2cd5-4901-abf7-c455b339cbec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_with_Overrides.planned_arrival
+	toColumn: LocalDateTable_1634e1ea-e6fc-43f5-a145-7d2e32340d2c.Date
+
+relationship 6e801ed5-bf32-4578-aed7-f85b0608c4ed
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_with_Overrides.arrived_UTC
+	toColumn: LocalDateTable_a834c029-0d4a-4810-a167-284d239a58cb.Date
+
+relationship 8cc7f8ca-98a3-4aa5-906f-e5f1343755fc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Receipts_with_Overrides.arrived
+	toColumn: LocalDateTable_e47a67e6-01fd-4437-ae7f-c4e5a76c70c5.Date
+
+relationship c0828cf6-5618-44dd-bc4b-58589a82106b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_with_Overrides.appointment_date_UTC
+	toColumn: LocalDateTable_be4798d3-6542-4f93-a50d-262852d0c4ae.Date
+
+relationship ced16782-6023-45b1-9b76-71602ab93be0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_with_Overrides.appointment_date
+	toColumn: LocalDateTable_00c2660c-9f9b-43b0-84ca-40165099533b.Date
+
+relationship 720f4666-e099-4785-9b55-30f89cd54092
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_with_Overrides.planned_arrival_utc
+	toColumn: LocalDateTable_0f287678-193a-4cf7-8fce-cac81d1d7663.Date
+
+relationship 8cd13a8f-7338-4070-a31e-2f7cdaf98043
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_with_Overrides.planned_arrival
+	toColumn: LocalDateTable_52db0e21-4ef3-417d-a9e1-8c62d37c8c5a.Date
+
+relationship 938cdcb8-ed45-4910-a44b-4d97d5ad03d3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_with_Overrides.arrived_UTC
+	toColumn: LocalDateTable_3ba8c743-4da1-45ab-a40a-7a00c324e0ec.Date
+
+relationship 83592d9f-6950-4a59-abf8-43f30eeb11dc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_with_Overrides.arrived
+	toColumn: LocalDateTable_9f8b93cf-535e-4162-bc17-4210866371a4.Date
+
+relationship 90131642-7b51-4cc2-a3f3-47dbc8e721ef
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.planned_arrival_utc
+	toColumn: LocalDateTable_8ba3f59e-959c-415d-8ba9-d1d03ec67f66.Date
+
+relationship f61539f2-e64d-43f0-90b5-be909b61e70a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.planned_arrival
+	toColumn: LocalDateTable_d8c21265-1694-4e83-8adf-578f98d051f7.Date
+
+relationship 9bdfcd45-8109-4814-894a-60aa78b36224
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.arrived_utc
+	toColumn: LocalDateTable_bbf44ee8-b8b3-4b56-8b58-0a95e290ac40.Date
+
+relationship 59da7f25-81fe-4abb-9330-e0a0c65d276c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.arrived
+	toColumn: LocalDateTable_8d15fe20-2d92-49ab-aa89-d0363a6cab89.Date
+
+relationship 1c2f9404-74c3-44de-b524-3c1214a1539d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.appointment_date_utc
+	toColumn: LocalDateTable_b7af0393-d153-4294-93ae-c65d85445cbc.Date
+
+relationship 6d7aa877-3cf0-486e-9712-e1297703255c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.appointment_date
+	toColumn: LocalDateTable_6af995ea-2a08-4c99-8d40-5e87f8e62dcf.Date
+
+relationship e6f31f50-2e26-49a4-b9e3-152dfa824968
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.late_after_utc
+	toColumn: LocalDateTable_feb360d6-7b72-4728-a08d-bbb55453fdf7.Date
+
+relationship ef1a5e1a-e48d-4b04-9721-ccf3d00a0278
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.late_after
+	toColumn: LocalDateTable_78a95b19-7d7a-4644-93a2-b449e0778d98.Date
+
+relationship f8699751-c566-49b8-bbaa-484e0f82908d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.started_utc
+	toColumn: LocalDateTable_cc479439-3d04-4d20-b571-ba6271c71cda.Date
+
+relationship 18e7b0fe-be9d-406c-9eb5-d660461282b3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.started
+	toColumn: LocalDateTable_2400f2cd-062f-4f93-b87a-2e476d9e42f5.Date
+
+relationship b1da479a-14e3-470d-bdc5-ed951163264e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.ended_utc
+	toColumn: LocalDateTable_1f9dec4f-9a6d-4a0b-83b5-9920d38fa3cc.Date
+
+relationship c9787879-e1dc-4b0b-ba96-f4ba39739a17
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.ended
+	toColumn: LocalDateTable_0858fdd2-1371-43da-905a-cfae633a79c9.Date
+
+relationship dd83e53f-42bf-465f-9baa-302822470a2d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.last_scheduled_end_utc
+	toColumn: LocalDateTable_cc91e991-ca72-40fb-b3b8-943bdb4d24fb.Date
+
+relationship f57cc789-28c8-4331-8b96-7f55279c04cb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.last_scheduled_end
+	toColumn: LocalDateTable_3aed0095-0999-4527-ba91-a7564b849ba0.Date
+
+relationship 5cce50d1-ffb3-4b92-8a23-74db2d77bb19
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.door_assigned_utc
+	toColumn: LocalDateTable_e1f07951-44ee-4740-85ad-9d904f018138.Date
+
+relationship 7663fa6b-edea-4260-a480-96182f4892e8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.door_assigned
+	toColumn: LocalDateTable_68f9364f-1321-4a89-9da9-b44861192d19.Date
+
+relationship d8762db5-b330-4cf0-a606-118e581fa69f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.last_updated_utc
+	toColumn: LocalDateTable_6edc88ae-4625-42ae-bfc4-289887ba2a78.Date
+
+relationship 41d8a3a4-5c8b-4ed3-9f5a-ac3f72e93671
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.last_updated
+	toColumn: LocalDateTable_b568e1c0-5c28-440f-a36f-7072969856c5.Date
+
+relationship c254fb0a-870a-4182-afe6-4ee657785489
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.first_updated_utc
+	toColumn: LocalDateTable_0c7d70f8-bfdf-45ed-8e7d-27c183367492.Date
+
+relationship b2f2fd28-9e0f-48f4-98dd-fd221c648be7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Log.first_updated
+	toColumn: LocalDateTable_2d437a57-c5fc-41fa-ba3a-3d1f9f8f723e.Date
+
+relationship 62de8996-0c18-4953-bc71-c6deeda0e01a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Overrides.appointment_date_UTC
+	toColumn: LocalDateTable_dd0ceda6-487c-4114-9b07-3e0de8347e8f.Date
+
+relationship 2a8a410f-0a2f-4d54-957c-7ae3c108663e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Overrides.appointment_date
+	toColumn: LocalDateTable_a4e1ea71-5003-4f5b-b316-85e03d7ca8a1.Date
+
+relationship c2f168aa-e51b-488d-91ab-e96f9a6699a9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Overrides.planned_arrival_utc
+	toColumn: LocalDateTable_c601bf1c-8318-4e03-b21f-2516d8f4e605.Date
+
+relationship 9ef11c9e-b9d5-440d-955c-47dc0d2bfc95
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Overrides.planned_arrival
+	toColumn: LocalDateTable_91db57e1-c24a-4a49-83ff-7f6f295fafef.Date
+
+relationship f43f70b2-e15b-4f61-a887-4b7b42fc3dde
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Overrides.arrived_UTC
+	toColumn: LocalDateTable_7dc4fa86-135a-49dc-8245-8387ef592067.Date
+
+relationship 80dff7de-2225-4811-8378-247b6be704b3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Overrides.arrived
+	toColumn: LocalDateTable_44d87db4-68c3-4c3e-a72d-84b26a72fce8.Date
+
+relationship fb6f98ce-d320-40ae-b2c3-bcc6ee32896e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Overrides.last_updated_utc
+	toColumn: LocalDateTable_4c0150a1-d950-4298-913e-f7022e53075b.Date
+
+relationship f2ceb74f-1ae9-45b2-9324-7f3d61192a48
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Shipments_Overrides.last_updated
+	toColumn: LocalDateTable_2a57be00-a1e1-4e83-8cdf-780ca01f7c67.Date
+
+relationship 07a7fd2c-8029-45b2-bdd1-2961b101494e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Door_Assignment.updated_utc
+	toColumn: LocalDateTable_bc660727-0c62-4718-8340-337541100ef0.Date
+
+relationship bcff2a2b-614c-46da-b34b-a49fac160f80
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Door_Assignment.updated
+	toColumn: LocalDateTable_4aa946a1-724f-4794-9095-3bf4794d2fa7.Date
+
+relationship 1a793d6d-6764-4d3b-a087-a5851984ab54
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.NextStartOrEnd_UTC
+	toColumn: LocalDateTable_48531291-6be8-4660-95df-02ffc6d7e035.Date
+
+relationship 74e4f4ab-4eee-4ebd-bc34-310ec01cc6b0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Scheduled_Activity_By_Shift.shift_start_utc
+	toColumn: LocalDateTable_03106229-ec24-4ca5-93d5-d9528b93ea16.Date
+
+relationship 9eb6dea6-4335-49f4-ad98-319d574d4fcd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Scheduled_Activity_By_Shift.shift_start
+	toColumn: LocalDateTable_c003f0c9-e0e1-45af-97ae-bf253433a7ee.Date
+
+relationship e42b2d3f-fcd4-4caa-b8d3-4283b82f5bdf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Scheduled_Activity_By_Shift.shift_end_utc
+	toColumn: LocalDateTable_325b2417-2a84-4066-a3a1-5995f5d00b44.Date
+
+relationship 0a3cd0c2-d200-45c2-9c26-d2e28480033b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Scheduled_Activity_By_Shift.shift_end
+	toColumn: LocalDateTable_64099c8b-a38c-480f-bb6f-7776d421ab3d.Date
+
+relationship ce4de0c9-facd-41b0-96ef-71f4890d9643
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Schedule_Aggregates.MinStart_UTC
+	toColumn: LocalDateTable_01095e3c-af2e-4572-aceb-132c31df2809.Date
+
+relationship accda0ae-e6f3-4b62-bfce-d74950c47f71
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Schedule_Aggregates.MaxEnd_UTC
+	toColumn: LocalDateTable_67c26ae4-60c2-4fe4-af34-9bd478629b2f.Date
+
+relationship e1fceaaf-f4ad-4523-85b3-715a6482cd88
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Schedule_Aggregates.MinStart
+	toColumn: LocalDateTable_f24b4b3f-3c3a-4e09-b314-40458c38627f.Date
+
+relationship 99971b28-7d62-4d03-a6bc-fcc8536310ed
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Schedule_Aggregates.MaxEnd
+	toColumn: LocalDateTable_218dc510-dd88-46e8-8e2c-6aaa75b6bea3.Date
+
+relationship 09ddc9cb-1cb3-48cf-b62d-46387c62c3b6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.NextStartOrEnd
+	toColumn: LocalDateTable_f9c3c375-4788-4f08-bce8-94b97df1d7b2.Date
+
+relationship b0c6fd37-fe3b-4071-9a6a-ad9c93297d06
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.AppointmentDate
+	toColumn: LocalDateTable_72ef897c-c0db-4a3a-97d0-90ad6568f96e.Date
+
+relationship 48c3d9a2-7c37-498d-93d6-3d7832f22e5c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.AppointmentDate_UTC
+	toColumn: LocalDateTable_fd83df06-8278-416d-9dc8-52b9d88aa989.Date
+
+relationship 3f4ae0f7-b113-4320-9144-5ab0dd0ebc16
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.start_utc
+	toColumn: LocalDateTable_fb1c9591-995d-4cfc-80b2-a5afc9aebccb.Date
+
+relationship 44c004bb-7107-45eb-9e3b-b2fc8b36c72e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.start
+	toColumn: LocalDateTable_ccbc273e-4a96-4a4d-bc2f-dd6562836b92.Date
+
+relationship ca4ef5b0-1bc5-413f-b58a-9d0843b58ac4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.end_utc
+	toColumn: LocalDateTable_ad8b0bc7-cb2c-42b7-8d9e-68ed79bb3648.Date
+
+relationship e31214bc-2c2c-40d0-a32f-9c0cfc001970
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.end
+	toColumn: LocalDateTable_e99d3731-cd10-431b-9d13-efde9904c4a5.Date
+
+relationship b4c2e97e-60b6-4316-807c-ca49cb519d48
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.updated_utc
+	toColumn: LocalDateTable_eeb0430d-dcd0-4957-8672-000fc3415bfe.Date
+
+relationship e360853d-cc3e-4a96-aaf3-4cb0aacb1a6e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.updated
+	toColumn: LocalDateTable_bb9052b8-0d3f-474f-87c4-22a0d40213cb.Date
+
+relationship 2352c4f5-6f5e-4e50-947c-36eb8ed50249
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.Ended_Any
+	toColumn: LocalDateTable_1742b7c2-2081-4939-970c-124af7427609.Date
+
+relationship 850054c6-a56f-4106-9af9-e907fa54d304
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.planned_arrival_utc_shipment
+	toColumn: LocalDateTable_4b9ff821-4133-43c6-94e8-f89cd47b2260.Date
+
+relationship 3626cb28-638a-4c4f-8518-d29371969bff
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.planned_arrival_shipment
+	toColumn: LocalDateTable_f52134df-cbef-4115-a3b6-e9f94e870067.Date
+
+relationship 1dde74ce-4203-437f-8304-e2490718ca46
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.arrived_utc_shipment
+	toColumn: LocalDateTable_ca77849a-7576-4c49-9d79-673f580b9607.Date
+
+relationship d6b61d68-1f58-4e2e-ba0b-0f14f4f330bd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.arrived_shipment
+	toColumn: LocalDateTable_652be167-26d8-4a3a-bd98-b4f42cc6eb94.Date
+
+relationship ca0f208d-12eb-426c-8ad4-3a92c93b3903
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.appointment_date_utc_shipment
+	toColumn: LocalDateTable_e578f6f9-944b-4cf1-8ab2-eb949b61b193.Date
+
+relationship 0d713ae2-4ad0-44c2-a8c7-fe4ab00e7d19
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.appointment_date_shipment
+	toColumn: LocalDateTable_6151cf14-becc-4387-96f0-613d342ded90.Date
+
+relationship 216efd6c-ef81-497b-914f-91b61cae36f4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.late_after_utc_shipment
+	toColumn: LocalDateTable_a99c3b14-2be2-44a1-a202-58e8a9f9ffb3.Date
+
+relationship dc56fc74-afc3-4e75-a691-8c407777eceb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.late_after_shipment
+	toColumn: LocalDateTable_1898aff1-0e54-4ce4-b6d8-033def910519.Date
+
+relationship cdc5ca44-adb6-483d-989a-e9eec39ed54f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.started_utc_shipment
+	toColumn: LocalDateTable_19586983-f4a0-48dd-9e35-d5599c4bf08f.Date
+
+relationship c1dfeb80-09af-4c4b-bd4b-c042070303a5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.started_shipment
+	toColumn: LocalDateTable_8f3a62a3-0eb7-4881-94b8-3bdcf64e0b92.Date
+
+relationship 38f79a02-bd7f-4ec1-a68a-616db5ea94d5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.ended_utc_shipment
+	toColumn: LocalDateTable_fc10f915-032b-4eef-a1df-c82d600f1a8d.Date
+
+relationship c1cd5c53-b9cf-4fe0-b9ad-6f79fc61c5ed
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.ended_shipment
+	toColumn: LocalDateTable_88bb2682-d48a-4ba3-b515-925972252778.Date
+
+relationship 800be341-f19b-4048-a5b0-e12850210d2f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.planned_arrival_utc_receipt
+	toColumn: LocalDateTable_ecaefedd-0e7e-4ce1-9027-0844b8be5f7b.Date
+
+relationship 35896e86-7c26-4755-a173-7890e0949ab6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.planned_arrival_receipt
+	toColumn: LocalDateTable_72b57027-a715-4caa-8b2c-625795f61434.Date
+
+relationship b82dda92-1d23-468d-b30b-9323b090da47
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.arrived_utc_receipt
+	toColumn: LocalDateTable_48bb5823-03d9-4044-91a5-86988f4ced68.Date
+
+relationship f80be44d-87fb-4bee-ab31-6113ce9cba9c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.arrived_receipt
+	toColumn: LocalDateTable_700fbc2f-8042-4211-97f8-555cfb7f0106.Date
+
+relationship c7e2be6a-a0af-4ec1-b334-0de9bc79a983
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.late_after_utc_receipt
+	toColumn: LocalDateTable_2e1d18cf-6d55-42f0-8d20-8ad1c7fcbdd4.Date
+
+relationship d89f7b8c-5e5b-42a7-b765-52384f25614c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.late_after_receipt
+	toColumn: LocalDateTable_85af3b2e-6838-4fa6-92c6-354132d5cf28.Date
+
+relationship 1cdfc481-b7c3-4b8f-a9d4-5d632d6ff75e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.appointment_date_utc_receipt
+	toColumn: LocalDateTable_2230efc9-0316-4d88-aa31-088feef2fdbd.Date
+
+relationship 04abb91a-a3c3-41eb-a65c-9150a348e69d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.appointment_date_receipt
+	toColumn: LocalDateTable_c4b2d19b-1693-4b46-a902-a4165ba2f6f6.Date
+
+relationship 2c17b6e5-ed2d-4d99-8a29-8c7fa526af2d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.started_utc_receipt
+	toColumn: LocalDateTable_c6a96104-e728-44cd-bbc3-dd9dfd5d18c7.Date
+
+relationship 6305936e-6d4a-4b92-9fc3-d9dd4cf51c09
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.started_receipt
+	toColumn: LocalDateTable_52820a70-91c6-4a03-a46d-4583b1174623.Date
+
+relationship e86f731f-13e1-458e-ab39-29b251ba869b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.ended_utc_receipt
+	toColumn: LocalDateTable_22067267-ccc3-4832-a718-b44d01704ea8.Date
+
+relationship 924f4e0c-e38c-4333-9ab3-d8b66d7334ef
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.ended_receipt
+	toColumn: LocalDateTable_d69bf469-3a50-46fa-8d10-8c70c2b61c47.Date
+
+relationship 73c70730-fd93-4c2f-bc0e-d91a4014a4e2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.MinStart_UTC
+	toColumn: LocalDateTable_7cd80378-00d4-4895-9341-b6670db00fa3.Date
+
+relationship a1d1b0e9-0998-4867-86d6-2f9705836ac9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.MaxEnd_UTC
+	toColumn: LocalDateTable_c18d7c34-b522-4d19-8665-ca090ff8fc64.Date
+
+relationship 06ba53c7-af48-411b-815d-11c659a2b5c4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.MinStart
+	toColumn: LocalDateTable_960840bc-50dc-45a8-a6ab-bdb5a4d73924.Date
+
+relationship d4a3132f-9e20-4fa8-9f79-1ba51a584748
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity.MaxEnd
+	toColumn: LocalDateTable_cb96d008-cf96-48af-b911-fd8d36f60465.Date
+
+relationship 3d886a37-bd9d-4a82-bb0d-2cd959014bc1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity_Data.start_utc
+	toColumn: LocalDateTable_3e380f9d-513c-4ce1-be74-9dda452c11e4.Date
+
+relationship 428946c3-7da5-4920-a51a-df6083ea4ce8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity_Data.start
+	toColumn: LocalDateTable_b6195d75-d42f-464b-9e95-16cd023b4af2.Date
+
+relationship ee2064f4-3a90-4288-9d7f-946b97fef127
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity_Data.end_utc
+	toColumn: LocalDateTable_9210081b-41c9-4eb5-b0ac-5597b43e79c2.Date
+
+relationship 1a162f0b-0511-4d06-9fde-c4a7b1047b5f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity_Data.end
+	toColumn: LocalDateTable_9fea664f-24b7-4146-ac11-edca75281927.Date
+
+relationship e53f5507-8196-4001-90d8-605681599c4e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity_Data.updated_utc
+	toColumn: LocalDateTable_6c5353f9-1ded-4074-bff7-92d40676538f.Date
+
+relationship a6260889-17b8-4489-b34b-de0e2c7c9bb8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Result_Schedule_Activity_Data.updated
+	toColumn: LocalDateTable_518ffb78-4b21-442d-84c2-4a4e1f1c9b28.Date
+
+relationship 0a031875-99a9-4f0c-8f72-cdef98a14119
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.MinStart
+	toColumn: LocalDateTable_970b8919-52be-412a-9815-008f7477e491.Date
+
+relationship 45bd126d-e0f3-4bb4-9c38-2347fe7bc63d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.MaxEnd
+	toColumn: LocalDateTable_228ebd3f-8668-48b2-a5ee-12d236d11f39.Date
+
+relationship 7eb59b96-39e3-425f-9dd6-2a7144036634
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.MinStart_UTC
+	toColumn: LocalDateTable_39b732f0-721a-463a-b97e-f5aa414646fb.Date
+
+relationship 67c1acf6-3687-42d6-881e-128fece8824b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.MaxEnd_UTC
+	toColumn: LocalDateTable_47a77838-e4ba-4fd8-9573-73640f50bd27.Date
+
+relationship 85886264-23a1-46a9-a494-1f04d7aaebe4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.appointment_date_shipment
+	toColumn: LocalDateTable_5207fa78-3fb9-467f-869a-f808c7936277.Date
+
+relationship 4144c207-ef53-49da-a73a-7e2d509021cb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.appointment_date_utc_shipment
+	toColumn: LocalDateTable_27b6c6f9-21ff-4ba8-9302-42da71796991.Date
+
+relationship d0a78025-ab9f-42d4-b4f1-291031fe5fd7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.started_shipment
+	toColumn: LocalDateTable_b2b6ec85-282c-427e-9e26-b9a054e49978.Date
+
+relationship 3d933d70-98b9-43f5-a7d5-900ee3c2d4dd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.started_utc_shipment
+	toColumn: LocalDateTable_fa8b6714-1167-4331-add8-b8e2144a6a13.Date
+
+relationship 8d8c6076-8142-434b-8b06-3c1b1fa0003f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.ended_shipment
+	toColumn: LocalDateTable_83853215-9e98-4c92-bc3a-e63472383343.Date
+
+relationship 607f4085-e72d-4339-8391-99dca882f8f8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.ended_utc_shipment
+	toColumn: LocalDateTable_9d845785-8f7d-4290-ab03-54fe8821953a.Date
+
+relationship b3a4ac35-8716-47eb-aae0-f55f5e0111cd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.late_after_shipment
+	toColumn: LocalDateTable_a8f7913e-f3bb-4dc6-9d7d-38b3d0e510be.Date
+
+relationship 866cc5fe-24fb-4dff-8b39-9811338e2888
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.late_after_utc_shipment
+	toColumn: LocalDateTable_7cc60e1e-ee77-4e55-8f59-a6b2ff3f6424.Date
+
+relationship 9fe73152-eb2f-4046-b7e1-a1e12995aa5d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.appointment_date_receipt
+	toColumn: LocalDateTable_b779a1ce-0e97-4b1a-b42f-04d7e19e663f.Date
+
+relationship d3206e8d-ecef-4297-b264-155bfc7b314e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.appointment_date_utc_receipt
+	toColumn: LocalDateTable_ba61b853-2c3f-4b20-b86b-6af014b1a18c.Date
+
+relationship 75a19428-8126-43a0-994c-4c28e7fdda5a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.started_receipt
+	toColumn: LocalDateTable_e6567ec7-431c-4382-bda9-beb89ea3f94f.Date
+
+relationship be032130-b30f-4fcb-9ac2-47dc50a0b8c2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.started_utc_receipt
+	toColumn: LocalDateTable_ad3da184-5de9-4159-bb37-a785d0e46d80.Date
+
+relationship 4ba99ecb-aeb1-43e7-be51-f121623b57b2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.ended_receipt
+	toColumn: LocalDateTable_51817c10-1599-468e-8f0a-f6f7c129de5f.Date
+
+relationship 481eecd1-e490-4369-98fa-675b21f5c406
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.ended_utc_receipt
+	toColumn: LocalDateTable_f7c65c93-4005-4253-920f-d7d4dc156936.Date
+
+relationship 55c5dc39-28d4-4ead-ac6b-daa017a36763
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.late_after_receipt
+	toColumn: LocalDateTable_090e4fb3-6cb0-47e7-9f4d-19b07a080ced.Date
+
+relationship 3737d7fa-07d3-43e4-84aa-d1a14c08e3b1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.late_after_utc_receipt
+	toColumn: LocalDateTable_b3a100ac-2444-4052-8098-08621aa46f43.Date
+
+relationship d9c65e6a-efad-401f-817f-b76cc970d264
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.Ended_Any
+	toColumn: LocalDateTable_e8fa5b96-bff3-43b1-86e6-a0f8f25dcd49.Date
+
+relationship 86e79322-fd5f-472d-a6e6-6c7b7df7b6e4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_Operations_Dashboard.'Appointment Date'
+	toColumn: LocalDateTable_bb5c6818-b0f4-4dd2-b9ee-cfc9a028f0f5.Date
+
+relationship 44992092-b0f4-4ca0-98ad-5654e815412a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_RES_Door_Assignment_Compliance.proposed
+	toColumn: LocalDateTable_512e84be-c25d-4b1b-9887-3fd90c684ff6.Date
+
+relationship eb9f8dd0-9f12-4d9f-8f88-95d0bf2be210
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_RES_Door_Assignment_Compliance.proposed_utc
+	toColumn: LocalDateTable_d7f2d050-1ca5-435b-82a3-269d55c81be7.Date
+
+relationship 175914d7-9c88-452d-a596-c090d0822117
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_RES_Door_Assignment_Compliance.used
+	toColumn: LocalDateTable_fefbf33f-e08d-4f85-a194-1708ea98ca5c.Date
+
+relationship 18929550-c246-497f-bbb3-8e0e7f277531
+	joinOnDateBehavior: datePartOnly
+	fromColumn: AS_RES_Door_Assignment_Compliance.used_utc
+	toColumn: LocalDateTable_ba2753b8-c5da-4213-8767-a144d418ca46.Date
+
+relationship AutoDetected_50710d55-edd6-4292-a8ce-ea1bf3c65958
+	fromColumn: AS_RES_Door_Assignment_Compliance.site_id
+	toColumn: AS_Sites.site_id
+
+relationship AutoDetected_01a589e0-a0bd-4d56-a9ca-7ca53535d5ac
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: AS_Result_Door_Assignment.movement_id
+	toColumn: AS_RES_Door_Assignment_Compliance.movement_id
+

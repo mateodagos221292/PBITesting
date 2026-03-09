@@ -1,0 +1,76 @@
+table AS_Result_Schedule_Crossdock
+	lineageTag: ffe4d49f-f1aa-4a3d-b6c2-88c2794258c9
+
+	column site_id
+		dataType: string
+		lineageTag: 58ad1b72-af8b-4f10-8d05-80193fa4702e
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipment_id
+		dataType: string
+		lineageTag: b1b308eb-7695-4f41-98c2-6821442d668d
+		summarizeBy: none
+		sourceColumn: shipment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column receipt_id
+		dataType: string
+		lineageTag: dc8227f5-5d47-45f0-8ae3-dce90a59cc4d
+		summarizeBy: none
+		sourceColumn: receipt_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_id
+		dataType: string
+		lineageTag: 721659d0-95f6-4f9f-8183-d2ab052408a2
+		summarizeBy: none
+		sourceColumn: item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity_buom
+		dataType: int64
+		lineageTag: d749ebb5-d375-449e-a9f0-216c9616478e
+		summarizeBy: sum
+		sourceColumn: quantity_buom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_hot
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 87309e97-a946-495c-8315-628293f89178
+		summarizeBy: none
+		sourceColumn: is_hot
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AS_Result_Schedule_Crossdock = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				        "/external-view/result-schedule-crossdock",
+				        type table [
+				            site_id = text,
+				            shipment_id = text,
+				            receipt_id = text,
+				            quantity_buom = Int64.Type,
+				            item_id = text,
+				            is_hot = logical
+				        ]
+				    )
+				in
+				    convert_to_table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

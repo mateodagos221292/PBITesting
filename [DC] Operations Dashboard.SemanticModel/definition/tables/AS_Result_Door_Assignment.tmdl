@@ -1,0 +1,150 @@
+table AS_Result_Door_Assignment
+	lineageTag: c302acf4-1e74-46da-801f-80fa88ed8d8b
+
+	column site_id
+		dataType: string
+		lineageTag: f86fc618-d33a-441c-97ae-f174f87b7d22
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column movement_type
+		dataType: string
+		lineageTag: 24118cca-4f2a-48d0-a59e-4baa203fd3a4
+		summarizeBy: none
+		sourceColumn: movement_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column movement_id
+		dataType: string
+		lineageTag: 149f5a13-7350-40a2-8da5-e62980edb711
+		summarizeBy: none
+		sourceColumn: movement_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column door_id
+		dataType: string
+		lineageTag: 2976b7f4-83f1-4677-903b-8cacc1df22eb
+		summarizeBy: none
+		sourceColumn: door_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b4d9b568-74f3-4c6a-b858-4eadeaba7184
+		summarizeBy: none
+		sourceColumn: updated_utc
+
+		variation Variation
+			isDefault
+			relationship: 07a7fd2c-8029-45b2-bdd1-2961b101494e
+			defaultHierarchy: LocalDateTable_bc660727-0c62-4718-8340-337541100ef0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: be792d4f-f66c-47be-a8e0-fba8bd66d430
+		summarizeBy: none
+		sourceColumn: updated
+
+		variation Variation
+			isDefault
+			relationship: bcff2a2b-614c-46da-b34b-a49fac160f80
+			defaultHierarchy: LocalDateTable_4aa946a1-724f-4794-9095-3bf4794d2fa7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_preassigned
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 66349b0a-4777-490e-817f-1295f290b6b0
+		summarizeBy: none
+		sourceColumn: is_preassigned
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_distance_per_UL
+		dataType: double
+		lineageTag: f07aeb2f-899f-4476-9866-23dd3ec4229c
+		summarizeBy: sum
+		sourceColumn: avg_distance_per_UL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column closest_door_id
+		dataType: string
+		lineageTag: 6cbe5e68-dcec-4026-9289-19b1547e5b11
+		summarizeBy: none
+		sourceColumn: closest_door_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column closest_door_avg_distance_per_UL
+		dataType: double
+		lineageTag: 8a82b3ec-2848-48bc-8974-4cc196dd8132
+		summarizeBy: sum
+		sourceColumn: closest_door_avg_distance_per_UL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_travel_distance
+		dataType: double
+		lineageTag: 133bee69-2d44-455d-94d3-2573531c6a15
+		summarizeBy: sum
+		sourceColumn: total_travel_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition AS_Result_Door_Assignment = m
+		mode: import
+		source = ```
+				let
+				    convert_to_table = call_api(
+				        "/external-view/result-door-assignment",
+				        type table [
+				            site_id = text,
+				            movement_type = text,
+				            movement_id = text,
+				            door_id = text,
+				            updated = datetime,
+				            updated_utc = datetime,
+				            is_preassigned = logical,
+				            avg_distance_per_UL = number,
+				            closest_door_id = text,
+				            closest_door_avg_distance_per_UL = number,
+				            total_travel_distance = number
+				        ]
+				    ),
+				    
+				    // Normalize keys
+				    DoorKeys = Table.TransformColumns(
+				        convert_to_table,
+				        {
+				            {"site_id", each Text.Upper(Text.Trim(Text.From(_))), type text},
+				            {"movement_id", each Text.Upper(Text.Trim(Text.From(_))), type text}
+				        }
+				    ),
+				    
+				    DoorSorted = Table.Sort(DoorKeys, {{"updated_utc", Order.Descending}}),
+				    DoorLatest = Table.Distinct(DoorSorted, {"site_id","movement_id"})
+				in
+				    DoorLatest
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

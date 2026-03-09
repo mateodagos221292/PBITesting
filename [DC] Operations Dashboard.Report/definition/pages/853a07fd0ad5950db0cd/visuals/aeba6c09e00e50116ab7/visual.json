@@ -1,0 +1,237 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "aeba6c09e00e50116ab7",
+  "position": {
+    "x": 32.764505119453922,
+    "y": 69.897610921501709,
+    "z": 2000,
+    "height": 635.63139931740614,
+    "width": 989.4880546075085,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "action_id"
+                }
+              },
+              "queryRef": "AS_Result_Schedule_Activity.action_id",
+              "nativeQueryRef": "action_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "MoveID"
+                }
+              },
+              "queryRef": "AS_Result_Schedule_Activity.MoveID",
+              "nativeQueryRef": "MoveID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "MoveType"
+                }
+              },
+              "queryRef": "AS_Result_Schedule_Activity.MoveType",
+              "nativeQueryRef": "MoveType"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "start"
+                }
+              },
+              "queryRef": "AS_Result_Schedule_Activity.start",
+              "nativeQueryRef": "start"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "MinStart"
+                }
+              },
+              "queryRef": "AS_Result_Schedule_Activity.MinStart",
+              "nativeQueryRef": "MinStart"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "Cases_Received_Loaded"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(AS_Result_Schedule_Activity.Cases_Received_Loaded)",
+              "nativeQueryRef": "Sum of Cases_Received_Loaded"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_Result_Schedule_Activity"
+                        }
+                      },
+                      "Property": "Cases_Expected_Ordered"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(AS_Result_Schedule_Activity.Cases_Expected_Ordered)",
+              "nativeQueryRef": "Sum of Cases_Expected_Ordered"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "expected_ULs"
+                }
+              },
+              "queryRef": "AS_Result_Schedule_Activity.expected_ULs",
+              "nativeQueryRef": "expected_ULs"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "ordered_ULs"
+                }
+              },
+              "queryRef": "AS_Result_Schedule_Activity.ordered_ULs",
+              "nativeQueryRef": "ordered_ULs"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "AS_Result_Schedule_Activity"
+                  }
+                },
+                "Property": "MoveType"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "87.29579428106388D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "AS_Result_Schedule_Activity.MinStart"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "120.06029741950444D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "AS_Result_Schedule_Activity.start"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82.41637195128864D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(AS_Result_Schedule_Activity.Cases_Received_Loaded)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89.41640214466413D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(AS_Result_Schedule_Activity.Cases_Expected_Ordered)"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

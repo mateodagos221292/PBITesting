@@ -1,0 +1,106 @@
+table AS_Schedule_Aggregates
+	lineageTag: 77dc9d75-1a1d-43e8-868c-7fdda0f6f753
+
+	column site_id
+		dataType: string
+		lineageTag: 420e1582-6bee-4530-9f51-e29b64c9c141
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_movement_id
+		dataType: string
+		lineageTag: cb503d34-b1c8-422b-82ac-6651de29e314
+		summarizeBy: none
+		sourceColumn: from_movement_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_movement_id
+		dataType: string
+		lineageTag: ced6164e-9065-46ec-99e3-aa936d30180f
+		summarizeBy: none
+		sourceColumn: to_movement_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinStart_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8b964d22-ead3-4b7d-9285-2b7a94b61b3f
+		summarizeBy: none
+		sourceColumn: MinStart_UTC
+
+		variation Variation
+			isDefault
+			relationship: ce4de0c9-facd-41b0-96ef-71f4890d9643
+			defaultHierarchy: LocalDateTable_01095e3c-af2e-4572-aceb-132c31df2809.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaxEnd_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e15d0f04-07ea-42ad-90bb-4f31e2de5d63
+		summarizeBy: none
+		sourceColumn: MaxEnd_UTC
+
+		variation Variation
+			isDefault
+			relationship: accda0ae-e6f3-4b62-bfce-d74950c47f71
+			defaultHierarchy: LocalDateTable_67c26ae4-60c2-4fe4-af34-9bd478629b2f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinStart
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e9710a7c-0ba4-446f-8f3b-7872bb1490f1
+		summarizeBy: none
+		sourceColumn: MinStart
+
+		variation Variation
+			isDefault
+			relationship: e1fceaaf-f4ad-4523-85b3-715a6482cd88
+			defaultHierarchy: LocalDateTable_f24b4b3f-3c3a-4e09-b314-40458c38627f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaxEnd
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0fcec67e-a59d-4613-b899-1bc76681fdd2
+		summarizeBy: none
+		sourceColumn: MaxEnd
+
+		variation Variation
+			isDefault
+			relationship: 99971b28-7d62-4d03-a6bc-fcc8536310ed
+			defaultHierarchy: LocalDateTable_218dc510-dd88-46e8-8e2c-6aaa75b6bea3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AS_Schedule_Aggregates = m
+		mode: import
+		source =
+				let
+				    #"Merged Queries" = Table.NestedJoin(AS_Schedule_Aggregates_Data, {"site_id", "to_movement_id"}, AS_Result_Door_Assignment, {"site_id", "movement_id"}, "AS_Result_Door_Assignment", JoinKind.LeftOuter),
+				    #"Expanded AS_Result_Door_Assignment" = Table.ExpandTableColumn(#"Merged Queries", "AS_Result_Door_Assignment", {"door_id"}, {"DoorAssigned_To"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Expanded AS_Result_Door_Assignment", {"site_id", "from_movement_id"}, AS_Result_Door_Assignment, {"site_id", "movement_id"}, "AS_Result_Door_Assignment", JoinKind.LeftOuter),
+				    #"Expanded AS_Result_Door_Assignment1" = Table.ExpandTableColumn(#"Merged Queries1", "AS_Result_Door_Assignment", {"door_id"}, {"door_id"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded AS_Result_Door_Assignment1",{{"door_id", "DoorAssigned_From"}}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Renamed Columns", {"site_id", "to_movement_id"}, AS_Shipments_Log, {"site_id", "shipment_id"}, "AS_Shipments_Log", JoinKind.LeftOuter),
+				    #"Expanded AS_Shipments_Log" = Table.ExpandTableColumn(#"Merged Queries2", "AS_Shipments_Log", {"shipment_type_id", "customers", "is_live", "appointment_date_utc", "appointment_date", "late_after_utc", "late_after", "transportation_type_id", "started_utc", "started", "ended_utc", "ended", "last_scheduled_end_utc", "last_scheduled_end", "carrier_id", "trailer_id", "orders", "ordered_items", "ordered_buom", "ordered_cases", "ordered_ULs", "ordered_kg", "ordered_weight", "ordered_weight_uom", "ordered_cm3", "ordered_volume", "ordered_volume_uom", "loaded_items", "loaded_buom", "loaded_cases", "loaded_ULs", "loaded_kg", "loaded_weight", "loaded_weight_uom", "loaded_cm3", "loaded_volume", "loaded_volume_uom"}, {"shipment_type_id", "customers", "is_live", "appointment_date_utc", "appointment_date", "late_after_utc", "late_after", "transportation_type_id", "started_utc", "started", "ended_utc", "ended", "last_scheduled_end_utc", "last_scheduled_end", "carrier_id", "trailer_id", "orders", "ordered_items", "ordered_buom", "ordered_cases", "ordered_ULs", "ordered_kg", "ordered_weight", "ordered_weight_uom", "ordered_cm3", "ordered_volume", "ordered_volume_uom", "loaded_items", "loaded_buom", "loaded_cases", "loaded_ULs", "loaded_kg", "loaded_weight", "loaded_weight_uom", "loaded_cm3", "loaded_volume", "loaded_volume_uom"}),
+				    #"Merged Queries3" = Table.NestedJoin(#"Expanded AS_Shipments_Log", {"site_id", "from_movement_id"}, AS_Receipts_Log, {"site_id", "receipt_id"}, "AS_Receipts_Log", JoinKind.LeftOuter),
+				    #"Expanded AS_Receipts_Log" = Table.ExpandTableColumn(#"Merged Queries3", "AS_Receipts_Log", {"receipt_type_id", "origin", "note", "is_live", "planned_arrival_utc", "planned_arrival", "arrived_utc", "arrived", "late_after_utc", "late_after", "appointment_date_utc", "appointment_date", "transportation_type_id", "started_utc", "started", "ended_utc", "ended", "carrier_id", "trailer_id", "door_id", "expected_items", "expected_buom", "expected_cases", "expected_ULs", "expected_kg", "expected_weight", "expected_weight_uom", "expected_cm3", "expected_volume", "expected_volume_uom", "received_items", "received_buom", "received_cases", "received_ULs", "received_kg", "received_weight", "received_weight_uom", "received_cm3", "received_volume", "received_volume_uom", "ignore", "ignore_unless_hot"}, {"receipt_type_id", "origin", "note", "is_live.1", "planned_arrival_utc", "planned_arrival", "arrived_utc", "arrived", "late_after_utc.1", "late_after.1", "appointment_date_utc.1", "appointment_date.1", "transportation_type_id.1", "started_utc.1", "started.1", "ended_utc.1", "ended.1", "carrier_id.1", "trailer_id.1", "door_id", "expected_items", "expected_buom", "expected_cases", "expected_ULs", "expected_kg", "expected_weight", "expected_weight_uom", "expected_cm3", "expected_volume", "expected_volume_uom", "received_items", "received_buom", "received_cases", "received_ULs", "received_kg", "received_weight", "received_weight_uom", "received_cm3", "received_volume", "received_volume_uom", "ignore", "ignore_unless_hot"}),
+				    #"Take out actionID = 'move trailer'" = Table.SelectRows(#"Expanded AS_Receipts_Log", each ([action_id] <> "move trailer")),
+				    #"Removed Columns" = Table.RemoveColumns(#"Take out actionID = 'move trailer'",{"action_id", "actor_id", "equipment_id", "updated_utc", "updated", "is_live", "appointment_date_utc", "appointment_date", "late_after_utc", "late_after", "transportation_type_id", "started_utc", "started", "ended_utc", "ended", "last_scheduled_end_utc", "last_scheduled_end", "carrier_id", "trailer_id", "orders", "ordered_items", "ordered_buom", "ordered_cases", "ordered_ULs", "ordered_kg", "ordered_weight", "ordered_weight_uom", "ordered_cm3", "ordered_volume", "ordered_volume_uom", "loaded_items", "loaded_buom", "loaded_cases", "loaded_ULs", "loaded_kg", "loaded_weight", "loaded_weight_uom", "loaded_cm3", "loaded_volume", "loaded_volume_uom", "receipt_type_id", "origin", "note", "is_live.1", "planned_arrival_utc", "planned_arrival", "arrived_utc", "arrived", "late_after_utc.1", "late_after.1", "appointment_date_utc.1", "appointment_date.1", "transportation_type_id.1", "started_utc.1", "started.1", "ended_utc.1", "ended.1", "carrier_id.1", "trailer_id.1", "door_id", "expected_items", "expected_buom", "expected_cases", "expected_ULs", "expected_kg", "expected_weight", "expected_weight_uom", "expected_cm3", "expected_volume", "expected_volume_uom", "received_items", "received_buom", "received_cases", "received_ULs", "received_kg", "received_weight", "received_weight_uom", "received_cm3", "received_volume", "received_volume_uom", "ignore", "ignore_unless_hot", "DoorAssigned_To", "DoorAssigned_From", "shipment_type_id", "customers"}),
+				    #"Agg on minstartutc and maxendutc" = Table.Group(#"Removed Columns", {"site_id", "from_movement_id", "to_movement_id"}, {{"MinStart_UTC", each List.Min([start_utc]), type nullable datetime}, {"MaxEnd_UTC", each List.Max([end_utc]), type nullable datetime}, {"MinStart", each List.Min([start]), type nullable datetime}, {"MaxEnd", each List.Max([end]), type nullable datetime}})
+				in
+				    #"Agg on minstartutc and maxendutc"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

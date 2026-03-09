@@ -1,0 +1,220 @@
+expression AS_Result_Schedule_Consumption =
+		let
+		    convert_to_table = call_api(
+		        "/external-view/result-schedule-consumption",
+		        type table [
+		            record_id = Int64.Type,
+		            site_id = text,
+		            action_id = text,
+		            actor_id = text,
+		            equipment_id = text,
+		            item_id = text,
+		            consumption_line_id = text,
+		            start_utc = datetime,
+		            start = datetime,
+		            end_utc = datetime,
+		            end = datetime,
+		            quantity_UL = number,
+		            work_hours_standard = number,
+		            receipt_id = text,
+		            is_hot = logical
+		        ]
+		    )
+		in
+		    convert_to_table
+	lineageTag: 43ca9483-433c-4483-a10a-b85982d4f4b9
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression client_id = "gm-perris" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 149d8c8a-08cc-4225-8d71-f0573f9c50cc
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression client_secret = "968uMbjMsEaAC9mZtXngrGdbvZr7c3vb" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: e7de4a74-802d-4254-bd1b-0aa2ae3947fc
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression auth_host = "https://login.autoscheduler.ai" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = "Text"]
+	lineageTag: 9a98137e-0052-4843-840f-686e4f704ecf
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression environment = "gm-perris-public" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 8d3b4557-a963-45e1-82b9-e884152b9c68
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression site_id = "DC" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: ae87e0f5-eec0-4db7-afa7-19500d14e9b9
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression get_token = ```
+		let
+		    GetToken = () =>
+		    let
+		        scope = "openid",
+		        AUTH_URL = auth_host & "/auth/realms/GeneralMills/protocol/openid-connect/token",
+		        AUTH_OPTIONS = [
+		            Headers = [#"Content-Type" = "application/x-www-form-urlencoded"],
+		            Content = Text.ToBinary(
+		                "grant_type=client_credentials" &
+		                "&client_id=" & client_id &
+		                "&client_secret=" & client_secret &
+		                "&scope=" & scope
+		            )
+		        ],
+		        AUTH_RES = Json.Document(Web.Contents(AUTH_URL, AUTH_OPTIONS)),
+		        ACCESS_TOKEN = AUTH_RES[access_token]
+		    in
+		        ACCESS_TOKEN
+		in
+		    GetToken
+		    /*let
+		    GetToken = () =>
+		    let
+		        scope = "openid",
+		        AUTH_URL = auth_host & "/auth/realms/pepsico/protocol/openid-connect/token",
+		        
+		        AUTH_OPTIONS = [
+		            Headers = [#"Content-Type" = "application/x-www-form-urlencoded"],
+		            Content = Text.ToBinary(
+		                "grant_type=client_credentials" &
+		                "&client_id=" & client_id &
+		                "&client_secret=" & client_secret &
+		                "&scope=" & scope
+		            )
+		        ],
+		        AUTH_RES = Json.Document(Web.Contents(AUTH_URL, AUTH_OPTIONS)),
+		        ACCESS_TOKEN = AUTH_RES[access_token]
+		    in
+		        ACCESS_TOKEN
+		in
+		    GetToken
+		    */
+		```
+	lineageTag: d114ed5e-1af5-4aa5-ae79-0ba630db1d3a
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression call_api = ```
+		let
+		    CallAPI = (api_path as text, optional table_type as type) =>
+		    let
+		        // Report Parameters
+		        ACCESS_TOKNE = get_token(),
+		        API_ENDPOINT = "/" & environment & api_path & "?siteId=" & site_id,
+		        
+		        // Call to API
+		        API_OPTIONS = [
+		            Headers = [
+		                Authorization = "Bearer " & ACCESS_TOKNE,
+		                #"Content-Type" = "application/json; charset=utf-8"
+		            ],
+		            RelativePath = API_ENDPOINT,
+		            Timeout = #duration(0,0,5,0)
+		        ],
+		        API_RESPONSE = Web.Contents("https://api.autoscheduler.ai", API_OPTIONS),
+		        JSON_DATA = Json.Document(API_RESPONSE),
+		        
+		        RESULT_TABLE = if table_type = null then
+		            Table.FromRecords(JSON_DATA)
+		        else
+		            let
+		                base_table = Table.FromRecords(JSON_DATA, table_type),
+		                
+		                table_schema = Type.RecordFields(Type.TableRow(table_type)),
+		                
+		                datetime_columns = List.Select(
+		                    Record.FieldNames(table_schema),
+		                    each Record.Field(table_schema, _)[Type] = type datetime
+		                ),
+		                
+		                logical_columns = List.Select(
+		                    Record.FieldNames(table_schema),
+		                    each Record.Field(table_schema, _)[Type] = type logical
+		                ),
+		                
+		                datetime_conversions = List.Transform(
+		                    datetime_columns,
+		                    each {_, (val) => 
+		                        if val = null or val = "" then null 
+		                        else if val is text then DateTime.FromText(val, "en-US") 
+		                        else val, 
+		                        type datetime}
+		                ),
+		                
+		                logical_conversions = List.Transform(
+		                    logical_columns,
+		                    each {_, (val) => 
+		                        if val = null then null
+		                        else if val is logical then val
+		                        else if val is number then (val = 1)
+		                        else if val is text then (val = "TRUE" or val = "true" or val = "1")
+		                        else null,
+		                        type logical}
+		                ),
+		                
+		                all_conversions = datetime_conversions & logical_conversions,
+		                
+		                converted_table = Table.TransformColumns(base_table, all_conversions)
+		            in
+		                converted_table
+		    in
+		        RESULT_TABLE
+		in
+		    CallAPI
+		```
+	lineageTag: 8f4ff3a7-5d05-499b-8968-c4dfb6b8506c
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression AS_Schedule_Aggregates_Data =
+		let
+		    convert_to_table = call_api(
+		        "/external-view/result-schedule-activity",
+		        type table [
+		            site_id = text,
+		            action_id = text,
+		            actor_id = text,
+		            equipment_id = text,
+		            to_movement_id = text,
+		            to_movement_type = text,
+		            from_movement_id = text,
+		            from_movement_type = text,
+		            start_utc = datetime,
+		            start = datetime,
+		            end_utc = datetime,
+		            end = datetime,
+		            quantity_ul = number,
+		            work_hours_standard = number,
+		            updated_utc = datetime,
+		            updated = datetime
+		        ]
+		    )
+		in
+		    convert_to_table
+	lineageTag: 53395578-57e1-45ff-bf0d-fc73b6ae2400
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,115 @@
+table _Measures
+	lineageTag: 98dac7c4-c930-402e-bac2-dc2c6da9f292
+
+	measure 'Total Loads' =
+			
+			DISTINCTCOUNT('AS_Operations_Dashboard'[MovementKey])
+		formatString: 0
+		lineageTag: 447cdc49-8524-462a-95c6-8507811b6a29
+
+	measure 'Total Cases' =
+			
+			SUMX(
+			    VALUES('AS_Operations_Dashboard'[MovementKey]),
+			    CALCULATE(MAX('AS_Operations_Dashboard'[Cases_Expected_Ordered]))
+			)
+		formatString: #,0
+		lineageTag: 40559e42-cb67-4b7b-9b94-1a1e36a66aed
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Cases_Expected_Ordered (Distinct Moves)' =
+			
+			SUMX(
+			    VALUES('AS_Operations_Dashboard'[MovementKey]),
+			    CALCULATE(MAX('AS_Operations_Dashboard'[Cases_Expected_Ordered]))
+			)
+		formatString: #,0
+		lineageTag: 9ee9db43-c61f-4afa-aa91-d5db88148682
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Cases_Received_Loaded (Distinct Moves)' =
+			
+			SUMX(
+			    VALUES('AS_Operations_Dashboard'[MovementKey]),
+			    CALCULATE(MAX('AS_Operations_Dashboard'[Cases_Received_Loaded]))
+			)
+		formatString: #,0
+		lineageTag: 8dfd4253-f9bd-42a0-9d34-f3b94ad2cb1f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Cases Left (Distinct Moves)' =
+			
+			SUMX(
+			    VALUES('AS_Operations_Dashboard'[MovementKey]),
+			    VAR IsCompleted = CALCULATE(MAX('AS_Operations_Dashboard'[IsEnded])) = "Y"
+			    VAR CasesOrdered = CALCULATE(MAX('AS_Operations_Dashboard'[Cases_Expected_Ordered]))
+			    VAR CasesMoved = CALCULATE(MAX('AS_Operations_Dashboard'[Cases_Received_Loaded]))
+			    RETURN
+			    IF(IsCompleted, 0, CasesOrdered - CasesMoved)
+			)
+		formatString: #,0
+		lineageTag: 2155e633-2723-4ce8-81ed-d523b8d89bc2
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Progress =
+			
+			DIVIDE(
+			    SUM('AS_Operations_Dashboard'[Cases_Received_Loaded]),
+			    SUM('AS_Operations_Dashboard'[Cases_Expected_Ordered]),
+			    0
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: 5924dc38-c578-45e7-b02f-2e35db1cb4a4
+
+	measure 'Hours till late' = ```
+			
+			VAR LateAfterShip = MAX('AS_Operations_Dashboard'[late_after_utc_shipment])
+			VAR LateAfterRcpt = MAX('AS_Operations_Dashboard'[late_after_utc_receipt])
+			VAR LateAfter = COALESCE(LateAfterShip, LateAfterRcpt)
+			VAR IsCompleted = MAX('AS_Operations_Dashboard'[Status_Basic]) = "Completed"
+			VAR Now = UTCNOW()
+			VAR HoursDiff = DIVIDE(LateAfter - Now, 1/24)
+			RETURN 
+			IF(
+			    ISBLANK(LateAfter) || IsCompleted,  // Blank if no deadline or completed
+			    BLANK(),
+			    HoursDiff  // Can be negative if already late
+			)
+			```
+		lineageTag: 88cde947-d05f-4d2d-b959-16d5452be212
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Time_till_late_hours = ```
+			VAR IsCompleted = MAX('AS_Operations_Dashboard'[Status_Basic]) = "Completed" VAR HoursMax = MAXX(VALUES('AS_Operations_Dashboard'[MovementKey]), [Hours_till_late]) RETURN IF(IsCompleted, BLANK(), HoursMax)
+			
+			```
+		lineageTag: 2fb120cb-d97f-4692-ba30-149951e8fc0e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Count Late' = ```
+			CALCULATE([Total Loads], 'AS_Operations_Dashboard'[LateFlag] = "Late")
+			
+			```
+		formatString: 0
+		lineageTag: a0ec434c-d126-4190-b872-0ba1bf10f3c8
+
+	column Value
+		lineageTag: cc6376d4-28a3-4ee5-938e-229f364ab71b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = { "Measures" }
+
+	annotation PBI_Id = 5dbb63f6fb00422eb640bef9effc193a
+

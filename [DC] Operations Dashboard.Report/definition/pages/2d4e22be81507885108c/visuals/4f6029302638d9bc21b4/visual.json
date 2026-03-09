@@ -1,0 +1,237 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "4f6029302638d9bc21b4",
+  "position": {
+    "x": 498,
+    "y": 1219,
+    "z": 8000,
+    "height": 811,
+    "width": 456,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "❓"
+                  },
+                  {
+                    "value": " FREQUENTLY ASKED QUESTIONS",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Q: Why is Proposed Door different from Assigned Door?"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "A: User manually changed the door assignment, or the system "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "   updated its recommendation and the user is following the "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "   new proposal. Actual door used is different from what was proposed."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Q: What does \"Express from Production\" mean?"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "A: Cases are coming directly from your production line to the "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "   shipment, bypassing storage. Faster but requires coordination."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Q: Why is Activity Count = 0 but the load shows In Progress?"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "A: The movement exists in logs but has no scheduled work "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "   activities, or only has trailer positioning. Progress is "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "   based on actual work done, not schedule."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Q: Why are some proposed doors blank?"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "A: Movement hasn't been assigned a door yet, or it's a "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "   historical movement before door assignments were tracked."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#ABECF5'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

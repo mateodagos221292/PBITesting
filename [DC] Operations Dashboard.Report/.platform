@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "[DC] Operations Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2547a44d-111f-436b-8e5d-954287015b02"
+  }
+}

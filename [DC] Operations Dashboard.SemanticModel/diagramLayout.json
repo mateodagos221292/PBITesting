@@ -1,0 +1,314 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1211.3266017337987,
+            "y": 370.61981421147186
+          },
+          "nodeIndex": "AS_Shipments",
+          "nodeLineageTag": "a12d9560-ebeb-4a9e-92ad-65dfedd1e95e",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 8,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 854.57426993761555,
+            "y": 88.991364696237781
+          },
+          "nodeIndex": "AS_Items",
+          "nodeLineageTag": "2fdedc76-3e98-484d-832e-852fee8971de",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 9,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 1209.4250257391448,
+            "y": 1318.4502180901536
+          },
+          "nodeIndex": "AS_Receipts",
+          "nodeLineageTag": "35418c07-1b6d-446b-aceb-19f3bc8051d9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 1757.7467001172936,
+            "y": 1315.7955353327902
+          },
+          "nodeIndex": "AS_Receipts_with_Overrides",
+          "nodeLineageTag": "703ae953-a5c4-425f-8dd2-761aa18980b4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 1764.07419006808,
+            "y": 1658.0203905392086
+          },
+          "nodeIndex": "AS_Receipts_Log",
+          "nodeLineageTag": "f96f95ec-ca7f-4b44-8927-02ed106cf15a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 1475.135242733799,
+            "y": 1320.8618746995987
+          },
+          "nodeIndex": "AS_Receipts_Overrides",
+          "nodeLineageTag": "c9281c90-713a-42f7-9997-b785d05bec1f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 44.289025000000024,
+            "y": 413.13727821147182
+          },
+          "nodeIndex": "AS_Result_Door_Assignment",
+          "nodeLineageTag": "c302acf4-1e74-46da-801f-80fa88ed8d8b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 49.185095937615387,
+            "y": 87.170054211471665
+          },
+          "nodeIndex": "AS_Result_Schedule_Activity",
+          "nodeLineageTag": "25cf17fe-f7fe-48a3-aca6-28d912f1ef5c",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 15,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 42.517463999999961,
+            "y": 840.29630261427553
+          },
+          "nodeIndex": "AS_Result_Schedule_Crossdock",
+          "nodeLineageTag": "ffe4d49f-f1aa-4a3d-b6c2-88c2794258c9",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 21,
+          "expandedHeight": 224
+        },
+        {
+          "location": {
+            "x": 1782.5354483846877,
+            "y": 720.57030531127361
+          },
+          "nodeIndex": "AS_Shipments_Log",
+          "nodeLineageTag": "bc79b2dd-d68c-4912-803f-c17d3394f26a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 1212.3964849376155,
+            "y": 701.243351636435
+          },
+          "nodeIndex": "AS_Shipments_Orders",
+          "nodeLineageTag": "9653bdc3-3d14-4d4d-ba4d-a610f32a22ed",
+          "size": {
+            "height": 128,
+            "width": 258.80185400000005
+          },
+          "zIndex": 17,
+          "expandedHeight": 176
+        },
+        {
+          "location": {
+            "x": 1211.4524711806159,
+            "y": 871.60983950430273
+          },
+          "nodeIndex": "AS_Shipments_Orders_Lines",
+          "nodeLineageTag": "e9b8c0fd-477c-4361-a92b-8b5f059b670e",
+          "size": {
+            "height": 152,
+            "width": 296.004635
+          },
+          "zIndex": 18,
+          "expandedHeight": 248
+        },
+        {
+          "location": {
+            "x": 1468.755696937616,
+            "y": 368.84825321147173
+          },
+          "nodeIndex": "AS_Shipments_Overrides",
+          "nodeLineageTag": "27e06f17-c4ed-45b6-b4f5-17cadda4d5fa",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 19,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 1725.8501354367265,
+            "y": 366.467576808668
+          },
+          "nodeIndex": "AS_Shipments_with_Overrides",
+          "nodeLineageTag": "29465626-42b2-4203-9e9a-95b526701b7e",
+          "size": {
+            "height": 248,
+            "width": 288.91839099999993
+          },
+          "zIndex": 20,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 586.89294608209048,
+            "y": 88.825762281086071
+          },
+          "nodeIndex": "AS_Sites",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 6,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 2024.0179843846877,
+            "y": 917.49336277814382
+          },
+          "nodeIndex": "TimeHorizonHours",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 2748.4655923846876,
+            "y": 905.37644623480242
+          },
+          "nodeIndex": "AS_Schedule_Aggregates",
+          "nodeLineageTag": "77dc9d75-1a1d-43e8-868c-7fdda0f6f753",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 2989.9481283846876,
+            "y": 846.76705816453364
+          },
+          "nodeIndex": "AS_Result_Schedule_Activity_Data",
+          "nodeLineageTag": "daf0418b-d686-440d-a93d-8599302e33a2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 3273.9481283846876,
+            "y": 846.76705816453364
+          },
+          "nodeIndex": "AS_Schedule_Aggregates_Data",
+          "nodeLineageTag": "0e3175fa-c695-48df-bb9b-7a9e9bc9dff7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 2265.5005203846877,
+            "y": 864.94243297954563
+          },
+          "nodeIndex": "AS_Scheduled_Activity_By_Shift",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 3515.4306643846876,
+            "y": 833.85297605913047
+          },
+          "nodeIndex": "AS_Operations_Dashboard",
+          "nodeLineageTag": "3bf00ba1-4ed0-4f8b-9b28-79fc288f6516",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 3785.1590557751765,
+            "y": 1482.7522431150628
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "98dac7c4-c930-402e-bac2-dc2c6da9f292",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 5
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 25.348095444133161,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

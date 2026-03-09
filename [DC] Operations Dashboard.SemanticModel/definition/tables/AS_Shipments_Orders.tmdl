@@ -1,0 +1,55 @@
+table AS_Shipments_Orders
+	lineageTag: 9653bdc3-3d14-4d4d-ba4d-a610f32a22ed
+
+	column site_id
+		dataType: string
+		lineageTag: f188b2dd-f308-4b8f-bd92-e44b1bf57692
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_id
+		dataType: string
+		lineageTag: aaaa214b-e4d0-4ab7-ad87-c64e60910115
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipment_id
+		dataType: string
+		lineageTag: 76c28253-76dd-4140-987d-3a6e53e17b45
+		summarizeBy: none
+		sourceColumn: shipment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: c7aa2954-782f-4a3b-8807-a3513d0c2789
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AS_Shipments_Orders = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				        "/external-view/shipment-order",
+				        type table [
+				            site_id = text,
+				            shipment_id = text,
+				            order_id = text,
+				            customer_id = text
+				        ]
+				    )
+				in
+				    convert_to_table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

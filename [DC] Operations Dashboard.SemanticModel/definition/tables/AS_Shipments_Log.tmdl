@@ -1,0 +1,595 @@
+table AS_Shipments_Log
+	lineageTag: bc79b2dd-d68c-4912-803f-c17d3394f26a
+
+	column site_id
+		dataType: string
+		lineageTag: 89f79b81-6e2d-47b5-8931-96025b375c1a
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipment_id
+		dataType: string
+		lineageTag: 5c3542d2-6a40-4ddf-9273-1eece847c3fc
+		summarizeBy: none
+		sourceColumn: shipment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipment_type_id
+		dataType: string
+		lineageTag: 9dfaffad-5344-472d-8c1b-df31ded4d542
+		summarizeBy: none
+		sourceColumn: shipment_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customers
+		dataType: string
+		lineageTag: da8c3d1d-a326-4dfb-9a69-7f6479f5215f
+		summarizeBy: none
+		sourceColumn: customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column note
+		dataType: string
+		lineageTag: 7532549f-6861-4ff6-aa4b-1b29fbdd4278
+		summarizeBy: none
+		sourceColumn: note
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_live
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 51a0e11a-c262-4d55-880e-485cac8672a0
+		summarizeBy: none
+		sourceColumn: is_live
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 004f350b-bc48-4e10-acc7-aa3770645f87
+		summarizeBy: none
+		sourceColumn: planned_arrival_utc
+
+		variation Variation
+			isDefault
+			relationship: 90131642-7b51-4cc2-a3f3-47dbc8e721ef
+			defaultHierarchy: LocalDateTable_8ba3f59e-959c-415d-8ba9-d1d03ec67f66.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: df043bc5-926c-4ab2-9c1d-f3c5566cd837
+		summarizeBy: none
+		sourceColumn: planned_arrival
+
+		variation Variation
+			isDefault
+			relationship: f61539f2-e64d-43f0-90b5-be909b61e70a
+			defaultHierarchy: LocalDateTable_d8c21265-1694-4e83-8adf-578f98d051f7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9d47037e-01dc-4610-8572-26f782dd250e
+		summarizeBy: none
+		sourceColumn: arrived_utc
+
+		variation Variation
+			isDefault
+			relationship: 9bdfcd45-8109-4814-894a-60aa78b36224
+			defaultHierarchy: LocalDateTable_bbf44ee8-b8b3-4b56-8b58-0a95e290ac40.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e772d17c-7fd9-4ca5-9902-362c30cf5eba
+		summarizeBy: none
+		sourceColumn: arrived
+
+		variation Variation
+			isDefault
+			relationship: 59da7f25-81fe-4abb-9330-e0a0c65d276c
+			defaultHierarchy: LocalDateTable_8d15fe20-2d92-49ab-aa89-d0363a6cab89.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 09468d85-4938-4e2c-b0d1-a2a0deba7c18
+		summarizeBy: none
+		sourceColumn: appointment_date_utc
+
+		variation Variation
+			isDefault
+			relationship: 1c2f9404-74c3-44de-b524-3c1214a1539d
+			defaultHierarchy: LocalDateTable_b7af0393-d153-4294-93ae-c65d85445cbc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3dfff001-0fd0-4118-a60c-0ff4ad4ae308
+		summarizeBy: none
+		sourceColumn: appointment_date
+
+		variation Variation
+			isDefault
+			relationship: 6d7aa877-3cf0-486e-9712-e1297703255c
+			defaultHierarchy: LocalDateTable_6af995ea-2a08-4c99-8d40-5e87f8e62dcf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column late_after_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 61ab98cc-235c-4812-89a5-1b0d86de28fc
+		summarizeBy: none
+		sourceColumn: late_after_utc
+
+		variation Variation
+			isDefault
+			relationship: e6f31f50-2e26-49a4-b9e3-152dfa824968
+			defaultHierarchy: LocalDateTable_feb360d6-7b72-4728-a08d-bbb55453fdf7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column late_after
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b5acfefe-2a61-4ce3-ad44-e6018d75f42c
+		summarizeBy: none
+		sourceColumn: late_after
+
+		variation Variation
+			isDefault
+			relationship: ef1a5e1a-e48d-4b04-9721-ccf3d00a0278
+			defaultHierarchy: LocalDateTable_78a95b19-7d7a-4644-93a2-b449e0778d98.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column transportation_type_id
+		dataType: string
+		lineageTag: 740ab2e3-ddef-4dae-bb83-fbf060372970
+		summarizeBy: none
+		sourceColumn: transportation_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column started_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 06ea3e53-58fb-4471-9b5f-8e39447473cc
+		summarizeBy: none
+		sourceColumn: started_utc
+
+		variation Variation
+			isDefault
+			relationship: f8699751-c566-49b8-bbaa-484e0f82908d
+			defaultHierarchy: LocalDateTable_cc479439-3d04-4d20-b571-ba6271c71cda.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column started
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eb20e1eb-4f17-49de-ba7a-4524e58bda41
+		summarizeBy: none
+		sourceColumn: started
+
+		variation Variation
+			isDefault
+			relationship: 18e7b0fe-be9d-406c-9eb5-d660461282b3
+			defaultHierarchy: LocalDateTable_2400f2cd-062f-4f93-b87a-2e476d9e42f5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ended_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bbbfc3a5-f4ca-4185-8615-39490fe6e814
+		summarizeBy: none
+		sourceColumn: ended_utc
+
+		variation Variation
+			isDefault
+			relationship: b1da479a-14e3-470d-bdc5-ed951163264e
+			defaultHierarchy: LocalDateTable_1f9dec4f-9a6d-4a0b-83b5-9920d38fa3cc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ended
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dcef9f5d-b668-4eb9-b7a0-aa888e29b753
+		summarizeBy: none
+		sourceColumn: ended
+
+		variation Variation
+			isDefault
+			relationship: c9787879-e1dc-4b0b-ba96-f4ba39739a17
+			defaultHierarchy: LocalDateTable_0858fdd2-1371-43da-905a-cfae633a79c9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_scheduled_end_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0103d6fd-3adf-4ff5-94aa-1df721acc0cf
+		summarizeBy: none
+		sourceColumn: last_scheduled_end_utc
+
+		variation Variation
+			isDefault
+			relationship: dd83e53f-42bf-465f-9baa-302822470a2d
+			defaultHierarchy: LocalDateTable_cc91e991-ca72-40fb-b3b8-943bdb4d24fb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_scheduled_end
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cf101db4-e413-4958-b427-dfa8e3e81ffe
+		summarizeBy: none
+		sourceColumn: last_scheduled_end
+
+		variation Variation
+			isDefault
+			relationship: f57cc789-28c8-4331-8b96-7f55279c04cb
+			defaultHierarchy: LocalDateTable_3aed0095-0999-4527-ba91-a7564b849ba0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column carrier_id
+		dataType: string
+		lineageTag: 9f38fac6-b585-4a2b-b010-8338e9aad26d
+		summarizeBy: none
+		sourceColumn: carrier_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column trailer_id
+		dataType: string
+		lineageTag: 651b5c5f-1719-4b1a-98ca-f890c9b01d1c
+		summarizeBy: none
+		sourceColumn: trailer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column door_id
+		dataType: string
+		lineageTag: c20eabf2-2695-4321-9f12-9b8831e7756b
+		summarizeBy: none
+		sourceColumn: door_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column door_assigned_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 28e9a357-184a-48d5-a8ed-647ee95f05e6
+		summarizeBy: none
+		sourceColumn: door_assigned_utc
+
+		variation Variation
+			isDefault
+			relationship: 5cce50d1-ffb3-4b92-8a23-74db2d77bb19
+			defaultHierarchy: LocalDateTable_e1f07951-44ee-4740-85ad-9d904f018138.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column door_assigned
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d71e5705-4ca1-42b6-9c21-bc7c6f9dac4f
+		summarizeBy: none
+		sourceColumn: door_assigned
+
+		variation Variation
+			isDefault
+			relationship: 7663fa6b-edea-4260-a480-96182f4892e8
+			defaultHierarchy: LocalDateTable_68f9364f-1321-4a89-9da9-b44861192d19.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 86ddbb0e-81a2-4dda-a7f2-9de5a5b17b14
+		summarizeBy: none
+		sourceColumn: last_updated_utc
+
+		variation Variation
+			isDefault
+			relationship: d8762db5-b330-4cf0-a606-118e581fa69f
+			defaultHierarchy: LocalDateTable_6edc88ae-4625-42ae-bfc4-289887ba2a78.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 69cdfc9c-0c69-46d0-bbb3-8e955e6f0b08
+		summarizeBy: none
+		sourceColumn: last_updated
+
+		variation Variation
+			isDefault
+			relationship: 41d8a3a4-5c8b-4ed3-9f5a-ac3f72e93671
+			defaultHierarchy: LocalDateTable_b568e1c0-5c28-440f-a36f-7072969856c5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_updated_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4c1725d2-a0de-430b-86f9-6a214db804bb
+		summarizeBy: none
+		sourceColumn: first_updated_utc
+
+		variation Variation
+			isDefault
+			relationship: c254fb0a-870a-4182-afe6-4ee657785489
+			defaultHierarchy: LocalDateTable_0c7d70f8-bfdf-45ed-8e7d-27c183367492.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f484d362-dd84-4dec-aa06-bf0e52dcc75c
+		summarizeBy: none
+		sourceColumn: first_updated
+
+		variation Variation
+			isDefault
+			relationship: b2f2fd28-9e0f-48f4-98dd-fd221c648be7
+			defaultHierarchy: LocalDateTable_2d437a57-c5fc-41fa-ba3a-3d1f9f8f723e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column orders
+		dataType: int64
+		formatString: 0
+		lineageTag: f9576ac7-6742-4de6-a5fe-6a4a6e86030c
+		summarizeBy: sum
+		sourceColumn: orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_items
+		dataType: int64
+		formatString: 0
+		lineageTag: 04649a71-6ba9-4b9f-9e6b-5d01b2410df6
+		summarizeBy: sum
+		sourceColumn: ordered_items
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_buom
+		dataType: double
+		lineageTag: 4e38c704-d7f4-4958-956c-301d11b4fc77
+		summarizeBy: sum
+		sourceColumn: ordered_buom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ordered_cases
+		dataType: double
+		lineageTag: 27494d09-f582-48b7-9cad-6f85fda4d725
+		summarizeBy: sum
+		sourceColumn: ordered_cases
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ordered_ULs
+		dataType: double
+		lineageTag: c8f98024-24d9-464b-964e-82952738158f
+		summarizeBy: sum
+		sourceColumn: ordered_ULs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ordered_kg
+		dataType: double
+		lineageTag: b3da0f21-2e5a-4664-ab0f-28fc5b0709d4
+		summarizeBy: sum
+		sourceColumn: ordered_kg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ordered_weight
+		dataType: double
+		lineageTag: 1ff1ce3e-d0cb-4dd4-81d4-86ddd51847ea
+		summarizeBy: sum
+		sourceColumn: ordered_weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ordered_cm3
+		dataType: double
+		lineageTag: 2a695fd9-d81f-496f-9b34-322e85120755
+		summarizeBy: sum
+		sourceColumn: ordered_cm3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ordered_volume
+		dataType: double
+		lineageTag: b61dcaf0-b690-4988-9fd7-e273f7c7dade
+		summarizeBy: sum
+		sourceColumn: ordered_volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loaded_items
+		dataType: double
+		lineageTag: 29ab2d5a-3049-432a-9e9f-2bb7c2ef1df3
+		summarizeBy: sum
+		sourceColumn: loaded_items
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loaded_buom
+		dataType: double
+		lineageTag: ae95e783-5261-4c06-be9e-49dff4d124e4
+		summarizeBy: sum
+		sourceColumn: loaded_buom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loaded_cases
+		dataType: double
+		lineageTag: 0b8fa7b7-7738-4e51-b338-1ed09c5f02b7
+		summarizeBy: sum
+		sourceColumn: loaded_cases
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loaded_ULs
+		dataType: double
+		lineageTag: d8b30c8b-30fc-457d-a6aa-a4ab17b57600
+		summarizeBy: sum
+		sourceColumn: loaded_ULs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loaded_kg
+		dataType: double
+		lineageTag: b5d5c83a-4ac7-4942-ab2e-99f3865aae05
+		summarizeBy: sum
+		sourceColumn: loaded_kg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loaded_weight
+		dataType: double
+		lineageTag: ad30779d-b6cf-4bad-9880-62d88ca1a17a
+		summarizeBy: sum
+		sourceColumn: loaded_weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loaded_cm3
+		dataType: double
+		lineageTag: 40ec6dfb-d6fe-4b63-973b-13e7da399c87
+		summarizeBy: sum
+		sourceColumn: loaded_cm3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loaded_volume
+		dataType: double
+		lineageTag: d9a456e7-1c5c-43d7-8f00-db438232234b
+		summarizeBy: sum
+		sourceColumn: loaded_volume
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition AS_Shipments_Log = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				        "/external-view/shipment-log",
+				        type table [
+				            site_id = text,
+				            shipment_id = text,
+				            shipment_type_id = text,
+				            customers = text,
+				            note = text,
+				            is_live = logical,
+				            planned_arrival_utc = datetime,
+				            planned_arrival = datetime,
+				            arrived_utc = datetime,
+				            arrived = datetime,
+				            appointment_date_utc = datetime,
+				            appointment_date = datetime,
+				            transportation_type_id = text,
+				            started_utc = datetime,
+				            started = datetime,
+				            ended_utc = datetime,
+				            ended = datetime,
+				            carrier_id = text,
+				            trailer_id = text,
+				            door_id = text,
+				            door_assigned_utc = datetime,
+				            door_assigned = datetime,
+				            last_updated_utc = datetime,
+				            last_updated = datetime,
+				            first_updated_utc = datetime,
+				            first_updated = datetime,
+				            orders = Int64.Type,
+				            ordered_items = Int64.Type,
+				            ordered_buom = number,
+				            ordered_cases = number,
+				            ordered_ULs = number,
+				            ordered_kg = number,
+				            ordered_weight = number,
+				            ordered_cm3 = number,
+				            ordered_volume = number,
+				            loaded_buom = number,
+				            loaded_cases = number,
+				            loaded_ULs = number,
+				            loaded_kg = number,
+				            loaded_items = number,
+				            loaded_weight = number,
+				            loaded_cm3 = number,
+				            loaded_volume = number,
+				            late_after_utc = datetime,
+				            late_after = datetime,
+				            last_scheduled_end_utc = datetime,
+				            last_scheduled_end = datetime
+				        ]
+				    )
+				in
+				    convert_to_table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "9b1e90e016876347e005",
+  "position": {
+    "x": 1031.7178612059158,
+    "y": 69.897610921501709,
+    "z": 0,
+    "height": 251.92263936291238,
+    "width": 234.44823663253695,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_Result_Schedule_Activity"
+                    }
+                  },
+                  "Property": "action_id"
+                }
+              },
+              "queryRef": "AS_Result_Schedule_Activity.action_id",
+              "nativeQueryRef": "action_id"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

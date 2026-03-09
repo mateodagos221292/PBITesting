@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "1d2194326d665e975a48",
+  "position": {
+    "x": 10.06993006993007,
+    "y": 0,
+    "z": 0,
+    "height": 620.9790209790209,
+    "width": 727.27272727272725,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "AS_RES_Door_Assignment_Compliance"
+                    }
+                  },
+                  "Property": "movement_id"
+                }
+              },
+              "queryRef": "AS_RES_Door_Assignment_Compliance.movement_id",
+              "nativeQueryRef": "movement_id",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_RES_Door_Assignment_Compliance"
+                        }
+                      },
+                      "Property": "proposed_door_id"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Min(AS_RES_Door_Assignment_Compliance.proposed_door_id)",
+              "nativeQueryRef": "Count of proposed_door_id"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "AS_RES_Door_Assignment_Compliance"
+                        }
+                      },
+                      "Property": "movement_id"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "Min(AS_RES_Door_Assignment_Compliance.movement_id)",
+              "nativeQueryRef": "Count of movement_id"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "AS_RES_Door_Assignment_Compliance"
+                      }
+                    },
+                    "Property": "movement_id"
+                  }
+                },
+                "Function": 5
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

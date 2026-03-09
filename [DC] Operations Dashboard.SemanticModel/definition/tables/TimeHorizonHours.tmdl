@@ -1,0 +1,41 @@
+table TimeHorizonHours
+	lineageTag: 952210f7-e875-4f21-8779-d3660f98c662
+
+	measure NowUTC = UTCNOW()
+		formatString: General Date
+		lineageTag: 928ab92d-70d5-4a35-ba10-2a2af74b37a5
+
+	measure 'HoursAhead Selected' =
+			
+			COALESCE( SELECTEDVALUE(TimeHorizonHours[Value]), 8 )
+		formatString: 0
+		lineageTag: 4ee39692-0ca4-412c-9aa5-6553623ba9fc
+
+	measure 'UTC Offset Hours' =
+			
+			-- positive if UTC is ahead of your local time
+			DATEDIFF( UTCNOW(), NOW(), HOUR )
+		formatString: 0
+		lineageTag: 6a02271f-2c27-4f37-b122-9cdb3082993e
+
+	measure 'HoursAhead (UTC)' =
+			
+			[HoursAhead Selected] + [UTC Offset Hours]
+		formatString: 0
+		lineageTag: de3c9328-b2c8-4118-9b91-16e02b03e3b0
+
+	column Value
+		formatString: 0
+		lineageTag: ef7d0f78-4ed6-4504-905b-c71e12e069ab
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = User
+
+	partition TimeHorizonHours = calculated
+		mode: import
+		source = GENERATESERIES(0, 48, 1)  -- adjust 48 to however many hours you want
+
+	annotation PBI_Id = bc3aebfa65714be1acc103f815d75b1f
+

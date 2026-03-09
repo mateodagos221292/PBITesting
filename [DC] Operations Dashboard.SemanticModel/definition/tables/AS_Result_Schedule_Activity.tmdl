@@ -1,0 +1,2765 @@
+table AS_Result_Schedule_Activity
+	lineageTag: 25cf17fe-f7fe-48a3-aca6-28d912f1ef5c
+
+	measure SelectedWindowText =
+			
+			"Showing moves starting or ending in the next " &
+			FORMAT(SELECTEDVALUE(TimeHorizonHours[Value], 8), "#") & " hours"
+		lineageTag: 830e0ae9-be67-4473-bbaa-cbe2e704b7a2
+
+	measure IsWithinNextXHours_UTC =
+			
+			VAR nextTime = MAX(AS_Result_Schedule_Activity[NextStartorEnd_UTC])
+			VAR nowTime  = UTCNOW()
+			VAR horizon  = [HoursAhead Selected]
+			RETURN
+			    IF(
+			        NOT ISBLANK(nextTime) &&
+			        nextTime >= nowTime &&
+			        nextTime <= nowTime + (horizon / 24.0),
+			        1,
+			        0
+			    )
+		formatString: 0
+		lineageTag: 15cd74c8-6cfe-43dd-881f-be19c7706915
+
+	measure Hours_since_start_Receipt =
+			
+			VAR now   = UTCNOW()
+			VAR started = SELECTEDVALUE(AS_Result_schedule_activity[started_utc_receipt])
+			RETURN IF( ISBLANK(started), BLANK(), DATEDIFF(started, now, MINUTE) / 60.0 )
+		lineageTag: 5b52b73e-9403-49cc-ad74-aa5fb295ae05
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_since_start_Shipment =
+			
+			VAR now   = UTCNOW()
+			VAR started = SELECTEDVALUE(AS_Result_schedule_activity[started_utc_shipment])
+			RETURN IF( ISBLANK(started), BLANK(), DATEDIFF(started, now, MINUTE) / 60.0 )
+		lineageTag: ffa2c5c0-d579-4bff-b869-f48a889811cf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_to_Scheduled_Start =
+			
+			VAR now   = UTCNOW()
+			VAR s     = SELECTEDVALUE(AS_Result_schedule_activity[start_utc])
+			RETURN IF( ISBLANK(s), BLANK(), DATEDIFF(now, s, MINUTE) / 60.0 )
+		lineageTag: 5d917759-8b90-42fa-a994-a4479695ffbe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_to_Scheduled_End =
+			
+			VAR now   = UTCNOW()
+			VAR e     = SELECTEDVALUE(AS_Result_schedule_activity[end_utc])
+			RETURN IF( ISBLANK(e), BLANK(), DATEDIFF(now, e, MINUTE) / 60.0 )
+		lineageTag: bb767e6d-ab6d-46f3-bc53-b65223815c72
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_till_late_Shipment =
+			
+			VAR now   = UTCNOW()
+			VAR la    = SELECTEDVALUE(AS_Result_schedule_activity[late_after_utc_shipment])
+			Var act   = DISTINCTCOUNT(AS_Result_Schedule_Activity[action_id])
+			RETURN IF( ISBLANK(la), BLANK(), DATEDIFF(now, la, MINUTE) / 60.0 / act)
+		lineageTag: 53802986-18cb-48f5-845a-05ca5fef1739
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_till_late_Receipt =
+			
+			VAR now   = UTCNOW()
+			VAR la    = SELECTEDVALUE(AS_Result_schedule_activity[late_after_utc_receipt])
+			Var act   = DISTINCTCOUNT(AS_Result_Schedule_Activity[action_id])
+			RETURN IF( ISBLANK(la), BLANK(), DATEDIFF(now, la, MINUTE) / 60.0 / act)
+		lineageTag: 540cd7ac-7e01-46a3-a6f0-8acbf4a69e30
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_till_appointment_end_Shipment = ```
+			
+			VAR now   = UTCNOW()
+			VAR ap    = SELECTEDVALUE(AS_Result_schedule_activity[appointment_date_utc_shipment])
+			RETURN IF( ISBLANK(ap), BLANK(), DATEDIFF(now, ap, MINUTE) / 60.0 )
+			
+			```
+		lineageTag: f65c3822-f31e-4b6a-a607-a503fda1d830
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_since_appointment_start_Receipt =
+			
+			VAR now   = UTCNOW()
+			VAR ap    = SELECTEDVALUE(AS_Result_schedule_activity[appointment_date_utc_receipt])
+			RETURN IF( ISBLANK(ap), BLANK(), DATEDIFF(ap, now, MINUTE) / 60.0 )
+		lineageTag: be39276e-65f9-49b9-94a3-ea5406d54bff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_till_planned_arrival_Shipment_Live =
+			
+			VAR now   = UTCNOW()
+			VAR pa    = SELECTEDVALUE(AS_Result_schedule_activity[planned_arrival_utc_shipment])
+			RETURN IF( ISBLANK(pa), BLANK(), DATEDIFF(now, pa, MINUTE) / 60.0 )
+		lineageTag: 312eb95c-71b3-4c6e-9504-4cb030717ae6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_till_planned_arrival_Receipt = ```
+			
+			VAR now   = UTCNOW()
+			VAR pa    = SELECTEDVALUE(AS_Result_schedule_activity[planned_arrival_utc_receipt])
+			RETURN IF( ISBLANK(pa), BLANK(), DATEDIFF(now, pa, MINUTE) / 60.0 )
+			
+			```
+		lineageTag: 6bc52104-f7cf-4cfd-877f-cc32bfd0d1d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_since_arrived_Receipt =
+			
+			VAR now   = UTCNOW()
+			VAR ar    = SELECTEDVALUE(AS_Result_schedule_activity[arrived_utc_receipt])
+			RETURN IF( ISBLANK(ar), BLANK(), DATEDIFF(ar, now, MINUTE) / 60.0 )
+		lineageTag: 03d637c9-dd03-4e93-8755-19115dd237bc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_since_arrived_Shipment_Live =
+			
+			VAR now   = UTCNOW()
+			VAR ar    = SELECTEDVALUE(AS_Result_schedule_activity[arrived_utc_shipment])
+			RETURN IF( ISBLANK(ar), BLANK(), DATEDIFF(ar, now, MINUTE) / 60.0 )
+		lineageTag: 8a79ab5e-1c49-4947-a596-12d03c294fa1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Status =
+			
+			VAR HoursAhead = COALESCE( SELECTEDVALUE(TimeHorizonHours[Value]), 4 )
+			VAR nowUTC     = UTCNOW()
+			
+			-- identify row type
+			VAR ShipID = MAX('AS_Result_Schedule_Activity'[shipment_type_id])
+			VAR RcptID = MAX('AS_Result_Schedule_Activity'[receipt_id])
+			VAR IsShip = NOT ISBLANK(ShipID)
+			VAR IsRcpt = NOT ISBLANK(RcptID)
+			
+			-- base timestamps (use MAX to avoid SELECTEDVALUE ambiguity)
+			VAR StartUTC       = MAX('AS_Result_Schedule_Activity'[start_utc])
+			VAR EndUTC         = MAX('AS_Result_Schedule_Activity'[end_utc])
+			
+			VAR ShipStartUTC   = MAX('AS_Result_Schedule_Activity'[started_utc_shipment])
+			VAR ShipEndUTC     = MAX('AS_Result_Schedule_Activity'[ended_utc_shipment])
+			VAR ShipLateUTC    = MAX('AS_Result_Schedule_Activity'[late_after_utc_shipment])
+			
+			VAR RcptStartUTC   = MAX('AS_Result_Schedule_Activity'[started_utc_receipt])
+			VAR RcptEndUTC     = MAX('AS_Result_Schedule_Activity'[ended_utc_receipt])
+			VAR RcptLateUTC    = MAX('AS_Result_Schedule_Activity'[late_after_utc_receipt])
+			-- add this near the top, after we define other receipt vars
+			VAR RcptExpectedBUOM = MAX('AS_Result_Schedule_Activity'[expected_buom])
+			VAR IsUnexpectedRcpt = IsRcpt && COALESCE(RcptExpectedBUOM,0) = 0
+			
+			-- in-full (adjust column names if your receipt uses expected/received)
+			VAR ShipOrdered    = MAX('AS_Result_Schedule_Activity'[ordered_buom])
+			VAR ShipLoaded     = MAX('AS_Result_Schedule_Activity'[loaded_buom])
+			VAR RcptExpected    = MAX('AS_Result_Schedule_Activity'[expected_buom])
+			VAR RcptReceived     = MAX('AS_Result_Schedule_Activity'[received_buom])
+			
+			VAR InFullShip     = IF( NOT ISBLANK(ShipOrdered), IF( ShipLoaded >= ShipOrdered, "Full", "Partial" ) )
+			VAR InFullRcpt     = IF( NOT ISBLANK(RcptExpected), IF( RcptReceived >= RcptExpected, "Full", "Partial" ) )
+			
+			-- hours (compute inline, clamp negatives to 0 so “soon” logic works)
+			VAR HrsToStart     = IF( ISBLANK(StartUTC), BLANK(), MAX(0, DATEDIFF(nowUTC, StartUTC, MINUTE) / 60.0) )
+			VAR HrsToEnd       = IF( ISBLANK(EndUTC),   BLANK(), MAX(0, DATEDIFF(nowUTC, EndUTC,   MINUTE) / 60.0) )
+			
+			VAR HrsSinceShip   = IF( ISBLANK(ShipStartUTC), BLANK(), DATEDIFF(ShipStartUTC, nowUTC, MINUTE) / 60.0 )
+			VAR HrsSinceRcpt   = IF( ISBLANK(RcptStartUTC), BLANK(), DATEDIFF(RcptStartUTC, nowUTC, MINUTE) / 60.0 )
+			
+			VAR HrsTillLateShip= IF( ISBLANK(ShipLateUTC), BLANK(), MAX(0, DATEDIFF(nowUTC, ShipLateUTC, MINUTE) / 60.0) )
+			VAR HrsTillLateRcpt= IF( ISBLANK(RcptLateUTC), BLANK(), MAX(0, DATEDIFF(nowUTC, RcptLateUTC, MINUTE) / 60.0) )
+			
+			-- state checks
+			VAR ShipInProgress   = IsShip && NOT ISBLANK(HrsSinceShip) && ISBLANK(ShipEndUTC)
+			VAR RcptInProgress   = IsRcpt && NOT ISBLANK(HrsSinceRcpt) && ISBLANK(RcptEndUTC)
+			
+			VAR ShipScheduledSoon= IsShip && ISBLANK(HrsSinceShip) && NOT ISBLANK(HrsToStart) && HrsToStart <= HoursAhead
+			VAR RcptScheduledSoon= IsRcpt && ISBLANK(HrsSinceRcpt) && NOT ISBLANK(HrsToStart) && HrsToStart <= HoursAhead
+			
+			VAR ShipCompleted    = IsShip && NOT ISBLANK(ShipEndUTC)
+			VAR RcptCompleted    = IsRcpt && NOT ISBLANK(RcptEndUTC)
+			
+			VAR ShipOnTime       = IF( ShipCompleted && NOT ISBLANK(ShipLateUTC), ShipEndUTC <= ShipLateUTC )
+			VAR RcptOnTime       = IF( RcptCompleted && NOT ISBLANK(RcptLateUTC), RcptEndUTC <= RcptLateUTC )
+			
+			VAR ShipExpectedLate = IsShip && ISBLANK(ShipEndUTC) && NOT ISBLANK(HrsTillLateShip) && HrsTillLateShip <= HoursAhead
+			VAR RcptExpectedLate = IsRcpt && ISBLANK(RcptEndUTC) && NOT ISBLANK(HrsTillLateRcpt) && HrsTillLateRcpt <= HoursAhead
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    -- Receipt unexpected (completed, in progress, or scheduled)
+			    IsUnexpectedRcpt && RcptCompleted, "Receipt unexpected",
+			    IsUnexpectedRcpt && RcptInProgress, "Receipt unexpected (in progress)",
+			    IsUnexpectedRcpt && RcptScheduledSoon, "Receipt unexpected (scheduled)",
+			    -- In progress
+			    ShipInProgress, "Shipment in progress",
+			    RcptInProgress, "Receipt in progress",
+			
+			    -- Scheduled soon (within horizon)
+			    ShipScheduledSoon, "Shipment scheduled to start soon",
+			    RcptScheduledSoon, "Receipt scheduled to start soon",
+			
+			    -- Completed (on time / late; full / partial)
+			    ShipCompleted && ShipOnTime && InFullShip = "Full",      "Shipment completed on time in full",
+			    ShipCompleted && NOT ShipOnTime && InFullShip = "Full",  "Shipment completed late in full",
+			    ShipCompleted && ShipOnTime && InFullShip = "Partial",   "Shipment completed on time partially",
+			    ShipCompleted && NOT ShipOnTime && InFullShip = "Partial","Shipment completed late partially",
+			
+			    RcptCompleted && RcptOnTime && InFullRcpt = "Full",      "Receipt completed on time in full",
+			    RcptCompleted && NOT RcptOnTime && InFullRcpt = "Full",  "Receipt completed late in full",
+			    RcptCompleted && RcptOnTime && InFullRcpt = "Partial",   "Receipt completed on time partially",
+			    RcptCompleted && NOT RcptOnTime && InFullRcpt = "Partial","Receipt completed late partially",
+			
+			    -- Expected late (within horizon)
+			    ShipExpectedLate, "Shipment expected out late",
+			    RcptExpectedLate, "Receipt expected to arrive late",
+			
+			    -- Fallback
+			    "Shipment/receipt — wait on this"
+			)
+		lineageTag: 57a5e856-c2a3-4730-b540-c5832f81b9f0
+
+	measure Hours_till_late =
+			
+			VAR ship = [Hours_till_late_Shipment]
+			VAR rcpt = [Hours_till_late_Receipt]
+			RETURN COALESCE(ship, rcpt)
+		lineageTag: 2b0a204f-e90a-4e31-a937-e0a81b166f80
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hours_late =
+			
+			VAR t = [Hours_till_late]       -- uses the measure above
+			RETURN IF( ISBLANK(t), BLANK(), IF( t < 0, ABS(t), 0 ) )
+		lineageTag: 9488375f-ce13-4656-9ff4-94aeab539281
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Amount_Short_Receipt = ```
+			
+			VAR expected = COALESCE(
+			    SELECTEDVALUE(AS_Result_Schedule_Activity[expected_ULs]),
+			    SELECTEDVALUE(AS_Result_Schedule_Activity[received_ULs])  -- optional fallback
+			)
+			VAR actual = COALESCE(
+			    SELECTEDVALUE(AS_Result_Schedule_Activity[received_ULs]),
+			    SELECTEDVALUE(AS_Result_Schedule_Activity[received_ULs])   -- optional fallback
+			)
+			RETURN IF( ISBLANK(expected), BLANK(), MAX(0, expected - COALESCE(actual, 0)) )
+			
+			```
+		lineageTag: ce3ef7f7-0539-44e3-bf55-8e31a7f1434f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Amount_Short_Shipment = ```
+			
+			VAR orderedd = SELECTEDVALUE(AS_Result_Schedule_Activity[ordered_ULs])
+			VAR loaded  = SELECTEDVALUE(AS_Result_Schedule_Activity[loaded_ULs])
+			RETURN IF( ISBLANK(orderedd), BLANK(), MAX(0, orderedd - COALESCE(loaded, 0)) )
+			
+			```
+		lineageTag: 73206ebe-0f33-4452-826f-61e34ff993c9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Amount_Short/Left =
+			
+			COALESCE( [Amount_Short_Shipment], [Amount_Short_Receipt] )
+		lineageTag: 7a6fcc16-f028-484b-8b68-66c57da3bd79
+
+	measure Time_till_late =
+			
+			VAR IsCompleted =
+			    SELECTEDVALUE ( 'AS_Result_Schedule_Activity'[Status_Basic] ) = "Completed"
+			
+			VAR HoursMax =
+			    MAXX (
+			        VALUES ( 'AS_Result_Schedule_Activity'[action_id] ),
+			        [Hours_till_late]
+			    )
+			VAR TotalMinutes = HoursMax * 60
+			VAR SignPart    = IF ( TotalMinutes < 0, "-", "" )
+			VAR HoursPart   = INT ( ABS ( TotalMinutes ) / 60 )
+			VAR MinutesPart = MOD ( ABS ( TotalMinutes ), 60 )
+			
+			RETURN
+			IF (
+			    IsCompleted,
+			    BLANK(),
+			    SignPart & FORMAT ( HoursPart, "0" ) & ":" & FORMAT ( MinutesPart, "00" )
+			)
+		lineageTag: 40732647-0145-4244-a9e0-63dee2c2ba8c
+
+	measure IsWithinNextXHours =
+			
+			VAR nextTime = MAX(AS_Result_Schedule_Activity[NextStartorEnd])
+			VAR nowTime  = NOW()
+			VAR horizon  = [HoursAhead Selected]
+			RETURN
+			    IF(
+			        NOT ISBLANK(nextTime) &&
+			        nextTime >= nowTime &&
+			        nextTime <= nowTime + (horizon / 24.0),
+			        1,
+			        0
+			    )
+		formatString: 0
+		lineageTag: ceb6a849-cc87-4862-873d-d63775c1a39f
+
+	measure PctProgress =
+			
+			VAR statusVal =
+			    MAX ( 'AS_Result_Schedule_Activity'[Status_Basic] )
+			VAR pct =
+			    DIVIDE (
+			        SUM ( 'AS_Result_Schedule_Activity'[Cases_Received_Loaded] ),
+			        SUM ( 'AS_Result_Schedule_Activity'[Cases_Expected_Ordered] ),
+			        0
+			    )
+			RETURN
+			IF ( statusVal = "Completed", pct, pct )
+		formatString: 0%;-0%;0%
+		lineageTag: ce836685-3ba8-42fa-84ff-ee3f1274eb9c
+
+	measure 'Distinct Rows' =
+			
+			DISTINCTCOUNT ( 'AS_Result_Schedule_Activity'[ActionKey] )
+		formatString: 0
+		lineageTag: 13246619-bd63-47fc-8b48-4dbe2c05e76f
+
+	measure Cases = ```
+			
+			DIVIDE (
+			    SUM ( 'AS_Result_Schedule_Activity'[Cases_Expected_Ordered] ),   
+			    [Distinct Rows],
+			    0
+			)
+			```
+		lineageTag: ef575ce8-d631-43f0-ac0d-9ff7d0336085
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cases_Expected_Ordered (Distinct Movements)' =
+			
+			SUMX(
+			    VALUES( 'AS_Result_Schedule_Activity'[MovementKey] ),
+			    CALCULATE( MAX( 'AS_Result_Schedule_Activity'[Cases_Expected_Ordered] ) )
+			)
+		formatString: #,0
+		lineageTag: 4ef07cc1-5511-4bac-b8e8-cc98d83692e7
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Cases_Recevied_Loaded (Distinct Movements)' =
+			
+			SUMX(
+			    VALUES( 'AS_Result_Schedule_Activity'[MovementKey] ),
+			    CALCULATE( MAX( 'AS_Result_Schedule_Activity'[Cases_Recevied_Loaded] ) )
+			)
+		lineageTag: 0e36757a-fbeb-4c86-bda8-c940dd679112
+
+	column site_id
+		dataType: string
+		lineageTag: 66f36369-2742-485f-b262-2c49fd7b386d
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column action_id
+		dataType: string
+		lineageTag: 65d0c563-f00c-4960-9cb2-c8027dabf06f
+		summarizeBy: none
+		sourceColumn: action_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column actor_id
+		dataType: string
+		lineageTag: 2bc52287-9e6d-48e8-b3a1-1ca2a8c948cb
+		summarizeBy: none
+		sourceColumn: actor_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column equipment_id
+		dataType: string
+		lineageTag: 38614b3f-04c7-49ed-a625-ece75bd1507a
+		summarizeBy: none
+		sourceColumn: equipment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_movement_id
+		dataType: string
+		lineageTag: 82b14c57-c7da-4148-8130-bde94d0ae616
+		summarizeBy: none
+		sourceColumn: to_movement_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_movement_type
+		dataType: string
+		lineageTag: 8cf35fba-c5b9-4a10-83ad-72e9fcf4e9d9
+		summarizeBy: none
+		sourceColumn: to_movement_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_movement_id
+		dataType: string
+		lineageTag: 419413b0-7f31-4b51-88f6-653b8459a50b
+		summarizeBy: none
+		sourceColumn: from_movement_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_movement_type
+		dataType: string
+		lineageTag: 82434ea6-806d-44a9-98d7-8d67a7610769
+		summarizeBy: none
+		sourceColumn: from_movement_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 456d6311-e365-401d-9fc2-b733b243dee4
+		summarizeBy: none
+		sourceColumn: start_utc
+
+		variation Variation
+			isDefault
+			relationship: 3f4ae0f7-b113-4320-9144-5ab0dd0ebc16
+			defaultHierarchy: LocalDateTable_fb1c9591-995d-4cfc-80b2-a5afc9aebccb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column start
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 60dfffb4-281f-4c50-b87a-59d7c6154d62
+		summarizeBy: none
+		sourceColumn: start
+
+		variation Variation
+			isDefault
+			relationship: 44c004bb-7107-45eb-9e3b-b2fc8b36c72e
+			defaultHierarchy: LocalDateTable_ccbc273e-4a96-4a4d-bc2f-dd6562836b92.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column end_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 800bb5d3-da5a-41be-8e52-6493aa485038
+		summarizeBy: none
+		sourceColumn: end_utc
+
+		variation Variation
+			isDefault
+			relationship: ca4ef5b0-1bc5-413f-b58a-9d0843b58ac4
+			defaultHierarchy: LocalDateTable_ad8b0bc7-cb2c-42b7-8d9e-68ed79bb3648.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column end
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4a381ae1-30af-4c26-9530-4ba7cb58138a
+		summarizeBy: none
+		sourceColumn: end
+
+		variation Variation
+			isDefault
+			relationship: e31214bc-2c2c-40d0-a32f-9c0cfc001970
+			defaultHierarchy: LocalDateTable_e99d3731-cd10-431b-9d13-efde9904c4a5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity_ul
+		dataType: double
+		lineageTag: 78f7407c-bdba-48aa-b942-254d4110096d
+		summarizeBy: sum
+		sourceColumn: quantity_ul
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column work_hours_standard
+		dataType: double
+		lineageTag: 9ae8ccd1-cf7b-43d7-813c-c9ee5c36b916
+		summarizeBy: sum
+		sourceColumn: work_hours_standard
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column updated_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3aa54eb7-bf75-4659-bdd9-dc62505fc785
+		summarizeBy: none
+		sourceColumn: updated_utc
+
+		variation Variation
+			isDefault
+			relationship: b4c2e97e-60b6-4316-807c-ca49cb519d48
+			defaultHierarchy: LocalDateTable_eeb0430d-dcd0-4957-8672-000fc3415bfe.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column updated
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 606b4a32-e5d8-450d-aac3-8ed6c6bd4f5d
+		summarizeBy: none
+		sourceColumn: updated
+
+		variation Variation
+			isDefault
+			relationship: e360853d-cc3e-4a96-aaf3-4cb0aacb1a6e
+			defaultHierarchy: LocalDateTable_bb9052b8-0d3f-474f-87c4-22a0d40213cb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveType =
+			
+			[from_movement_type] & " → " & [to_movement_type]
+		lineageTag: b1070b37-362f-4826-addf-3f259b6ac0ef
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column NextStartOrEnd_UTC =
+			
+			IF (
+			    AS_Result_Schedule_Activity[MinStart_UTC] >= UTCNOW(),
+			    AS_Result_Schedule_Activity[MinStart_UTC],
+			    AS_Result_Schedule_Activity[MaxEnd_UTC]
+			)
+		formatString: m/d/yyyy h:nn:ss AM/PM
+		lineageTag: f554149b-c124-4317-af2c-1c33f00146c2
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 1a793d6d-6764-4d3b-a087-a5851984ab54
+			defaultHierarchy: LocalDateTable_48531291-6be8-4660-95df-02ffc6d7e035.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column NextDoType = ```
+			
+			VAR statusBasicVal = 'AS_Result_Schedule_Activity'[Status_Basic]
+			VAR nextTime = 'AS_Result_Schedule_Activity'[NextStartOrEnd_UTC]
+			VAR startTime = 'AS_Result_Schedule_Activity'[MinStart_UTC]
+			VAR endTime   = 'AS_Result_Schedule_Activity'[MaxEnd_UTC]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    statusBasicVal = "Not started" && isblank(startTime), "Wait", -- wait if not scheduled. 
+			    statusBasicVal = "Completed", "Completed",
+			    statusBasicVal = "In Progress" && endTime <= nextTime, "Finish",
+			    statusBasicVal = "In Progress" && endTime > nextTime, "Continue",
+			    statusBasicVal = "Not started" && startTime <= UTCNOW() + (1/24) , "Start", --start if sched start withing next hour
+			    statusBasicVal = "Not started" && startTime > UTCNOW() + (1/24), "Wait", -- wait if schedstart more than 1 hour. 
+			    BLANK()
+			)
+			```
+		lineageTag: a9c5c8e2-63eb-4d18-812d-e4f4d9483094
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveTypeLab =
+			
+			SWITCH(
+			    TRUE(),
+			    AS_Result_Schedule_Activity[from_movement_type] = "production"
+			        && AS_Result_Schedule_Activity[to_movement_type] = "shipment",        "Express from production",
+			
+			    AS_Result_Schedule_Activity[from_movement_type] = "receipt"
+			        && AS_Result_Schedule_Activity[to_movement_type] = "#unknown",        "Receipt to storage",
+			
+			    AS_Result_Schedule_Activity[from_movement_type] = "production"
+			        && AS_Result_Schedule_Activity[to_movement_type] = "#unknown",        "Production to storage",
+			
+			    AS_Result_Schedule_Activity[from_movement_type] = "#unknown"
+			        && AS_Result_Schedule_Activity[to_movement_type] = "shipment",        "Shipment from storage",
+			
+			    AS_Result_Schedule_Activity[from_movement_type] = "#unknown"
+			        && AS_Result_Schedule_Activity[to_movement_type] = "consumption",     "Consumption from storage",
+			
+			    AS_Result_Schedule_Activity[from_movement_type] = "receipt"
+			        && AS_Result_Schedule_Activity[to_movement_type] = "consumption",     "Receipt to consumption",
+			
+			    AS_Result_Schedule_Activity[from_movement_type] = "receipt"
+			        && AS_Result_Schedule_Activity[to_movement_type] = "shipment",        "Crossdock",
+			
+			    "Check"
+			)
+		lineageTag: fe717e15-d324-4bdd-b0b6-862e98de0dc5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MoveID = ```
+			
+			SWITCH(
+			    TRUE(),
+			    -- If from is unknown → use to_movement_id
+			    AS_Result_Schedule_Activity[from_movement_id] = "#unknown",
+			        AS_Result_Schedule_Activity[to_movement_id],
+			
+			    -- If to is unknown → use from_movement_id
+			    AS_Result_Schedule_Activity[MoveTypeLab] = "Receipt to storage",
+			        AS_Result_Schedule_Activity[from_movement_id],
+			
+			    -- If MoveTypeLabel = 'Express from production' → use to_movement_id
+			    AS_Result_Schedule_Activity[MoveTypeLab] = "Express from production",
+			        AS_Result_Schedule_Activity[to_movement_id],
+			
+			    AS_Result_Schedule_Activity[MoveTypeLab] = "Production to storage",
+			        AS_Result_Schedule_Activity[from_movement_id],
+			    
+			    AS_Result_Schedule_Activity[MoveTypeLab] = "Receipt to Consumption",
+			        AS_Result_Schedule_Activity[from_movement_id],
+			    -- Otherwise → concatenate both
+			    AS_Result_Schedule_Activity[MoveTypeLab] = "Crossdock",
+			        AS_Result_Schedule_Activity[from_movement_id] & " → " & AS_Result_Schedule_Activity[to_movement_id],
+			    
+			    Coalesce(AS_Result_Schedule_Activity[from_movement_id] , AS_Result_Schedule_Activity[to_movement_id])
+			)
+			```
+		lineageTag: e3ea29bb-37f1-409d-85e4-f3fbaa858d3e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Door_Proposed_Receipt
+		dataType: string
+		lineageTag: fda5a6c1-7381-4b1b-8fd8-ecbcbeead4d0
+		summarizeBy: none
+		sourceColumn: Door_Proposed_Receipt
+
+		annotation SummarizationSetBy = Automatic
+
+	column AssignedDoor =
+			
+			VAR lbl =
+			    UPPER( TRIM ( 'AS_Result_Schedule_Activity'[MoveTypeLab] & "" ) )
+			
+			VAR r0 = 'AS_Result_Schedule_Activity'[door_id_assigned_receipt]
+			VAR s0 = 'AS_Result_Schedule_Activity'[door_id_assigned_shipment]
+			
+			-- normalize blanks
+			VAR r  = IF( LEN( TRIM( r0 & "" ) ) = 0, BLANK(), r0 )
+			VAR s  = IF( LEN( TRIM( s0 & "" ) ) = 0, BLANK(), s0 )
+			
+			RETURN
+			IF (
+			    lbl = "CROSSDOCK",
+			    IF ( NOT ISBLANK(r) && NOT ISBLANK(s), r & " -> " & s, COALESCE(r, s) ),
+			    COALESCE(r, s)
+			)
+		lineageTag: 9e9a5da7-9fd6-432d-907e-2a7aca1ee1bf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column NextDoType_Move =
+			
+			VAR StartWindowMin = 120    -- @start_now_horizon_minutes
+			VAR EndWindowMin   = 120   -- @end_now_horizon_minutes
+			VAR NowUtc         = UTCNOW()
+			VAR StartWindowEnd = NowUtc + (StartWindowMin / 1440.0)
+			VAR EndWindowEnd   = NowUtc + (EndWindowMin   / 1440.0)
+			
+			VAR HasShipment    = NOT ISBLANK ( AS_Result_Schedule_Activity[to_movement_id] )
+			VAR HasReceipt     = NOT ISBLANK ( AS_Result_Schedule_Activity[from_movement_id] )
+			
+			VAR ShipStarted    = NOT ISBLANK ( AS_Result_Schedule_Activity[start_utc] )
+			VAR ShipEnded      = NOT ISBLANK ( AS_Result_Schedule_Activity[ended_shipment] )
+			VAR RcptStarted    = NOT ISBLANK ( AS_Result_Schedule_Activity[started_receipt] )
+			VAR RcptEnded      = NOT ISBLANK ( AS_Result_Schedule_Activity[ended_utc_receipt] )
+			
+			VAR MinStartUTC    = AS_Result_schedule_activity[MinStart_UTC]
+			VAR MaxEndUTC      = AS_Result_schedule_activity[MaxEnd_UTC]
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			
+			    // shipment: not started, start window
+			    HasShipment && NOT ShipStarted && MinStartUTC <= StartWindowEnd, "Start",
+			
+			    // shipment: in progress, end window
+			    HasShipment && ShipStarted && NOT ShipEnded && MaxEndUTC <= EndWindowEnd, "Finish",
+			
+			    // receipt: not started, start window
+			    HasReceipt && NOT RcptStarted && MinStartUTC <= StartWindowEnd, "Start",
+			
+			    // receipt: in progress, end window
+			    HasReceipt && RcptStarted && NOT RcptEnded && MaxEndUTC <= EndWindowEnd, "Finish",
+			
+			    // completed states
+			    ShipStarted && ShipEnded, "Completed",
+			    RcptStarted && RcptEnded, "Completed",
+			
+			    // no live status for prod/consumption
+			    (AS_Result_schedule_activity[from_movement_type] = "production"
+			        && AS_Result_schedule_activity[to_movement_type] = "#unknown")
+			        || (AS_Result_schedule_activity[from_movement_type] = "#unknown"
+			        && AS_Result_schedule_activity[to_movement_type] = "consumption"),
+			        "Dont have live status of production or consumption",
+			
+			    // default
+			    "Wait"
+			)
+		lineageTag: 29b332e7-1f7b-42e7-a957-5a086fab93f8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column DetentionFlag =
+			
+			VAR IsLiveShip =
+			    IF( AS_Result_schedule_activity[is_live_shipment] IN { TRUE(), "True" }, TRUE(), FALSE() )
+			
+			VAR ReceiptPaidDet =
+			    NOT ISBLANK( AS_Result_schedule_activity[ended_utc_receipt] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[late_after_utc_receipt] ) &&
+			    AS_Result_schedule_activity[ended_utc_receipt] >= AS_Result_schedule_activity[late_after_utc_receipt]
+			
+			VAR ShipmentPaidDet =
+			    NOT ISBLANK( AS_Result_schedule_activity[ended_utc_shipment] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[late_after_utc_shipment] ) &&
+			    AS_Result_schedule_activity[ended_utc_shipment] >= AS_Result_schedule_activity[late_after_utc_shipment] &&
+			    IsLiveShip
+			
+			VAR ReceiptExpectDet =
+			    NOT ISBLANK( AS_Result_schedule_activity[end_utc] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[late_after_utc_receipt] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[receipt_id] ) &&
+			    AS_Result_schedule_activity[end_utc] >= AS_Result_schedule_activity[late_after_utc_receipt]
+			
+			VAR ShipmentExpectDet =
+			    NOT ISBLANK( AS_Result_schedule_activity[end_utc] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[late_after_utc_shipment] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[shipment_type_id] ) &&
+			    IsLiveShip &&
+			    AS_Result_schedule_activity[end_utc] >= AS_Result_schedule_activity[late_after_utc_shipment]
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ReceiptPaidDet || ShipmentPaidDet, "Paid",
+			    ReceiptExpectDet || ShipmentExpectDet, "Expected",
+			    "No"
+			)
+		lineageTag: d51fc346-5179-4d7a-84d7-ab4d8d418dbf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column LateFlag =
+			
+			VAR ReceiptLatePast =
+			    NOT ISBLANK( AS_Result_schedule_activity[ended_utc_receipt] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[late_after_utc_receipt] ) &&
+			    AS_Result_schedule_activity[ended_utc_receipt] >= AS_Result_schedule_activity[late_after_utc_receipt]
+			
+			VAR ShipmentLatePast =
+			    NOT ISBLANK( AS_Result_schedule_activity[ended_utc_shipment] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[late_after_utc_shipment] ) &&
+			    AS_Result_schedule_activity[ended_utc_shipment] >= AS_Result_schedule_activity[late_after_utc_shipment]
+			
+			VAR ReceiptExpectLate =
+			    NOT ISBLANK( AS_Result_schedule_activity[end_utc] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[late_after_utc_receipt] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[receipt_id] ) &&
+			    AS_Result_schedule_activity[end_utc] >= AS_Result_schedule_activity[late_after_utc_receipt]
+			
+			VAR ShipmentExpectLate =
+			    NOT ISBLANK( AS_Result_schedule_activity[end_utc] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[late_after_utc_shipment] ) &&
+			    NOT ISBLANK( AS_Result_schedule_activity[shipment_id] ) &&
+			    AS_Result_schedule_activity[end_utc] >= AS_Result_schedule_activity[late_after_utc_shipment]
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ReceiptLatePast || ShipmentLatePast, "Late in Past",
+			    ReceiptExpectLate || ShipmentExpectLate, "Expect Late",
+			    "Not Late"
+			)
+		lineageTag: e8c7cf84-0d49-4f98-91f8-e610d1d2621d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsShipment =
+			
+			NOT ISBLANK ( 'AS_Result_Schedule_Activity'[shipment_id] )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6120089b-f5e7-4eb9-9783-a92caf06df0f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsReceipt =
+			
+			NOT ISBLANK ( 'AS_Result_Schedule_Activity'[receipt_id] )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 709b93f5-5bd8-4c22-84b1-0be326d085bc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipStarted =
+			
+			NOT ISBLANK ( 'AS_Result_Schedule_Activity'[started_utc_shipment] )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9f88586a-438e-422b-818f-d66cf6bfb47c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipEnded =
+			
+			NOT ISBLANK ( 'AS_Result_Schedule_Activity'[ended_utc_shipment] )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 981cfc6c-eee7-4b7c-abb7-ef0c0ca45262
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column RcptStarted =
+			
+			NOT ISBLANK ( 'AS_Result_Schedule_Activity'[started_utc_receipt] )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f9285326-20ce-4268-b62f-eff10a98a195
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column RcptEnded =
+			
+			NOT ISBLANK ( 'AS_Result_Schedule_Activity'[ended_utc_receipt] )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b2468736-4a12-4b68-974b-bc436523bd48
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipOnTime = ```
+			
+			VAR ended = 'AS_Result_Schedule_Activity'[ended_utc_shipment]
+			VAR lateA = 'AS_Result_Schedule_Activity'[late_after_utc_shipment]
+			RETURN IF( 'AS_Result_Schedule_Activity'[ShipEnded] && NOT ISBLANK(ended) && NOT ISBLANK(lateA) && ended <= lateA, TRUE(), FALSE() )
+			
+			```
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ee58130e-99dd-413c-9ac6-b07db3e3af44
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsExpectedLate =
+			
+			VAR ShipExpectedLate =
+			    NOT ISBLANK ( 'AS_Result_Schedule_Activity'[start_utc] ) &&
+			    NOT ISBLANK ( 'AS_Result_Schedule_Activity'[late_after_utc_shipment] ) &&
+			    'AS_Result_Schedule_Activity'[start_utc] >= 'AS_Result_Schedule_Activity'[late_after_utc_shipment]
+			
+			VAR RcptExpectedLate =
+			    NOT ISBLANK ( 'AS_Result_Schedule_Activity'[start_utc] ) &&
+			    NOT ISBLANK ( 'AS_Result_Schedule_Activity'[late_after_utc_receipt] ) &&
+			    'AS_Result_Schedule_Activity'[start_utc] >= 'AS_Result_Schedule_Activity'[late_after_utc_receipt]
+			
+			RETURN
+			IF( ShipExpectedLate || RcptExpectedLate, "Y", "N" )
+		lineageTag: 771a399d-ae08-4610-a10d-67912db83385
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsStarted =
+			
+			VAR ShipStarted = NOT ISBLANK ( 'AS_Result_Schedule_Activity'[started_utc_shipment] )
+			VAR RcptStarted = NOT ISBLANK ( 'AS_Result_Schedule_Activity'[started_utc_receipt] )
+			RETURN IF( ShipStarted || RcptStarted, "Y", "N" )
+		lineageTag: 2128e700-d713-4c02-bd76-34f5e4b25bce
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsEnded =
+			
+			VAR ShipEnded = NOT ISBLANK ( 'AS_Result_Schedule_Activity'[ended_utc_shipment] )
+			VAR RcptEnded = NOT ISBLANK ( 'AS_Result_Schedule_Activity'[ended_utc_receipt] )
+			RETURN IF( ShipEnded || RcptEnded, "Y", "N" )
+		lineageTag: d468d6af-aae9-46a8-8772-146806862bbd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column WasLate =
+			
+			VAR ShipLate =
+			    NOT ISBLANK ( 'AS_Result_Schedule_Activity'[ended_utc_shipment] ) &&
+			    NOT ISBLANK ( 'AS_Result_Schedule_Activity'[late_after_utc_shipment] ) &&
+			    'AS_Result_Schedule_Activity'[ended_utc_shipment] >= 'AS_Result_Schedule_Activity'[late_after_utc_shipment]
+			
+			VAR RcptLate =
+			    NOT ISBLANK ( 'AS_Result_Schedule_Activity'[ended_utc_receipt] ) &&
+			    NOT ISBLANK ( 'AS_Result_Schedule_Activity'[late_after_utc_receipt] ) &&
+			    'AS_Result_Schedule_Activity'[ended_utc_receipt] >= 'AS_Result_Schedule_Activity'[late_after_utc_receipt]
+			
+			RETURN IF( ShipLate || RcptLate, "Y", "N" )
+		lineageTag: 78b72db4-4e73-4a43-ab31-e0b29576a0ff
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status_Basic =
+			
+			SWITCH(
+			    TRUE(),
+			    'AS_Result_Schedule_Activity'[IsEnded] = "Y",   "Completed",
+			    'AS_Result_Schedule_Activity'[IsStarted] = "Y", "In Progress",
+			    "Not started"
+			)
+		lineageTag: 07423402-8b7c-40ff-8b02-50f9c942e1bd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column CarrierID =
+			
+			VAR lbl = 'AS_Result_Schedule_Activity'[MoveTypeLab]
+			VAR rcpt = 'AS_Result_Schedule_Activity'[carrier_id_receipt]
+			VAR ship = 'AS_Result_Schedule_Activity'[carrier_id_shipment]
+			RETURN
+			IF(
+			    lbl = "Crossdock",
+			    IF( NOT ISBLANK(rcpt) && NOT ISBLANK(ship),
+			        rcpt & " → " & ship,
+			        COALESCE(ship, rcpt)
+			    ),
+			    COALESCE(ship, rcpt)
+			)
+		lineageTag: 255a9de4-c059-45bd-a185-db58d22868fd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrailerID =
+			
+			VAR lbl = 'AS_Result_Schedule_Activity'[MoveTypeLab]
+			VAR rcpt = 'AS_Result_Schedule_Activity'[trailer_id_receipt]
+			VAR ship = 'AS_Result_Schedule_Activity'[trailer_id_shipment]
+			RETURN
+			IF(
+			    lbl = "Crossdock",
+			    IF( NOT ISBLANK(rcpt) && NOT ISBLANK(ship),
+			        rcpt & " → " & ship,
+			        COALESCE(ship, rcpt)
+			    ),
+			    COALESCE(ship, rcpt)
+			)
+		lineageTag: 89639881-c504-482d-9050-d1c02f3c3abf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column OriginCustomer_Unified = ```
+			
+			VAR lbl   = 'AS_Result_Schedule_Activity'[MoveTypeLab]   // or [MoveTypeLab] if that's your exact name
+			VAR orig  = 'AS_Result_Schedule_Activity'[origin]          // (receipt side)
+			VAR cust = 
+			        SUBSTITUTE(
+			            SUBSTITUTE(
+			                SUBSTITUTE('AS_Result_Schedule_Activity'[customers], "[", ""),
+			                "]", ""
+			            ),
+			            """", ""   // remove any double quotes
+			        )   // (shipment side)
+			RETURN
+			IF(
+			    lbl = "Crossdock",
+			    IF( NOT ISBLANK(orig) && NOT ISBLANK(cust), orig & " → " & cust, COALESCE(orig, cust) ),
+			    COALESCE(orig, cust)
+			)
+			```
+		lineageTag: 30658a0f-4aa6-46b7-8411-7297ff3616e1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column movemtMoveTypeUnified =
+			
+			VAR lbl    = 'AS_Result_Schedule_Activity'[MoveTypeLab]
+			VAR hasShp = NOT ISBLANK( 'AS_Result_Schedule_Activity'[shipment_id] )
+			VAR hasRcp = NOT ISBLANK( 'AS_Result_Schedule_Activity'[receipt_id] )
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    lbl = "Crossdock",      "Crossdock",
+			    hasShp && NOT hasRcp,   "Outbound",
+			    hasRcp && NOT hasShp,   "Inbound",
+			    hasShp && hasRcp,       "Outbound & Inbound",
+			    BLANK()
+			)
+		lineageTag: e790f599-de07-4ae0-a7c2-553f690bb629
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Door_Proposed_shipment
+		dataType: string
+		lineageTag: bca116b3-c29a-478d-8714-40f5f734d0ec
+		summarizeBy: none
+		sourceColumn: Door_Proposed_shipment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Proposed Door' =
+			
+			VAR lbl = UPPER( TRIM ( 'AS_Result_Schedule_Activity'[MoveTypeLab] & "" ) )
+			
+			VAR r0  = 'AS_Result_Schedule_Activity'[Door_Proposed_Receipt]
+			VAR s0  = 'AS_Result_Schedule_Activity'[Door_Proposed_Shipment]
+			VAR ra0 = 'AS_Result_Schedule_Activity'[door_id_assigned_receipt]
+			VAR sa0 = 'AS_Result_Schedule_Activity'[door_id_assigned_shipment]
+			
+			VAR r  = IF( LEN( TRIM( r0 & "" ) ) = 0, BLANK(), r0 )
+			VAR s  = IF( LEN( TRIM( s0 & "" ) ) = 0, BLANK(), s0 )
+			VAR ra = IF( LEN( TRIM( ra0 & "" ) ) = 0, BLANK(), ra0 )
+			VAR sa = IF( LEN( TRIM( sa0 & "" ) ) = 0, BLANK(), sa0 )
+			
+			VAR leftDoor  = COALESCE( r,  ra )
+			VAR rightDoor = COALESCE( s,  sa )
+			
+			RETURN
+			IF (
+			    lbl = "CROSSDOCK",
+			    IF ( NOT ISBLANK(leftDoor) && NOT ISBLANK(rightDoor),
+			         leftDoor & " -> " & rightDoor,
+			         COALESCE(leftDoor, rightDoor)
+			    ),
+			    COALESCE(leftDoor, rightDoor)
+			)
+		lineageTag: 4a8ab76a-4b88-4d4e-a5cc-8647792cde05
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column NextStartOrEnd =
+			
+			IF (
+			    AS_Result_Schedule_Activity[MinStart] >= NOW() ,
+			    AS_Result_Schedule_Activity[MinStart],
+			    AS_Result_Schedule_Activity[MaxEnd]
+			)
+		formatString: General Date
+		lineageTag: e73678b0-7f31-425d-9bff-45fd5879b8c1
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 09ddc9cb-1cb3-48cf-b62d-46387c62c3b6
+			defaultHierarchy: LocalDateTable_f9c3c375-4788-4f08-bce8-94b97df1d7b2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AppointmentDate =
+			
+			VAR r0 = 'AS_Result_Schedule_Activity'[appointment_date_receipt]
+			VAR s0 = 'AS_Result_Schedule_Activity'[appointment_date_shipment]
+			VAR r  = IF( LEN(TRIM(r0 & "")) = 0, BLANK(), r0 )
+			VAR s  = IF( LEN(TRIM(s0 & "")) = 0, BLANK(), s0 )
+			RETURN COALESCE( r, s )
+		formatString: General Date
+		lineageTag: 6c54ca51-48ab-4125-b8de-1967b1083d85
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: b0c6fd37-fe3b-4071-9a6a-ad9c93297d06
+			defaultHierarchy: LocalDateTable_72ef897c-c0db-4a3a-97d0-90ad6568f96e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AppointmentDate_UTC =
+			
+			VAR r0 = 'AS_Result_Schedule_Activity'[appointment_date_utc_receipt]
+			VAR s0 = 'AS_Result_Schedule_Activity'[appointment_date_utc_shipment]
+			VAR r  = IF( LEN(TRIM(r0 & "")) = 0, BLANK(), r0 )
+			VAR s  = IF( LEN(TRIM(s0 & "")) = 0, BLANK(), s0 )
+			RETURN COALESCE( r, s )
+		formatString: General Date
+		lineageTag: 485c10b1-0ad5-4bea-b54f-2481339d64a1
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 48c3d9a2-7c37-498d-93d6-3d7832f22e5c
+			defaultHierarchy: LocalDateTable_fd83df06-8278-416d-9dc8-52b9d88aa989.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cases_Expected_Ordered = ```
+			
+			        COALESCE (
+			            'AS_Result_Schedule_Activity'[expected_cases],   -- receipts
+			            'AS_Result_Schedule_Activity'[ordered_cases]     -- shipments
+			        )
+			
+			```
+		formatString: #,0
+		lineageTag: 932acd0e-cfea-4eda-b038-fe2857d6c205
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column Cases_Received_Loaded =
+			
+			COALESCE(
+			    'AS_Result_Schedule_Activity'[received_cases],   -- receipts
+			    'AS_Result_Schedule_Activity'[loaded_cases]      -- shipments
+			)
+		formatString: #,0
+		lineageTag: 209e3eae-4032-422e-bd54-3a0d26ba8601
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeek = FORMAT ( AS_Result_Schedule_Activity[AppointmentDate], "ddd" )
+		lineageTag: b50e2fe3-28de-41e3-95d3-fab94777a637
+		summarizeBy: none
+		sortByColumn: DayOfWeekNum
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeekNum = WEEKDAY ( AS_Result_Schedule_Activity[AppointmentDate], 1 )
+		formatString: 0
+		lineageTag: d0172931-f83c-4e82-92ef-7ca1f71d508d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeeksBack =
+			
+			VAR d = 'AS_Result_Schedule_Activity'[AppointmentDate]
+			VAR wkStart_d =
+			    d - WEEKDAY ( d, 2 ) + 1        -- Monday of that date's week
+			VAR wkStart_today =
+			    TODAY() - WEEKDAY ( TODAY(), 2 ) + 1   -- Monday of this week
+			RETURN
+			IF(
+			    ISBLANK(d),
+			    BLANK(),
+			    INT ( DIVIDE ( wkStart_today - wkStart_d, 7.0 ) )
+			)
+		dataType: double
+		formatString: 0
+		lineageTag: f92be98c-7185-497e-9f7e-a1cfae23588f
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column WeekOfLabel =
+			
+			VAR d = 'AS_Result_Schedule_Activity'[AppointmentDate]
+			VAR wkStart = d - WEEKDAY(d,1) + 1
+			RETURN IF( ISBLANK(d), BLANK(), "Week of " & FORMAT(wkStart, "MMM dd") )
+		lineageTag: c4249568-0b93-4d0b-8544-b52caea1592f
+		summarizeBy: none
+		sortByColumn: YearWeek
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearWeek =
+			
+			YEAR ( 'AS_Result_Schedule_Activity'[AppointmentDate] ) * 100
+			+ WEEKNUM ( 'AS_Result_Schedule_Activity'[AppointmentDate], 2 )
+		formatString: 0
+		lineageTag: a264aeb1-7f88-4037-9a26-37ac5ee58f5d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_live =
+			
+			COALESCE (
+			    'AS_Result_Schedule_Activity'[is_live_shipment],
+			    'AS_Result_Schedule_Activity'[is_live_receipt]
+			    )
+		lineageTag: fbfe6695-b822-472a-9a35-6948c3d4e7a5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActionKey =
+			
+			VAR _site  = COALESCE ( 'AS_Result_Schedule_Activity'[site_id], "" )
+			VAR _act   = COALESCE ( 'AS_Result_Schedule_Activity'[action_id], "" )
+			VAR _actor = COALESCE ( 'AS_Result_Schedule_Activity'[actor_id], "" )
+			VAR _equip = COALESCE ( 'AS_Result_Schedule_Activity'[equipment_id], "" )
+			VAR _to    = COALESCE ( 'AS_Result_Schedule_Activity'[to_movement_id], "" )
+			VAR _from  = COALESCE ( 'AS_Result_Schedule_Activity'[from_movement_id], "" )
+			VAR _start = 'AS_Result_Schedule_Activity'[start_utc]
+			VAR _startT = IF ( ISBLANK(_start), "", FORMAT ( _start, "yyyy-MM-dd HH:mm:ss" ) )
+			RETURN
+			    _site & "|" & _act & "|" & _actor & "|" & _equip &  "|" & _startT
+		lineageTag: af06ecec-e95a-4124-a7a6-624cc94832c4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MovementKey =
+			
+			VAR site = COALESCE ( 'AS_Result_Schedule_Activity'[site_id], "" )
+			VAR ship = 'AS_Result_Schedule_Activity'[shipment_id]
+			VAR rcpt = 'AS_Result_Schedule_Activity'[receipt_id]
+			VAR typ  = IF( NOT ISBLANK(ship), "SHIP", IF( NOT ISBLANK(rcpt), "RCPT", "NA" ) )
+			VAR mk   = COALESCE ( ship, rcpt )
+			RETURN IF( ISBLANK(mk), BLANK(), site & "|" & typ & "|" & mk )
+		lineageTag: 280f3d95-a63c-4d55-b2a3-afdd1a3a791c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ended_Any =
+			
+			COALESCE(
+			    'AS_Result_Schedule_Activity'[ended_shipment],
+			    'AS_Result_Schedule_Activity'[ended_receipt]
+			)
+		formatString: General Date
+		lineageTag: 17d0f182-f55a-4734-a56d-3940e8178430
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 2352c4f5-6f5e-4e50-947c-36eb8ed50249
+			defaultHierarchy: LocalDateTable_1742b7c2-2081-4939-970c-124af7427609.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipment_id
+		dataType: string
+		lineageTag: 77305dce-a54b-47c1-bcf1-81841003673d
+		summarizeBy: none
+		sourceColumn: shipment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipment_type_id
+		dataType: string
+		lineageTag: a10bec4a-6863-4092-8a1a-e18ea4fafb23
+		summarizeBy: none
+		sourceColumn: shipment_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customers
+		dataType: string
+		lineageTag: a25be165-9a97-4895-b5c5-adc494e9fe05
+		summarizeBy: none
+		sourceColumn: customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column note_shipment
+		dataType: string
+		lineageTag: c59e7ada-6e49-4c31-b7ba-5223a0031783
+		summarizeBy: none
+		sourceColumn: note_shipment
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_live_shipment
+		dataType: string
+		lineageTag: 1bd7d735-5d67-448a-b46f-3331c5363b01
+		summarizeBy: none
+		sourceColumn: is_live_shipment
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival_utc_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d611c367-6dc4-4602-9631-f95c8f9eccf4
+		summarizeBy: none
+		sourceColumn: planned_arrival_utc_shipment
+
+		variation Variation
+			isDefault
+			relationship: 850054c6-a56f-4106-9af9-e907fa54d304
+			defaultHierarchy: LocalDateTable_4b9ff821-4133-43c6-94e8-f89cd47b2260.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8f312f04-372f-4b38-a864-f5561928bdd2
+		summarizeBy: none
+		sourceColumn: planned_arrival_shipment
+
+		variation Variation
+			isDefault
+			relationship: 3626cb28-638a-4c4f-8518-d29371969bff
+			defaultHierarchy: LocalDateTable_f52134df-cbef-4115-a3b6-e9f94e870067.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived_utc_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9148daa0-7198-4134-adc8-29bfe73dd5d3
+		summarizeBy: none
+		sourceColumn: arrived_utc_shipment
+
+		variation Variation
+			isDefault
+			relationship: 1dde74ce-4203-437f-8304-e2490718ca46
+			defaultHierarchy: LocalDateTable_ca77849a-7576-4c49-9d79-673f580b9607.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e3e96e6d-17f6-4c0d-8d89-ee5e6f11b864
+		summarizeBy: none
+		sourceColumn: arrived_shipment
+
+		variation Variation
+			isDefault
+			relationship: d6b61d68-1f58-4e2e-ba0b-0f14f4f330bd
+			defaultHierarchy: LocalDateTable_652be167-26d8-4a3a-bd98-b4f42cc6eb94.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date_utc_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 233d7a9a-275d-493e-b948-d85faeb91a54
+		summarizeBy: none
+		sourceColumn: appointment_date_utc_shipment
+
+		variation Variation
+			isDefault
+			relationship: ca0f208d-12eb-426c-8ad4-3a92c93b3903
+			defaultHierarchy: LocalDateTable_e578f6f9-944b-4cf1-8ab2-eb949b61b193.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3826ce0b-30e5-425f-bfb3-f314c9c19bc3
+		summarizeBy: none
+		sourceColumn: appointment_date_shipment
+
+		variation Variation
+			isDefault
+			relationship: 0d713ae2-4ad0-44c2-a8c7-fe4ab00e7d19
+			defaultHierarchy: LocalDateTable_6151cf14-becc-4387-96f0-613d342ded90.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column late_after_utc_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9faa8661-59a5-4ad7-bd51-2be548402c5c
+		summarizeBy: none
+		sourceColumn: late_after_utc_shipment
+
+		variation Variation
+			isDefault
+			relationship: 216efd6c-ef81-497b-914f-91b61cae36f4
+			defaultHierarchy: LocalDateTable_a99c3b14-2be2-44a1-a202-58e8a9f9ffb3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column late_after_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f45217ef-c0f8-4564-94c9-ef0c79e061c2
+		summarizeBy: none
+		sourceColumn: late_after_shipment
+
+		variation Variation
+			isDefault
+			relationship: dc56fc74-afc3-4e75-a691-8c407777eceb
+			defaultHierarchy: LocalDateTable_1898aff1-0e54-4ce4-b6d8-033def910519.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column transportation_type_shipment
+		dataType: string
+		lineageTag: d235cdc2-1597-4b89-87b9-63adc8d65f80
+		summarizeBy: none
+		sourceColumn: transportation_type_shipment
+
+		annotation SummarizationSetBy = Automatic
+
+	column started_utc_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: da365f1f-7d6a-4826-9762-499a781112ed
+		summarizeBy: none
+		sourceColumn: started_utc_shipment
+
+		variation Variation
+			isDefault
+			relationship: cdc5ca44-adb6-483d-989a-e9eec39ed54f
+			defaultHierarchy: LocalDateTable_19586983-f4a0-48dd-9e35-d5599c4bf08f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column started_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f7887c8e-479f-4165-9567-16a8c13b5bd6
+		summarizeBy: none
+		sourceColumn: started_shipment
+
+		variation Variation
+			isDefault
+			relationship: c1dfeb80-09af-4c4b-bd4b-c042070303a5
+			defaultHierarchy: LocalDateTable_8f3a62a3-0eb7-4881-94b8-3bdcf64e0b92.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ended_utc_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 931acd56-5fae-4b6d-82bf-8e7beae386df
+		summarizeBy: none
+		sourceColumn: ended_utc_shipment
+
+		variation Variation
+			isDefault
+			relationship: 38f79a02-bd7f-4ec1-a68a-616db5ea94d5
+			defaultHierarchy: LocalDateTable_fc10f915-032b-4eef-a1df-c82d600f1a8d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ended_shipment
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 73b430ce-ccb5-439d-aead-6d8a95cf1a0b
+		summarizeBy: none
+		sourceColumn: ended_shipment
+
+		variation Variation
+			isDefault
+			relationship: c1cd5c53-b9cf-4fe0-b9ad-6f79fc61c5ed
+			defaultHierarchy: LocalDateTable_88bb2682-d48a-4ba3-b515-925972252778.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_scheduled_end_utc
+		dataType: string
+		lineageTag: 393b988e-3b9c-447d-8ff9-d90c902d4a08
+		summarizeBy: none
+		sourceColumn: last_scheduled_end_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_scheduled_end
+		dataType: string
+		lineageTag: d3ec18c0-f107-40c1-88a2-4fc20de1350d
+		summarizeBy: none
+		sourceColumn: last_scheduled_end
+
+		annotation SummarizationSetBy = Automatic
+
+	column carrier_id_shipment
+		dataType: string
+		lineageTag: 28b530e8-6893-465b-88cb-3b3da7c910b0
+		summarizeBy: none
+		sourceColumn: carrier_id_shipment
+
+		annotation SummarizationSetBy = Automatic
+
+	column trailer_id_shipment
+		dataType: string
+		lineageTag: c6b807af-585c-4b04-9f90-05b472f5b9b4
+		summarizeBy: none
+		sourceColumn: trailer_id_shipment
+
+		annotation SummarizationSetBy = Automatic
+
+	column orders
+		dataType: string
+		lineageTag: f48a7ebf-cf9e-4a92-ba7a-a61956ec8028
+		summarizeBy: none
+		sourceColumn: orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_items
+		dataType: string
+		lineageTag: a5095a68-fcc6-4271-ab4b-a5122bb12c16
+		summarizeBy: none
+		sourceColumn: ordered_items
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_buom
+		dataType: string
+		lineageTag: 98c49bcd-399f-419f-8d00-3ad10001027b
+		summarizeBy: none
+		sourceColumn: ordered_buom
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_cases
+		dataType: double
+		lineageTag: 459bb713-a0db-4b85-b164-1a19f37dd419
+		summarizeBy: sum
+		sourceColumn: ordered_cases
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ordered_ULs
+		dataType: string
+		lineageTag: 3b2153cc-bec2-4a0d-92db-69e935244538
+		summarizeBy: none
+		sourceColumn: ordered_ULs
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_kg
+		dataType: string
+		lineageTag: a4b6ab8e-5fab-405e-8114-510bbb4ee9a2
+		summarizeBy: none
+		sourceColumn: ordered_kg
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_weight
+		dataType: string
+		lineageTag: d4807fc3-2c3d-46fe-84f6-a509ade35408
+		summarizeBy: none
+		sourceColumn: ordered_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_weight_uom
+		dataType: string
+		lineageTag: 54af4670-daac-45e8-9ca8-1911a05c9153
+		summarizeBy: none
+		sourceColumn: ordered_weight_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_cm3
+		dataType: string
+		lineageTag: d7b33fa4-5909-4458-a4d6-0b45fc1bc091
+		summarizeBy: none
+		sourceColumn: ordered_cm3
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_volume
+		dataType: string
+		lineageTag: b4c4170f-4c4f-4c4f-9b0a-95ff530ac701
+		summarizeBy: none
+		sourceColumn: ordered_volume
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordered_volume_uom
+		dataType: string
+		lineageTag: 5d037197-d688-4976-beef-4e2c6684cbb3
+		summarizeBy: none
+		sourceColumn: ordered_volume_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_items
+		dataType: string
+		lineageTag: c3e250ff-50fc-43e5-8e19-0b32156293a7
+		summarizeBy: none
+		sourceColumn: loaded_items
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_buom
+		dataType: string
+		lineageTag: 3ecc945c-58d7-43ed-b5be-ac8fb0c5f4b7
+		summarizeBy: none
+		sourceColumn: loaded_buom
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_cases
+		dataType: double
+		lineageTag: c5844ff1-b1a2-4cb5-a83d-db557623efb6
+		summarizeBy: sum
+		sourceColumn: loaded_cases
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loaded_ULs
+		dataType: string
+		lineageTag: 11d62f69-64fd-4e9b-8e54-976193ea5df0
+		summarizeBy: none
+		sourceColumn: loaded_ULs
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_kg
+		dataType: string
+		lineageTag: a8828f3e-a410-41d3-a78e-218d6abb615b
+		summarizeBy: none
+		sourceColumn: loaded_kg
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_weight
+		dataType: string
+		lineageTag: ba5b89cf-5bbd-44c3-8706-94c93ea4de07
+		summarizeBy: none
+		sourceColumn: loaded_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_weight_uom
+		dataType: string
+		lineageTag: 386bb2eb-3664-4748-8df8-2bf8fdead2b4
+		summarizeBy: none
+		sourceColumn: loaded_weight_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_cm3
+		dataType: string
+		lineageTag: eeb4178b-9489-4df5-9a22-865c4fbbd7e0
+		summarizeBy: none
+		sourceColumn: loaded_cm3
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_volume
+		dataType: string
+		lineageTag: d359e3c4-9dd2-4f51-ad40-7227c98d017a
+		summarizeBy: none
+		sourceColumn: loaded_volume
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_volume_uom
+		dataType: string
+		lineageTag: 638b8608-371c-4d54-a4ee-1fe981a2145f
+		summarizeBy: none
+		sourceColumn: loaded_volume_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column receipt_id
+		dataType: string
+		lineageTag: aeee107e-d3c8-48df-92bc-b249ba79a731
+		summarizeBy: none
+		sourceColumn: receipt_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column receipt_type_id
+		dataType: string
+		lineageTag: b6e523d6-25b2-4f9b-8da8-afdac0a4ac19
+		summarizeBy: none
+		sourceColumn: receipt_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin
+		dataType: string
+		lineageTag: 32554c74-4c37-4ef6-ba2c-da439f3dd57f
+		summarizeBy: none
+		sourceColumn: origin
+
+		annotation SummarizationSetBy = Automatic
+
+	column note_receipt
+		dataType: string
+		lineageTag: 03b998e2-fdbe-422c-9ac3-e3694f116c39
+		summarizeBy: none
+		sourceColumn: note_receipt
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_live_receipt
+		dataType: string
+		lineageTag: 5316d9e7-20a5-4eb7-9f13-73645d235601
+		summarizeBy: none
+		sourceColumn: is_live_receipt
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival_utc_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8f9b16a9-2773-406f-a3ee-b2cd7a921a43
+		summarizeBy: none
+		sourceColumn: planned_arrival_utc_receipt
+
+		variation Variation
+			isDefault
+			relationship: 800be341-f19b-4048-a5b0-e12850210d2f
+			defaultHierarchy: LocalDateTable_ecaefedd-0e7e-4ce1-9027-0844b8be5f7b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column planned_arrival_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f779ef3a-041e-46f0-9ea7-d665f08899b7
+		summarizeBy: none
+		sourceColumn: planned_arrival_receipt
+
+		variation Variation
+			isDefault
+			relationship: 35896e86-7c26-4755-a173-7890e0949ab6
+			defaultHierarchy: LocalDateTable_72b57027-a715-4caa-8b2c-625795f61434.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived_utc_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 17218638-9eb4-4787-8165-89d96b6c897b
+		summarizeBy: none
+		sourceColumn: arrived_utc_receipt
+
+		variation Variation
+			isDefault
+			relationship: b82dda92-1d23-468d-b30b-9323b090da47
+			defaultHierarchy: LocalDateTable_48bb5823-03d9-4044-91a5-86988f4ced68.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrived_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 68489dc4-8119-4627-b768-e82811f8fecc
+		summarizeBy: none
+		sourceColumn: arrived_receipt
+
+		variation Variation
+			isDefault
+			relationship: f80be44d-87fb-4bee-ab31-6113ce9cba9c
+			defaultHierarchy: LocalDateTable_700fbc2f-8042-4211-97f8-555cfb7f0106.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column late_after_utc_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7b09a05e-dcb2-431c-b6b4-8433977e2a19
+		summarizeBy: none
+		sourceColumn: late_after_utc_receipt
+
+		variation Variation
+			isDefault
+			relationship: c7e2be6a-a0af-4ec1-b334-0de9bc79a983
+			defaultHierarchy: LocalDateTable_2e1d18cf-6d55-42f0-8d20-8ad1c7fcbdd4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column late_after_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fd0d65dd-0876-4c8a-87e5-c31d552be40d
+		summarizeBy: none
+		sourceColumn: late_after_receipt
+
+		variation Variation
+			isDefault
+			relationship: d89f7b8c-5e5b-42a7-b765-52384f25614c
+			defaultHierarchy: LocalDateTable_85af3b2e-6838-4fa6-92c6-354132d5cf28.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date_utc_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c4570161-b35b-43ee-9979-864407dfdf98
+		summarizeBy: none
+		sourceColumn: appointment_date_utc_receipt
+
+		variation Variation
+			isDefault
+			relationship: 1cdfc481-b7c3-4b8f-a9d4-5d632d6ff75e
+			defaultHierarchy: LocalDateTable_2230efc9-0316-4d88-aa31-088feef2fdbd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column appointment_date_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d67e1063-39fa-421d-859d-af202bb6ba44
+		summarizeBy: none
+		sourceColumn: appointment_date_receipt
+
+		variation Variation
+			isDefault
+			relationship: 04abb91a-a3c3-41eb-a65c-9150a348e69d
+			defaultHierarchy: LocalDateTable_c4b2d19b-1693-4b46-a902-a4165ba2f6f6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column transportation_type_receipt
+		dataType: string
+		lineageTag: 6b094662-2126-43ff-94a9-a93ceed20456
+		summarizeBy: none
+		sourceColumn: transportation_type_receipt
+
+		annotation SummarizationSetBy = Automatic
+
+	column started_utc_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1e071327-dcc3-44bc-b050-4c592917c7e3
+		summarizeBy: none
+		sourceColumn: started_utc_receipt
+
+		variation Variation
+			isDefault
+			relationship: 2c17b6e5-ed2d-4d99-8a29-8c7fa526af2d
+			defaultHierarchy: LocalDateTable_c6a96104-e728-44cd-bbc3-dd9dfd5d18c7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column started_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e7a8e80a-25f1-474f-b116-a981d857f118
+		summarizeBy: none
+		sourceColumn: started_receipt
+
+		variation Variation
+			isDefault
+			relationship: 6305936e-6d4a-4b92-9fc3-d9dd4cf51c09
+			defaultHierarchy: LocalDateTable_52820a70-91c6-4a03-a46d-4583b1174623.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ended_utc_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c4d0beb0-5cc3-451a-8b65-e32c998fa846
+		summarizeBy: none
+		sourceColumn: ended_utc_receipt
+
+		variation Variation
+			isDefault
+			relationship: e86f731f-13e1-458e-ab39-29b251ba869b
+			defaultHierarchy: LocalDateTable_22067267-ccc3-4832-a718-b44d01704ea8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ended_receipt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 313ce7e5-4fb0-403b-840a-34357cebd23a
+		summarizeBy: none
+		sourceColumn: ended_receipt
+
+		variation Variation
+			isDefault
+			relationship: 924f4e0c-e38c-4333-9ab3-d8b66d7334ef
+			defaultHierarchy: LocalDateTable_d69bf469-3a50-46fa-8d10-8c70c2b61c47.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column carrier_id_receipt
+		dataType: string
+		lineageTag: 70c648a7-fd8f-4e33-9a22-7c4db4da1d0e
+		summarizeBy: none
+		sourceColumn: carrier_id_receipt
+
+		annotation SummarizationSetBy = Automatic
+
+	column trailer_id_receipt
+		dataType: string
+		lineageTag: 4004f06b-e770-4a60-b03c-151e5febf032
+		summarizeBy: none
+		sourceColumn: trailer_id_receipt
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_items
+		dataType: string
+		lineageTag: 2c3989a4-5c63-4afc-aeb2-e0df612e0285
+		summarizeBy: none
+		sourceColumn: expected_items
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_buom
+		dataType: string
+		lineageTag: 590e01b8-664b-4ca0-835d-60c5d4057cdb
+		summarizeBy: none
+		sourceColumn: expected_buom
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_cases
+		dataType: double
+		lineageTag: 3e3c3953-4f3f-45bd-a1f5-e43877e815d0
+		summarizeBy: sum
+		sourceColumn: expected_cases
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_ULs
+		dataType: string
+		lineageTag: 53b30c67-b6ae-4f32-8eae-aeafbaa0b983
+		summarizeBy: none
+		sourceColumn: expected_ULs
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_kg
+		dataType: string
+		lineageTag: 31ce776b-ad9c-4d8b-ab51-66c0736a567c
+		summarizeBy: none
+		sourceColumn: expected_kg
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_weight
+		dataType: string
+		lineageTag: 86bb961f-0df6-45de-aeb6-c5140456c813
+		summarizeBy: none
+		sourceColumn: expected_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_weight_uom
+		dataType: string
+		lineageTag: 24d34f31-9ae3-4209-aadd-b646dede5c96
+		summarizeBy: none
+		sourceColumn: expected_weight_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_cm3
+		dataType: string
+		lineageTag: 544d11b0-9b6b-4a5d-9e89-73f02e3ab513
+		summarizeBy: none
+		sourceColumn: expected_cm3
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_volume
+		dataType: string
+		lineageTag: 51ec8e76-20c1-4650-b721-953d71d09fe2
+		summarizeBy: none
+		sourceColumn: expected_volume
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_volume_uom
+		dataType: string
+		lineageTag: 46225074-7ec9-4d05-bca7-27ec3fbf1010
+		summarizeBy: none
+		sourceColumn: expected_volume_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_items
+		dataType: string
+		lineageTag: 79777f85-636f-4cf7-8cc6-5de8cc06d8db
+		summarizeBy: none
+		sourceColumn: received_items
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_buom
+		dataType: string
+		lineageTag: bd5efffe-12df-46ad-80a8-cc06abeb0c70
+		summarizeBy: none
+		sourceColumn: received_buom
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_cases
+		dataType: double
+		lineageTag: 579e31ce-e659-438f-8398-00a60ef595fb
+		summarizeBy: sum
+		sourceColumn: received_cases
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column received_ULs
+		dataType: string
+		lineageTag: 4fbd1f29-e20f-4582-90b9-f193e40d8034
+		summarizeBy: none
+		sourceColumn: received_ULs
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_kg
+		dataType: string
+		lineageTag: bea87aeb-8314-41e1-be69-1f41bdda65a1
+		summarizeBy: none
+		sourceColumn: received_kg
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_weight
+		dataType: string
+		lineageTag: 680751b7-05f8-47e7-90f5-520cedc8e2f2
+		summarizeBy: none
+		sourceColumn: received_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_weight_uom
+		dataType: string
+		lineageTag: 8f15e992-5eeb-4f04-8e5f-504f4717b6b1
+		summarizeBy: none
+		sourceColumn: received_weight_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_cm3
+		dataType: string
+		lineageTag: 7f2494d5-2f03-48e6-842f-39ff49cd6554
+		summarizeBy: none
+		sourceColumn: received_cm3
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_volume
+		dataType: string
+		lineageTag: 52d2662f-350b-480d-98be-3b446d63e2de
+		summarizeBy: none
+		sourceColumn: received_volume
+
+		annotation SummarizationSetBy = Automatic
+
+	column received_volume_uom
+		dataType: string
+		lineageTag: 429d6798-22c1-4da0-94d9-d257c8425f8c
+		summarizeBy: none
+		sourceColumn: received_volume_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column ignore
+		dataType: string
+		lineageTag: 759e71a7-bfb7-445e-b05c-a8609b7075d9
+		summarizeBy: none
+		sourceColumn: ignore
+
+		annotation SummarizationSetBy = Automatic
+
+	column ignore_unless_hot
+		dataType: string
+		lineageTag: 49917058-d42b-405e-9166-5d0346a3040c
+		summarizeBy: none
+		sourceColumn: ignore_unless_hot
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinStart_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1bcf21dc-cc34-40d0-ae75-ef7bff53bd56
+		summarizeBy: none
+		sourceColumn: MinStart_UTC
+
+		variation Variation
+			isDefault
+			relationship: 73c70730-fd93-4c2f-bc0e-d91a4014a4e2
+			defaultHierarchy: LocalDateTable_7cd80378-00d4-4895-9341-b6670db00fa3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaxEnd_UTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dee71f45-0713-4a26-94d4-1b5179386957
+		summarizeBy: none
+		sourceColumn: MaxEnd_UTC
+
+		variation Variation
+			isDefault
+			relationship: a1d1b0e9-0998-4867-86d6-2f9705836ac9
+			defaultHierarchy: LocalDateTable_c18d7c34-b522-4d19-8665-ca090ff8fc64.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinStart
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4cb722f3-12b2-4618-9fab-64a553f65c0e
+		summarizeBy: none
+		sourceColumn: MinStart
+
+		variation Variation
+			isDefault
+			relationship: 06ba53c7-af48-411b-815d-11c659a2b5c4
+			defaultHierarchy: LocalDateTable_960840bc-50dc-45a8-a6ab-bdb5a4d73924.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaxEnd
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a9a1ecd9-526a-4929-a484-dc9009ec9e27
+		summarizeBy: none
+		sourceColumn: MaxEnd
+
+		variation Variation
+			isDefault
+			relationship: d4a3132f-9e20-4fa8-9f79-1ba51a584748
+			defaultHierarchy: LocalDateTable_cb96d008-cf96-48af-b911-fd8d36f60465.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrailerType_Shipment
+		dataType: string
+		lineageTag: 8f043eb6-e412-4afb-997a-b0bbbc4ca3a3
+		summarizeBy: none
+		sourceColumn: TrailerType_Shipment
+
+		annotation SummarizationSetBy = Automatic
+
+	column door_id_assigned_shipment
+		dataType: string
+		lineageTag: 4475232a-61a0-4b6a-a37c-69b844027755
+		summarizeBy: none
+		sourceColumn: door_id_assigned_shipment
+
+		annotation SummarizationSetBy = Automatic
+
+	column door_id_assigned_receipt
+		dataType: string
+		lineageTag: 5059af86-0f39-46d7-a00d-d688793b0788
+		summarizeBy: none
+		sourceColumn: door_id_assigned_receipt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_till_late_minutes =
+			
+			VAR IsCompleted = 'AS_Result_Schedule_Activity'[Status_Basic] = "Completed"
+			VAR HoursMax =
+			    MAXX (
+			        VALUES ( 'AS_Result_Schedule_Activity'[action_id] ),
+			        [Hours_till_late]
+			    )
+			RETURN
+			IF ( IsCompleted, BLANK(), (HoursMax * 60)/60.0 )
+		lineageTag: 66772bbd-1462-4fc5-8838-a537b4acdb89
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Time_till_late_label
+		type: calculated
+		lineageTag: aaff1664-c948-4b6d-9441-b3bc6bddbc5b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":"\nVAR IsCompleted = 'AS_Result_Schedule_Activity'[Status_Basic] = \"Completed\"\nVAR HoursMax =\n    MAXX (\n        VALUES ( 'AS_Result_Schedule_Activity'[action_id] ),\n        [Hours_till_late]\n    )\nVAR Minutes = IF ( IsCompleted, BLANK(), HoursMax * 60 )\nVAR SortKey = RIGHT ( \"000000\" & FORMAT ( Minutes, \"0\" ), 6 )\nVAR Label =\n    IF ( IsCompleted, BLANK(),\n        FORMAT ( INT ( Minutes / 60 ), \"0\" ) & \":\" & FORMAT ( MOD ( Minutes, 60 ), \"00\" )\n    )\nRETURN SortKey & \" | \" & Label"}
+
+		annotation 277cc1b9-af89-4597-8e15-cacc25c0886b = ```
+				A circular dependency was detected: AS_Result_Schedule_Activity[Time_till_late_label], AS_Result_Schedule_Activity[Time_till_late_minutes], AS_Result_Schedule_Activity[Time_till_late_label].
+				
+				```
+
+	partition AS_Result_Schedule_Activity = m
+		mode: import
+		source = ```
+				let
+				    #"Merge Activity with DoorAssignment for shipments" = Table.NestedJoin(AS_Result_Schedule_Activity_Data, {"site_id", "to_movement_id"}, AS_Result_Door_Assignment, {"site_id", "movement_id"}, "AS_Result_Door_Assignment", JoinKind.LeftOuter),
+				    #"Expanded AS_Result_Door_Assignment" = Table.ExpandTableColumn(#"Merge Activity with DoorAssignment for shipments", "AS_Result_Door_Assignment", {"door_id"}, {"Door_Proposed_shipment"}),
+				    #"Merge Activity with Door Assignment for Receipts" = Table.NestedJoin(#"Expanded AS_Result_Door_Assignment", {"site_id", "from_movement_id"}, AS_Result_Door_Assignment, {"site_id", "movement_id"}, "AS_Result_Door_Assignment", JoinKind.LeftOuter),
+				    #"Expanded AS_Result_Door_Assignment1" = Table.ExpandTableColumn(#"Merge Activity with Door Assignment for Receipts", "AS_Result_Door_Assignment", {"door_id"}, {"door_id"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded AS_Result_Door_Assignment1",{{"door_id", "Door_Proposed_Receipt"}}),
+				    
+				LeftKeysNormalized =
+				    Table.TransformColumns(
+				        #"Renamed Columns",
+				        {
+				            {"site_id",          each Text.Upper(Text.Trim(Text.From(_))), type text},
+				            {"to_movement_id",   each Text.Upper(Text.Trim(Text.From(_))), type text},
+				            {"from_movement_id", each Text.Upper(Text.Trim(Text.From(_))), type text}
+				        }
+				    ),
+				    
+				
+				// 2) Normalize keys on Shipments log (AS_Shipments_Log)
+				    ShipLogKeys =
+				        Table.TransformColumns(
+				            AS_Shipments_Log,
+				            {
+				                {"site_id", each Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"shipment_id", each Text.Upper(Text.Trim(Text.From(_))), type text}
+				            }
+				    ),
+				
+				// 3) Normalize keys on Receipts log (AS_Receipts_Log)
+				    RcptLogKeys =
+				        Table.TransformColumns(
+				            AS_Receipts_Log,
+				            {
+				                {"site_id", each Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"receipt_id", each Text.Upper(Text.Trim(Text.From(_))), type text}
+				            }
+				    ),
+				
+				// 4) Filter for SHIPMENTS merge only (do NOT filter from_movement_id here)
+				    LeftForShip =
+				        //Table.SelectRows(LeftKeysNormalized, each [to_movement_id] <> "#UNKNOWN"),
+				         LeftKeysNormalized,
+				
+				// 5) Merge Shipments
+				    Merged_Ship =
+				        Table.NestedJoin(
+				            LeftForShip, {"site_id","to_movement_id"},
+				            ShipLogKeys, {"site_id","shipment_id"},
+				            "ShipLog", JoinKind.LeftOuter
+				    ),
+				    Expanded_Ship =
+				        Table.ExpandTableColumn(
+				            Merged_Ship, "ShipLog",
+				            {"shipment_id","shipment_type_id","customers","note","is_live","planned_arrival_utc","planned_arrival","arrived_utc","arrived","appointment_date_utc","appointment_date","late_after_utc","late_after","transportation_type_id","started_utc","started","ended_utc","ended","last_scheduled_end_utc","last_scheduled_end","carrier_id","trailer_id","orders","ordered_items","ordered_buom","ordered_cases","ordered_ULs","ordered_kg","ordered_weight","ordered_weight_uom","ordered_cm3","ordered_volume","ordered_volume_uom","loaded_items","loaded_buom","loaded_cases","loaded_ULs","loaded_kg","loaded_weight","loaded_weight_uom","loaded_cm3","loaded_volume","loaded_volume_uom","door_id"},
+				            {"shipment_id","shipment_type_id","customers","note","is_live","planned_arrival_utc","planned_arrival","arrived_utc","arrived","appointment_date_utc","appointment_date","late_after_utc","late_after","transportation_type_id","started_utc","started","ended_utc","ended","last_scheduled_end_utc","last_scheduled_end","carrier_id","trailer_id","orders","ordered_items","ordered_buom","ordered_cases","ordered_ULs","ordered_kg","ordered_weight","ordered_weight_uom","ordered_cm3","ordered_volume","ordered_volume_uom","loaded_items","loaded_buom","loaded_cases","loaded_ULs","loaded_kg","loaded_weight","loaded_weight_uom","loaded_cm3","loaded_volume","loaded_volume_uom","door_id.s"}
+				    ),
+				
+				// 6) Now filter for RECEIPTS merge (do NOT filter to_movement_id here)
+				    LeftForRcpt = Expanded_Ship,   // 7) Merge Receipts
+				    Merged_Rcpt =
+				        Table.NestedJoin(
+				            LeftForRcpt, {"site_id","from_movement_id"},
+				            RcptLogKeys, {"site_id","receipt_id"},
+				            "RcptLog", JoinKind.LeftOuter
+				    ),
+				    Expanded_Rcpt =
+				        Table.ExpandTableColumn(
+				            Merged_Rcpt, "RcptLog",
+				            {"receipt_id","receipt_type_id","origin","note","is_live","planned_arrival_utc","planned_arrival","arrived_utc","arrived","late_after_utc","late_after","appointment_date_utc","appointment_date","transportation_type_id","started_utc","started","ended_utc","ended","carrier_id","trailer_id","door_id","expected_items","expected_buom","expected_cases","expected_ULs","expected_kg","expected_weight","expected_weight_uom","expected_cm3","expected_volume","expected_volume_uom","received_items","received_buom","received_cases","received_ULs","received_kg","received_weight","received_weight_uom","received_cm3","received_volume","received_volume_uom","ignore","ignore_unless_hot"},
+				            {"receipt_id","receipt_type_id","origin","note.1","is_live.1","planned_arrival_utc.1","planned_arrival.1","arrived_utc.1","arrived.1","late_after_utc.1","late_after.1","appointment_date_utc.1","appointment_date.1","transportation_type_id.1","started_utc.1","started.1","ended_utc.1","ended.1","carrier_id.1","trailer_id.1","door_id.r","expected_items","expected_buom","expected_cases","expected_ULs","expected_kg","expected_weight","expected_weight_uom","expected_cm3","expected_volume","expected_volume_uom","received_items","received_buom","received_cases","received_ULs","received_kg","received_weight","received_weight_uom","received_cm3","received_volume","received_volume_uom","ignore","ignore_unless_hot"}
+				    ),
+				    #"Renamed Columns all" = Table.RenameColumns(#"Expanded_Rcpt",
+				    {
+				        {"appointment_date", "appointment_date_shipment"},
+				        {"appointment_date_utc", "appointment_date_utc_shipment"},
+				        {"carrier_id", "carrier_id_shipment"},
+				        {"ended", "ended_shipment"},
+				        {"ended_utc", "ended_utc_shipment"},
+				        {"is_live", "is_live_shipment"},
+				        {"note", "note_shipment"},
+				        {"late_after", "late_after_shipment"},
+				        {"late_after_utc", "late_after_utc_shipment"},
+				        {"planned_arrival", "planned_arrival_shipment"},
+				        {"planned_arrival_utc", "planned_arrival_utc_shipment"},
+				        {"started", "started_shipment"},
+				        {"started_utc", "started_utc_shipment"},
+				        {"arrived", "arrived_shipment"},
+				        {"arrived_utc", "arrived_utc_shipment"},
+				        {"trailer_id", "trailer_id_shipment"},
+				        {"transportation_type_id", "transportation_type_shipment"},
+				        {"appointment_date.1", "appointment_date_receipt"},
+				        {"appointment_date_utc.1", "appointment_date_utc_receipt"},
+				        {"carrier_id.1", "carrier_id_receipt"},
+				        {"ended.1", "ended_receipt"},
+				        {"ended_utc.1", "ended_utc_receipt"},
+				        {"is_live.1", "is_live_receipt"},
+				        {"note.1", "note_receipt"},
+				        {"late_after.1", "late_after_receipt"},
+				        {"late_after_utc.1", "late_after_utc_receipt"},
+				        {"planned_arrival.1", "planned_arrival_receipt"},
+				        {"planned_arrival_utc.1", "planned_arrival_utc_receipt"},
+				        {"started.1", "started_receipt"},
+				        {"started_utc.1", "started_utc_receipt"},
+				        {"arrived.1", "arrived_receipt"},
+				        {"arrived_utc.1", "arrived_utc_receipt"},
+				        {"trailer_id.1", "trailer_id_receipt"},
+				        {"transportation_type_id.1", "transportation_type_receipt"},
+				        {"door_id.r", "door_id_assigned_receipt"},
+				        {"door_id.s", "door_id_assigned_shipment"},
+				        {"door_id", "door_id_proposed"}
+				    },
+				    MissingField.Ignore
+				    ),
+				    // normalize keys on the LEFT side used for the aggregates join
+				    LeftForAgg =
+				        Table.TransformColumns(
+				            #"Renamed Columns all",
+				            {
+				                {"site_id", each Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"to_movement_id", each Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"from_movement_id", each Text.Upper(Text.Trim(Text.From(_))), type text}
+				            }
+				        ),
+				
+				// normalize keys on the RIGHT side (AS_Schedule_Aggregates)
+				    AggKeys =
+				        Table.TransformColumns(
+				            AS_Schedule_Aggregates,
+				            {
+				                {"site_id", each Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"to_movement_id", each Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"from_movement_id", each Text.Upper(Text.Trim(Text.From(_))), type text}
+				            }
+				        ),
+				
+				// join
+				    MergedAgg =
+				        Table.NestedJoin(
+				            LeftForAgg, {"site_id","to_movement_id","from_movement_id"},
+				            AggKeys,    {"site_id","to_movement_id","from_movement_id"},
+				            "Agg", JoinKind.LeftOuter
+				    ),
+				    ExpandedAgg =
+				        Table.ExpandTableColumn(MergedAgg, "Agg", {"MinStart_UTC", "MaxEnd_UTC", "MinStart", "MaxEnd"}, {"MinStart_UTC", "MaxEnd_UTC", "MinStart", "MaxEnd"}),
+				
+				    // ---------- Build schedule keys for anti-join (what's already in schedule) ----------
+				    Sched_ToKeys =
+				        Table.Buffer(
+				            Table.Distinct(
+				                Table.SelectColumns(LeftKeysNormalized, {"site_id","to_movement_id"})
+				            )
+				        ),
+				    Sched_FromKeys =
+				        Table.Buffer(
+				            Table.Distinct(
+				                Table.SelectColumns(LeftKeysNormalized, {"site_id","from_movement_id"})
+				            )
+				        ),
+				
+				    // ---------- Shipments that ended but have NO schedule row ----------
+				    ShipLogStarted =
+				        Table.SelectRows(AS_Shipments_Log, each [started_utc] <> null),
+				
+				    ShipLogCompletedKeys =
+				        Table.TransformColumns(
+				            ShipLogCompleted,
+				            {
+				                {"site_id", each Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"shipment_id", each Text.Upper(Text.Trim(Text.From(_))), type text}
+				            }
+				        ),
+				
+				    Ship_NoSched_Anti =
+				        Table.NestedJoin(
+				            ShipLogStarted, {"site_id","shipment_id"},
+				            Sched_ToKeys,         {"site_id","to_movement_id"},
+				            "Sched", JoinKind.LeftAnti
+				        ),
+				    Ship_NoSched =
+				        Table.RemoveColumns(Ship_NoSched_Anti, {"Sched"}),
+				
+				    // bring door assignment by movement_id (optional but useful)
+				    Ship_NoSched_WithDoor =
+				        Table.NestedJoin(
+				            Ship_NoSched, {"site_id","shipment_id"},
+				            AS_Result_Door_Assignment, {"site_id","movement_id"},
+				            "Door", JoinKind.LeftOuter
+				        ),
+				    Ship_NoSched_ExpandDoor =
+				        Table.ExpandTableColumn(Ship_NoSched_WithDoor, "Door", {"door_id"}, {"door_id_assigned_shipment_nosched"}),
+				
+				    // ---------- Receipts that ended but have NO schedule row ----------
+				    RcptLogStarted =
+				        Table.SelectRows(AS_Receipts_Log, each [started_utc] <> null),
+				
+				    RcptLogStartedKeys =
+				        Table.TransformColumns(
+				            RcptLogStarted,
+				            {
+				                {"site_id", each Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"receipt_id", each Text.Upper(Text.Trim(Text.From(_))), type text}
+				            }
+				        ),
+				
+				    Rcpt_NoSched_Anti =
+				        Table.NestedJoin(
+				            RcptLogStartedKeys, {"site_id","receipt_id"},
+				            Sched_FromKeys,       {"site_id","from_movement_id"},
+				            "Sched", JoinKind.LeftAnti
+				        ),
+				        
+				    Rcpt_NoSched =
+				        Table.RemoveColumns(Rcpt_NoSched_Anti, {"Sched"}),
+				
+				    Rcpt_NoSched_WithDoor =
+				        Table.NestedJoin(
+				            Rcpt_NoSched, {"site_id","receipt_id"},
+				            AS_Result_Door_Assignment, {"site_id","movement_id"},
+				            "Door", JoinKind.LeftOuter
+				        ),
+				    Rcpt_NoSched_ExpandDoor =
+				        Table.ExpandTableColumn(Rcpt_NoSched_WithDoor, "Door", {"door_id"}, {"door_id_assigned_receipt_nosched"}),
+				
+				    // ---------- Shape the "no-schedule" rows to match your existing schema ----------
+				    FinalCols = Table.ColumnNames(ExpandedAgg),
+				
+				    // Shipments: map to *_shipment fields; set schedule keys and aggregates
+				    Ship_NoSched_Shaped =
+				        let
+				            base = Table.SelectColumns(
+				                Ship_NoSched_ExpandDoor,
+				                {
+				                    "site_id","shipment_id","appointment_date","appointment_date_utc","carrier_id",
+				                    "ended","ended_utc","is_live","late_after","late_after_utc","planned_arrival",
+				                    "planned_arrival_utc","started","started_utc","arrived","arrived_utc",
+				                    "trailer_id","transportation_type_id","customers","note",
+				                    "orders","ordered_items","ordered_buom","ordered_cases","ordered_ULs","ordered_kg",
+				                    "ordered_weight","ordered_weight_uom","ordered_cm3","ordered_volume","ordered_volume_uom",
+				                    "loaded_items","loaded_buom","loaded_cases","loaded_ULs","loaded_kg","loaded_weight",
+				                    "loaded_weight_uom","loaded_cm3","loaded_volume","loaded_volume_uom","shipment_type_id",
+				                    "door_id_assigned_shipment_nosched"
+				                },
+				                MissingField.Ignore
+				            ),
+				            addSchedKeys1 = Table.AddColumn(base, "from_movement_id", each null, type text),
+				            addSchedKeys2 = Table.AddColumn(addSchedKeys1, "from_movement_type", each "#unknown", type text),
+				            addSchedKeys3 = Table.AddColumn(addSchedKeys2, "to_movement_id", each [shipment_id], type text),
+				            addSchedKeys4 = Table.AddColumn(addSchedKeys3, "to_movement_type", each "shipment", type text),
+				            renamed =
+				                Table.RenameColumns(
+				                    addSchedKeys4,
+				                    {
+				                        {"appointment_date","appointment_date_shipment"},
+				                        {"appointment_date_utc","appointment_date_utc_shipment"},
+				                        {"carrier_id","carrier_id_shipment"},
+				                        {"ended","ended_shipment"},
+				                        {"ended_utc","ended_utc_shipment"},
+				                        {"is_live","is_live_shipment"},
+				                        {"late_after","late_after_shipment"},
+				                        {"late_after_utc","late_after_utc_shipment"},
+				                        {"planned_arrival","planned_arrival_shipment"},
+				                        {"planned_arrival_utc","planned_arrival_utc_shipment"},
+				                        {"started","started_shipment"},
+				                        {"started_utc","started_utc_shipment"},
+				                        {"arrived","arrived_shipment"},
+				                        {"arrived_utc","arrived_utc_shipment"},
+				                        {"trailer_id","trailer_id_shipment"},
+				                        {"transportation_type_id","transportation_type_shipment"},
+				                        {"note","note_shipment"},
+				                        {"door_id_assigned_shipment_nosched","door_id_assigned_shipment"}
+				                    },
+				                    MissingField.Ignore
+				                ),
+				            // aggregates not present in schedule-only rows: leave nulls
+				            addAggNulls1 = Table.AddColumn(renamed, "MinStart_UTC", each null, type datetime),
+				            addAggNulls2 = Table.AddColumn(addAggNulls1, "MaxEnd_UTC", each null, type datetime),
+				            addAggNulls3 = Table.AddColumn(addAggNulls2, "MinStart", each null, type datetime),
+				            addAggNulls4 = Table.AddColumn(addAggNulls3, "MaxEnd", each null, type datetime),
+				
+				            // ensure all final columns exist (add missing with null)
+				            addMissingCols =
+				                List.Accumulate(
+				                    List.Difference(FinalCols, Table.ColumnNames(addAggNulls4)),
+				                    addAggNulls4,
+				                    (state as table, col as text) => Table.AddColumn(state, col, each null, type any)
+				                ),
+				            aligned = Table.SelectColumns(addMissingCols, FinalCols, MissingField.UseNull)
+				        in
+				            aligned,
+				
+				    // Receipts: map to *_receipt fields; set schedule keys and aggregates
+				    Rcpt_NoSched_Shaped =
+				        let
+				            base = Table.SelectColumns(
+				                Rcpt_NoSched_ExpandDoor,
+				                {
+				                    "site_id","receipt_id","appointment_date","appointment_date_utc","carrier_id",
+				                    "ended","ended_utc","is_live","late_after","late_after_utc","planned_arrival",
+				                    "planned_arrival_utc","started","started_utc","arrived","arrived_utc",
+				                    "trailer_id","transportation_type_id","origin","note",
+				                    "expected_items","expected_buom","expected_cases","expected_ULs","expected_kg",
+				                    "expected_weight","expected_weight_uom","expected_cm3","expected_volume","expected_volume_uom",
+				                    "received_items","received_buom","received_cases","received_ULs","received_kg","received_weight",
+				                    "received_weight_uom","received_cm3","received_volume","received_volume_uom","receipt_type_id",
+				                    "door_id_assigned_receipt_nosched"
+				                },
+				                MissingField.Ignore
+				            ),
+				            addSchedKeys1 = Table.AddColumn(base, "from_movement_id", each [receipt_id], type text),
+				            addSchedKeys2 = Table.AddColumn(addSchedKeys1, "from_movement_type", each "receipt", type text),
+				            addSchedKeys3 = Table.AddColumn(addSchedKeys2, "to_movement_id", each null, type text),
+				            addSchedKeys4 = Table.AddColumn(addSchedKeys3, "to_movement_type", each "#unknown", type text),
+				            renamed =
+				                Table.RenameColumns(
+				                    addSchedKeys4,
+				                    {
+				                        {"appointment_date","appointment_date_receipt"},
+				                        {"appointment_date_utc","appointment_date_utc_receipt"},
+				                        {"carrier_id","carrier_id_receipt"},
+				                        {"ended","ended_receipt"},
+				                        {"ended_utc","ended_utc_receipt"},
+				                        {"is_live","is_live_receipt"},
+				                        {"late_after","late_after_receipt"},
+				                        {"late_after_utc","late_after_utc_receipt"},
+				                        {"planned_arrival","planned_arrival_receipt"},
+				                        {"planned_arrival_utc","planned_arrival_utc_receipt"},
+				                        {"started","started_receipt"},
+				                        {"started_utc","started_utc_receipt"},
+				                        {"arrived","arrived_receipt"},
+				                        {"arrived_utc","arrived_utc_receipt"},
+				                        {"trailer_id","trailer_id_receipt"},
+				                        {"transportation_type_id","transportation_type_receipt"},
+				                        {"note","note_receipt"},
+				                        {"door_id_assigned_receipt_nosched","door_id_assigned_receipt"}
+				                    },
+				                    MissingField.Ignore
+				                ),
+				                    // aggregates not present in schedule-only rows: leave nulls
+				            addAggNulls1 = Table.AddColumn(renamed, "MinStart_UTC", each null, type datetime),
+				            addAggNulls2 = Table.AddColumn(addAggNulls1, "MaxEnd_UTC", each null, type datetime),
+				            addAggNulls3 = Table.AddColumn(addAggNulls2, "MinStart", each null, type datetime),
+				            addAggNulls4 = Table.AddColumn(addAggNulls3, "MaxEnd", each null, type datetime),
+				
+				            // ensure all final columns exist (add missing with null)
+				            addMissingCols =
+				                List.Accumulate(
+				                    List.Difference(FinalCols, Table.ColumnNames(addAggNulls4)),
+				                    addAggNulls4,
+				                    (state as table, col as text) => Table.AddColumn(state, col, each null, type any)
+				                ),
+				            aligned = Table.SelectColumns(addMissingCols, FinalCols, MissingField.UseNull)
+				        in
+				            aligned,
+				
+				    // ---------- Append to your existing table ----------
+				    Combined_All = Table.Combine({ ExpandedAgg, Ship_NoSched_Shaped, Rcpt_NoSched_Shaped }),
+				    Combined_All_WithTrailer =
+				        Table.NestedJoin(
+				            Combined_All, {"site_id","shipment_id"},
+				            AS_Shipments_with_Overrides, {"site_id","shipment_id"},
+				            "ShipOverrides", JoinKind.LeftOuter
+				        ),
+				    Expanded_All_WithTrailer =
+				        Table.ExpandTableColumn(
+				            Combined_All_WithTrailer, "ShipOverrides",
+				            {"trailer_type"},
+				            {"TrailerType_Shipment"}
+				        ),
+				    // -------------------------------------------------------------------
+				    // Back-fill door_id_assigned_* for ALL rows (incl. completed/no-schedule)
+				    // -------------------------------------------------------------------
+				
+				    // Build a "latest per site_id + movement_id" from AS_Result_Door_Assignment
+				    DoorAssignKeys =
+				        Table.TransformColumns(
+				            AS_Result_Door_Assignment,
+				            {
+				                {"site_id",     each Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"movement_id", each Text.Upper(Text.Trim(Text.From(_))), type text}
+				            }
+				        ),
+				    DoorAssignSorted = Table.Sort(DoorAssignKeys, {{"updated_utc", Order.Descending}}),
+				    DoorLatest =
+				        Table.SelectColumns(
+				            Table.Distinct(DoorAssignSorted, {"site_id","movement_id"}),
+				            {"site_id","movement_id","door_id"}
+				        ),
+				
+				    // Normalize keys on the combined fact for the join
+				    FactForDoorBF =
+				        Table.TransformColumns(
+				            Expanded_All_WithTrailer,              // <— use your table after trailer merge
+				            {
+				                {"site_id",          each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"to_movement_id",   each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text},
+				                {"from_movement_id", each if _ = null then null else Text.Upper(Text.Trim(Text.From(_))), type text}
+				            }
+				        ),
+				
+				    // Join latest door on shipment side (to_movement_id)
+				    MergeDoorShipBF =
+				        Table.NestedJoin(
+				            FactForDoorBF, {"site_id","to_movement_id"},
+				            DoorLatest,    {"site_id","movement_id"},
+				            "DoorBF_Ship", JoinKind.LeftOuter
+				        ),
+				    ExpandDoorShipBF =
+				        Table.ExpandTableColumn(MergeDoorShipBF, "DoorBF_Ship", {"door_id"}, {"door_assigned_ship_fill"}),
+				
+				    // Join latest door on receipt side (from_movement_id)
+				    MergeDoorRcptBF =
+				        Table.NestedJoin(
+				            ExpandDoorShipBF, {"site_id","from_movement_id"},
+				            DoorLatest,       {"site_id","movement_id"},
+				            "DoorBF_Rcpt", JoinKind.LeftOuter
+				        ),
+				    ExpandDoorRcptBF =
+				        Table.ExpandTableColumn(MergeDoorRcptBF, "DoorBF_Rcpt", {"door_id"}, {"door_assigned_rcpt_fill"}),
+				
+				    // Backfill: keep existing assigned door if present, else take the latest fill
+				    AssignedDoorBackfilled =
+				        Table.AddColumn(
+				            Table.AddColumn(
+				                ExpandDoorRcptBF,
+				                "door_id_assigned_shipment_final",
+				                each let cur = [door_id_assigned_shipment], fill = [door_assigned_ship_fill]
+				                    in if cur <> null and Text.Trim(Text.From(cur)) <> "" then cur else fill,
+				                type text
+				            ),
+				            "door_id_assigned_receipt_final",
+				            each let cur = [door_id_assigned_receipt], fill = [door_assigned_rcpt_fill]
+				                in if cur <> null and Text.Trim(Text.From(cur)) <> "" then cur else fill,
+				            type text
+				        ),
+				
+				    DoorBF_Cleanup =
+				        Table.RemoveColumns(
+				            AssignedDoorBackfilled,
+				            {"door_assigned_ship_fill","door_assigned_rcpt_fill","door_id_assigned_shipment","door_id_assigned_receipt"}
+				        ),
+				    WithAssignedDoorFinal =
+				        Table.RenameColumns(
+				            DoorBF_Cleanup,
+				            {
+				                {"door_id_assigned_shipment_final","door_id_assigned_shipment"},
+				                {"door_id_assigned_receipt_final","door_id_assigned_receipt"}
+				            }
+				        ),
+				    
+				    // ---- FINAL, FORCE DATA TYPES AFTER APPEND ----
+				    
+				    // Map of desired column types
+				    TypeMap = {
+				        // schedule activity core
+				        {"site_id",               type text},
+				        {"action_id",             type text},
+				        {"actor_id",              type text},
+				        {"equipment_id",          type text},
+				        {"from_movement_id",      type text},
+				        {"from_movement_type",    type text},
+				        {"to_movement_id",        type text},
+				        {"to_movement_type",      type text},
+				        {"quantity_ul",           type number},
+				        {"work_hours_standard",   type number},
+				        {"start_utc",             type datetime},
+				        {"end_utc",               type datetime},
+				        {"start",                 type datetime},
+				        {"end",                   type datetime},
+				        {"updated_utc",           type datetime},
+				        {"updated",               type datetime},
+				
+				        // aggregates
+				        {"MinStart_UTC",          type datetime},
+				        {"MaxEnd_UTC",            type datetime},
+				        {"MinStart",              type datetime},
+				        {"MaxEnd",                type datetime},
+				
+				        // shipments (assigned/proposed may be text)
+				        {"shipment_id",                   type text},
+				        {"is_live_shipment",              type text},     // or type logical if true/false only
+				        {"appointment_date_shipment",     type datetime},
+				        {"appointment_date_utc_shipment", type datetime},
+				        {"planned_arrival_shipment",      type datetime},
+				        {"planned_arrival_utc_shipment",  type datetime},
+				        {"arrived_shipment",              type datetime},
+				        {"arrived_utc_shipment",          type datetime},
+				        {"started_shipment",              type datetime},
+				        {"started_utc_shipment",          type datetime},
+				        {"ended_shipment",                type datetime},
+				        {"ended_utc_shipment",            type datetime},
+				        {"late_after_shipment",           type datetime},
+				        {"late_after_utc_shipment",       type datetime},
+				        {"carrier_id_shipment",           type text},
+				        {"trailer_id_shipment",           type text},
+				        {"TrailerType_Shipment",           type text},
+				        {"transportation_type_shipment",  type text},
+				        {"ordered_cases",                 type number},
+				        {"loaded_cases",                  type number},
+				        {"door_id_assigned_shipment",     type text},
+				        {"Door_Proposed_shipment",              type text},   
+				
+				        // receipts
+				        {"receipt_id",                    type text},
+				        {"is_live_receipt",               type text},     // or type logical
+				        {"appointment_date_receipt",      type datetime},
+				        {"appointment_date_utc_receipt",  type datetime},
+				        {"planned_arrival_receipt",       type datetime},
+				        {"planned_arrival_utc_receipt",   type datetime},
+				        {"arrived_receipt",               type datetime},
+				        {"arrived_utc_receipt",           type datetime},
+				        {"started_receipt",               type datetime},
+				        {"started_utc_receipt",           type datetime},
+				        {"ended_receipt",                 type datetime},
+				        {"ended_utc_receipt",             type datetime},
+				        {"late_after_receipt",            type datetime},
+				        {"late_after_utc_receipt",        type datetime},
+				        {"carrier_id_receipt",            type text},
+				        {"trailer_id_receipt",            type text},
+				        {"transportation_type_receipt",   type text},
+				        {"expected_cases",                type number},
+				        {"received_cases",                type number},
+				        {"door_id_assigned_receipt",      type text},
+				        {"Door_Proposed_Receipt",              type text}
+				    },
+				
+				    ExistingCols    = Table.ColumnNames(WithAssignedDoorFinal),
+				    ExistingTypeMap = List.Select(TypeMap, each List.Contains(ExistingCols, _{0})),
+				    TypedFinal      = Table.TransformColumnTypes(WithAssignedDoorFinal, ExistingTypeMap, "en-US"),
+				    #"Filtered Rows" = Table.SelectRows(TypedFinal, each [shipment_type_id] <> "freightUnit")
+				in
+				    #"Filtered Rows"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

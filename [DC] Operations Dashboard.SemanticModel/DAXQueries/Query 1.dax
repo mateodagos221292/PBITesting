@@ -1,0 +1,159 @@
+// Welcome to DAX query view! Learn more about DAX queries at https://aka.ms/dax-queries.
+// Right-click on tables, columns, or measures in the data pane to access quick queries, or ask Copilot for help writing DAX.
+Hours_to_Scheduled_End :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[end_utc]),
+    BLANK(),
+    DATEDIFF(now, AS_Result_schedule_activity[end_utc], MINUTE) / 60.0
+)
+
+Hours_since_start_Shipment :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[Shipment_started_utc]),
+    BLANK(),
+    DATEDIFF(AS_Result_schedule_activity[Shipment_started_utc], now, MINUTE) / 60.0
+)
+
+Hours_since_start_Receipt :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[Receipt_started_utc]),
+    BLANK(),
+    DATEDIFF(AS_Result_schedule_activity[Receipt_started_utc], now, MINUTE) / 60.0
+)
+
+Hours_to_Scheduled_Start :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[start_utc]),
+    BLANK(),
+    DATEDIFF(now, AS_Result_schedule_activity[start_utc], MINUTE) / 60.0
+)
+
+Hours_till_late_Receipt :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[Receipt_late_after_utc]),
+    BLANK(),
+    DATEDIFF(now, AS_Result_schedule_activity[Receipt_late_after_utc], MINUTE) / 60.0
+)
+
+Hours_till_late_Shipment :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[Shipment_late_after_utc]),
+    BLANK(),
+    DATEDIFF(now, AS_Result_schedule_activity[Shipment_late_after_utc], MINUTE) / 60.0
+)
+
+Hours_till_appointment_end_Shipment :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[Shipment_appointment_date_utc]),
+    BLANK(),
+    DATEDIFF(now, AS_Result_schedule_activity[Shipment_appointment_date_utc], MINUTE) / 60.0
+)
+
+Hours_since_appointment_start_Receipt :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[Receipt_appointment_date_utc]),
+    BLANK(),
+    DATEDIFF(AS_Result_schedule_activity[Receipt_appointment_date_utc], now, MINUTE) / 60.0
+)
+
+Hours_till_planned_arrival_Receipt :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[Receipt_planned_arrival_utc]),
+    BLANK(),
+    DATEDIFF(now, AS_Result_schedule_activity[Receipt_planned_arrival_utc], MINUTE) / 60.0
+)
+
+Hours_till_planned_arrival_Shipment_Live :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[Shipment_planned_arrival_utc]),
+    BLANK(),
+    DATEDIFF(now, AS_Result_schedule_activity[Shipment_planned_arrival_utc], MINUTE) / 60.0
+)
+
+Hours_since_arrived_Receipt :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[Receipt_arrived_utc]),
+    BLANK(),
+    DATEDIFF(AS_Result_schedule_activity[Receipt_arrived_utc], now, MINUTE) / 60.0
+)
+
+Hours_since_arrived_Shipment_Live :=
+VAR now = UTCNOW()
+RETURN
+IF(
+    ISBLANK(AS_Result_schedule_activity[Shipment_arrived_utc]),
+    BLANK(),
+    DATEDIFF(AS_Result_schedule_activity[Shipment_arrived_utc], now, MINUTE) / 60.0
+)
+
+// Add all calculated columns at once
+EVALUATE
+ADDCOLUMNS(
+    'AS_Operations_Dashboard',
+    "Status_Basic", 
+        SWITCH(
+            TRUE(),
+            'AS_Operations_Dashboard'[IsEnded] = "Y", "Completed",
+            'AS_Operations_Dashboard'[IsStarted] = "Y", "In Progress",
+            "Not started"
+        ),
+    "MoveTypeLab",
+        SWITCH(
+            TRUE(),
+            [from_movement_type] = "production" && [to_movement_type] = "shipment", "Express from production",
+            [from_movement_type] = "receipt" && [to_movement_type] = "#unknown", "Receipt to storage",
+            [from_movement_type] = "production" && [to_movement_type] = "#unknown", "Production to storage",
+            [from_movement_type] = "#unknown" && [to_movement_type] = "shipment", "Shipment from storage",
+            [from_movement_type] = "#unknown" && [to_movement_type] = "consumption", "Consumption from storage",
+            [from_movement_type] = "receipt" && [to_movement_type] = "consumption", "Receipt to consumption",
+            [from_movement_type] = "receipt" && [to_movement_type] = "shipment", "Crossdock",
+            "Check"
+        ),
+    "Ended_Any",
+        COALESCE([ended_shipment], [ended_receipt]),
+    "Cases_Left",
+        [Cases_Expected_Ordered] - [Cases_Received_Loaded],
+    "AssignedDoor",
+        VAR lbl = UPPER(TRIM([MoveTypeLab] & ""))
+        VAR r0 = [door_id_assigned_receipt]
+        VAR s0 = [door_id_assigned_shipment]
+        VAR r = IF(LEN(TRIM(r0 & "")) = 0, BLANK(), r0)
+        VAR s = IF(LEN(TRIM(s0 & "")) = 0, BLANK(), s0)
+        RETURN
+        IF(lbl = "CROSSDOCK", IF(NOT ISBLANK(r) && NOT ISBLANK(s), r & " -> " & s, COALESCE(r, s)), COALESCE(r, s)),
+    "OriginCustomer_Unified",
+        VAR lbl = [MoveTypeLab]
+        VAR orig = [origin]
+        VAR cust = SUBSTITUTE(SUBSTITUTE(SUBSTITUTE([customers], "[", ""), "]", ""), """", "")
+        RETURN
+        IF(lbl = "Crossdock", IF(NOT ISBLANK(orig) && NOT ISBLANK(cust), orig & " → " & cust, COALESCE(orig, cust)), COALESCE(orig, cust)),
+    "LateFlag",
+        VAR ReceiptLatePast = NOT ISBLANK([ended_utc_receipt]) && NOT ISBLANK([late_after_utc_receipt]) && [ended_utc_receipt] >= [late_after_utc_receipt]
+        VAR ShipmentLatePast = NOT ISBLANK([ended_utc_shipment]) && NOT ISBLANK([late_after_utc_shipment]) && [ended_utc_shipment] >= [late_after_utc_shipment]
+        VAR ReceiptExpectLate = NOT ISBLANK([MaxEnd_UTC]) && NOT ISBLANK([late_after_utc_receipt]) && NOT ISBLANK([receipt_id]) && [MaxEnd_UTC] >= [late_after_utc_receipt]
+        VAR ShipmentExpectLate = NOT ISBLANK([MaxEnd_UTC]) && NOT ISBLANK([late_after_utc_shipment]) && NOT ISBLANK([shipment_id]) && [MaxEnd_UTC] >= [late_after_utc_shipment]
+        RETURN
+        SWITCH(TRUE(), ReceiptLatePast || ShipmentLatePast, "Late", ReceiptExpectLate || ShipmentExpectLate, "Not Late", "Not Late")
+)

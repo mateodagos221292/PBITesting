@@ -1,0 +1,279 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "268fce40cc6882c4404b",
+  "position": {
+    "x": 28.820960698689959,
+    "y": 660.2620087336245,
+    "z": 5000,
+    "height": 542.35807860262014,
+    "width": 455.89519650655023,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "🚦 "
+                  },
+                  {
+                    "value": "STATUS GUIDE",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "NOT STARTED"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Movement is scheduled but hasn't begun"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- No cases moved yet"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Proposed Start Time shows when work is scheduled"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "IN PROGRESS  "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Movement has started but not completed"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Cases are being moved"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Progress % shows completion (Cases Moved ÷ Cases Ordered)"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "COMPLETED"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- All work finished"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Completed Time populated"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Final case counts recorded"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "LATE STATUS:"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "⚠️ Late - Movement finished after deadline"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "⏰ Expect Late - Movement will finish after deadline"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "✓ Not Late - On track or completed on time"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "− No Deadline - No late_after time specified"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Hours till Late:"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Shows time remaining until deadline"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Only displays for in-progress movements"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Blank if completed or no deadline"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#ABECF5'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,153 @@
+table AS_Sites
+	lineageTag: a18129ba-8d57-4d95-8583-c03a689b9563
+
+	column site_id
+		dataType: string
+		lineageTag: a9c123e1-17c0-4500-a7c5-70fb015a8ad0
+		summarizeBy: none
+		sourceColumn: site_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column site_name
+		dataType: string
+		lineageTag: f78add05-d269-4de2-a34c-4ded1f0171dc
+		summarizeBy: none
+		sourceColumn: site_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column timezone
+		dataType: string
+		lineageTag: 62bb323c-2b7e-4462-bbf6-c575a2ce3934
+		summarizeBy: none
+		sourceColumn: timezone
+
+		annotation SummarizationSetBy = Automatic
+
+	column report_length_uom
+		dataType: string
+		lineageTag: e35358ff-acbc-43cb-bfcf-eda001177c7a
+		summarizeBy: none
+		sourceColumn: report_length_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column report_weight_uom
+		dataType: string
+		lineageTag: 1283feb6-7105-43ea-9c67-915fc3f75f3f
+		summarizeBy: none
+		sourceColumn: report_weight_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column report_volume_uom
+		dataType: string
+		lineageTag: e1281f06-e470-4850-890b-bf28b81c8f7e
+		summarizeBy: none
+		sourceColumn: report_volume_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column report_trailer_volume_uom
+		dataType: string
+		lineageTag: 1cd70971-f83b-496a-8259-dc4bf4fadf44
+		summarizeBy: none
+		sourceColumn: report_trailer_volume_uom
+
+		annotation SummarizationSetBy = Automatic
+
+	column max_history_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d56214d-36b0-4535-8327-d0c4009ae86d
+		summarizeBy: none
+		sourceColumn: max_history_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column dashboard_show_actions
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 76b89361-90fc-4094-bd3a-58dca7c511c1
+		summarizeBy: none
+		sourceColumn: dashboard_show_actions
+
+		annotation SummarizationSetBy = Automatic
+
+	column dashboard_show_door
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 31b3d648-262d-484a-abc5-71ef72c3e209
+		summarizeBy: none
+		sourceColumn: dashboard_show_door
+
+		annotation SummarizationSetBy = Automatic
+
+	column dashboard_show_labor
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7a79fccc-b7d5-4ddf-9749-85b449d5246f
+		summarizeBy: none
+		sourceColumn: dashboard_show_labor
+
+		annotation SummarizationSetBy = Automatic
+
+	column dashboard_show_production
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3d6a82b5-bb69-4c60-b247-197e7dc3583b
+		summarizeBy: none
+		sourceColumn: dashboard_show_production
+
+		annotation SummarizationSetBy = Automatic
+
+	column dashboard_show_shifts
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 062416dc-4330-4d52-aba1-d785d2bbdcb6
+		summarizeBy: none
+		sourceColumn: dashboard_show_shifts
+
+		annotation SummarizationSetBy = Automatic
+
+	column high_travel_distance_per_UL_threshold_m
+		dataType: double
+		lineageTag: 66c65561-97ac-4d4e-a507-604402dcd331
+		summarizeBy: none
+		sourceColumn: high_travel_distance_per_UL_threshold_m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition AS_Sites = m
+		mode: import
+		source =
+				let
+				    convert_to_table = call_api(
+				        "/external-view/site",
+				        type table [
+				            site_id = text,
+				            site_name = text,
+				            dashboard_show_actions = logical,
+				            dashboard_show_door = logical,
+				            dashboard_show_labor = logical,
+				            dashboard_show_production = logical,
+				            dashboard_show_shifts = logical,
+				            high_travel_distance_per_UL_threshold_m = number,
+				            max_history_days = Int64.Type,
+				            report_length_uom = text,
+				            report_trailer_volume_uom = text,
+				            report_volume_uom = text,
+				            report_weight_uom = text,
+				            timezone = text
+				        ]
+				    )
+				in
+				    convert_to_table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
